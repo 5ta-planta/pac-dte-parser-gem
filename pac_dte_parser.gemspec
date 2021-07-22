@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.description = "Parser de XML PAC Panama"
   s.authors     = ["Team GFIP"]
   s.email       = 'alopez@fidelis.gt'     
-  s.files       = Dir["{config,lib,xml_demo}/**/*"]
+  s.files       = Dir["{lib}/**/*"]
   s.licenses    = ["MIT"]
 
   s.add_dependency("railties", ">= 4.1.0")
