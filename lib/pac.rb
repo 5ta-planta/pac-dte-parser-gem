@@ -1,11 +1,6 @@
 require 'yaml'
 require 'rails'
-module Pac
-	ERRORES_84 = YAML.load_file("config/errores_84.yml")
-	AMBIENTE_DESTINO = YAML.load_file("config/ambientes.yml")
-	TIPO_EMISION = YAML.load_file("config/tipo_emision.yml")
-	TIPO_DOCUMENTO = YAML.load_file("config/tipo_documento.yml")	
-    
+module Pac	     
 	module FacturaElectronica		  
 		autoload :FacturaElectronica, 'pac/factura_electronica/factura_electronica'
 		autoload :Emisor, 'pac/factura_electronica/emisor'
