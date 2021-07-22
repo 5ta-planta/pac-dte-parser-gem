@@ -281,15 +281,15 @@ class Pac::FacturaElectronica::FacturaElectronica
 
         @ambiente_destino = @xml_hash["rFE"]["gDGen"]["iAmb"]
         @tipo_de_emision = @xml_hash["rFE"]["gDGen"]["iTpEmis"]
-        
+        byebug
         @fecha_hora_inicio_contingencia = (@xml_hash["rFE"]["gDGen"]["dFechaCont"]).to_time
         @razon_operacion_contingencia = @xml_hash["rFE"]["gDGen"]["dMotCont"]
         @tipo_documento = @xml_hash["rFE"]["gDGen"]["iDoc"]
         @numero_documento_fiscal = @xml_hash["rFE"]["gDGen"]["dNroDF"]
         @punto_facturacion_documento_fiscal = @xml_hash["rFE"]["gDGen"]["dPtoFacDF"]
         @codigo_de_seguridad = @xml_hash["rFE"]["gDGen"]["dSeg"]
-        @fecha_emision_documento = Date.parse(@xml_hash["rFE"]["gDGen"]["dFechaEm"])
-        @fecha_salida_estimada_mercancias = @xml_hash["rFE"]["gDGen"]["dFechaSalida"]
+        @fecha_emision_documento = (@xml_hash["rFE"]["gDGen"]["dFechaEm"]).to_time
+        @fecha_salida_estimada_mercancias = (@xml_hash["rFE"]["gDGen"]["dFechaSalida"]).to_time
         @naturaleza_operacion = @xml_hash["rFE"]["gDGen"]["iNatOp"]
         @tipo_operacion = @xml_hash["rFE"]["gDGen"]["iTipoOp"]
         @destino_operacion = @xml_hash["rFE"]["gDGen"]["iDest"]
@@ -309,12 +309,6 @@ class Pac::FacturaElectronica::FacturaElectronica
         factura_electronica.cargar
         factura_electronica.validar
         return factura_electronica
-    end
-
-
-  
-    def numero_documento_fiscal_duplicado?
-        true
     end
 
 end
