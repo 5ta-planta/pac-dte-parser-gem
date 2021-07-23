@@ -64,7 +64,7 @@ class Pac::FacturaElectronica::FacturaElectronica
 
 
     def self.cargar_xml_prueba
-        file = File.open("xml_demo/fe-01.xml")
+        file = File.open(Rails.root+"xml_demo/fe-01.xml")
         xml = file.read
         #return Hash.from_xml(xml)
         xml
