@@ -281,7 +281,7 @@ class Pac::FacturaElectronica::FacturaElectronica
 
         @ambiente_destino = @xml_hash["rFE"]["gDGen"]["iAmb"]
         @tipo_de_emision = @xml_hash["rFE"]["gDGen"]["iTpEmis"]
-        byebug
+        
         @fecha_hora_inicio_contingencia = (@xml_hash["rFE"]["gDGen"]["dFechaCont"]).to_time
         @razon_operacion_contingencia = @xml_hash["rFE"]["gDGen"]["dMotCont"]
         @tipo_documento = @xml_hash["rFE"]["gDGen"]["iDoc"]
@@ -304,7 +304,7 @@ class Pac::FacturaElectronica::FacturaElectronica
 
     def self.probar
 #        xml_entrada_pp = File.open("public/fe-01-generada-rene-alejandro.xml").read
-        xml_entrada_pp = File.open("public/fe-01.xml").read
+        xml_entrada_pp = File.open("   attr_accessor :cufepublic/fe-01.xml").read
         factura_electronica = Pac::FacturaElectronica::FacturaElectronica.new(xml_entrada_pp)        
         factura_electronica.cargar
         factura_electronica.validar
