@@ -9,8 +9,8 @@ class Pac::FacturaElectronica::Emisor
     attr_accessor :dv_ruc #dDV
     attr_accessor :nombre #dNombEm
     attr_accessor :sucursal #dSucEm
-    attr_accessor :coordenadas_sucursal #dCoordEm
-    attr_accessor :direccion_sucursal #dDirecEm
+    attr_accessor :coordenadas #dCoordEm
+    attr_accessor :direccion #dDirecEm
     attr_accessor :codigo_ubicacion #dCodUbi
     attr_accessor :corregimiento #dCorreg
     attr_accessor :distrito #dDistr
@@ -32,8 +32,8 @@ class Pac::FacturaElectronica::Emisor
         @dv_ruc = @xml_hash["gRucEmi"]["dDV"]
         @nombre = @xml_hash["dNombEm"]
         @sucursal = @xml_hash["dSucEm"]
-        @coordenadas_sucursal = @xml_hash["dCoordEm"]
-        @direccion_sucursal = @xml_hash["dDirecEm"]
+        @coordenadas = @xml_hash["dCoordEm"]
+        @direccion = @xml_hash["dDirecEm"]
         @codigo_ubicacion = @xml_hash["gUbiEm"]["dCodUbi"]
         @corregimiento = @xml_hash["gUbiEm"]["dCorreg"]
         @distrito = @xml_hash["gUbiEm"]["dDistr"]

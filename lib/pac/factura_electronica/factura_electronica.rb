@@ -308,6 +308,7 @@ class Pac::FacturaElectronica::FacturaElectronica
         factura_electronica = Pac::FacturaElectronica::FacturaElectronica.new(xml_entrada_pp)        
         factura_electronica.cargar
         factura_electronica.validar
+        
         return factura_electronica
     end
 
