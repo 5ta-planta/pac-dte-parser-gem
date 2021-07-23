@@ -26,7 +26,7 @@ class Pac::FacturaElectronica::Cufe
         @ruc_del_emisor = cufe[3..22]
         @dv_rc = cufe[23..25]
         @codigo_sucursal = cufe[26..29]
-        @fecha_emision = cufe[30..37]
+        @fecha_emision = cufe[30..37].to_time
         @numero_factura = cufe[38..47]
         @punto_facturacion = cufe[48..50]
         @tipo_de_emision = cufe[51..52]
