@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'pac_dte_parser'
-  s.version     = '0.0.6'
+  s.version     = '0.0.7'
   s.summary     = "Parseo de XML"
   s.description = "Parser de XML PAC Panama"
   s.authors     = ["Team GFIP"]

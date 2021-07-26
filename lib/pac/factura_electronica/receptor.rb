@@ -1,5 +1,5 @@
 class Pac::FacturaElectronica::Receptor
-    attr_accessor :tipo_receptor #iTipoRec
+    attr_accessor :tipo #iTipoRec
     attr_accessor :tipo_de_contribuyente #dTipoRuc
     attr_accessor :ruc #dRuc
     attr_accessor :dv_ruc #dDV
