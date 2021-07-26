@@ -4,7 +4,7 @@
 #
 class Pac::FacturaElectronica::Emisor
     attr_accessor :xml_hash
-    attr_accessor :tipo_de_contribuyente #dTipoRuc
+    attr_accessor :tipo_de_contribuyente #dTipoRuc  1 natural, 2 jujridico
     attr_accessor :ruc #dRuc
     attr_accessor :dv_ruc #dDV
     attr_accessor :nombre #dNombEm
@@ -17,7 +17,9 @@ class Pac::FacturaElectronica::Emisor
     attr_accessor :provincia #dProv
     attr_accessor :telefono_contacto #dTfnEm
     attr_accessor :correo #dCorElectEmi
-
+    attr_accessor :existe_gUbiEm
+    
+    
     ##Recibe como parametro la seccion del hash que corresponde a gEmis del xml
     ##
     #
@@ -34,6 +36,7 @@ class Pac::FacturaElectronica::Emisor
         @sucursal = @xml_hash["dSucEm"]
         @coordenadas = @xml_hash["dCoordEm"]
         @direccion = @xml_hash["dDirecEm"]
+        existe_gUbiEm = @xml_hash["gUbiEm"].present?
         @codigo_ubicacion = @xml_hash["gUbiEm"]["dCodUbi"]
         @corregimiento = @xml_hash["gUbiEm"]["dCorreg"]
         @distrito = @xml_hash["gUbiEm"]["dDistr"]

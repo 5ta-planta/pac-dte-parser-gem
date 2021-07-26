@@ -1,6 +1,6 @@
 class Pac::FacturaElectronica::Receptor
     attr_accessor :tipo #iTipoRec
-    attr_accessor :tipo_de_contribuyente #dTipoRuc
+    attr_accessor :tipo_de_contribuyente #dTipoRuc  1 natural, 2 jujridico
     attr_accessor :ruc #dRuc
     attr_accessor :dv_ruc #dDV
     attr_accessor :nombre #dNombRec
@@ -15,7 +15,7 @@ class Pac::FacturaElectronica::Receptor
     attr_accessor :correo #dCorElectRec
     attr_accessor :pais #cPaisRec
     attr_accessor :pais_descripcion #dPaisRecDesc
-
+    attr_accessor :existe_gUbiRec 
 
     ##Recibe como parametro la seccion del hash que corresponde a gDatRec del xml
     ##
@@ -33,7 +33,8 @@ class Pac::FacturaElectronica::Receptor
         @dv_ruc  = @xml_hash["gRucRec"]["dDV"]
         @nombre  = @xml_hash["dNombRec"]
         @direccion  = @xml_hash["dDirecRec"]
-
+        
+        existe_gUbiRec = @xml_hash["gUbiRec"].present?
 
         @codigo_ubicacion  = @xml_hash["gUbiRec"]["dCodUbi"]
         @corregimiento  = @xml_hash["gUbiRec"]["dCorreg"]
