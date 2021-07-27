@@ -45,7 +45,7 @@ class Pac::FacturaElectronica::DocumentoFiscalReferenciado
         @dv_ruc_contribuyente = @xml_hash["gRucEmDFRef"]["dDv"]
         @nombre_emisor = @xml_hash["dNombEmRef"]
         @fecha_emision = (@xml_hash["dFechaDFRef"]).to_time
-        @cufe_fe_referenciada = (@xml_hash["gDFRefNum"]["gDFRefFE"]["dCUFERef"]).to_time
+        @cufe_fe_referenciada = @xml_hash["gDFRefNum"]["gDFRefFE"]["dCUFERef"]
         puts "Mensaje para el desarrollador: REVISAR ESTAS LINEAS DE CODIGO : #{Pac::FacturaElectronica::DocumentoFiscalReferenciado} LINEAS 42 Y 43"
        # @numero_factura_papel =  @xml_hash["gDFRefNum"]["gDFRefFacPap"]["dNroFacPap"]
        # @numero_factura_impresora_fiscal = @xml_hash["gDFRefNum"]["gDFRefFacIE"]["dNroFacIE"]
