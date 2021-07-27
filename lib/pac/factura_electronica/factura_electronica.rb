@@ -90,8 +90,10 @@ class Pac::FacturaElectronica::FacturaElectronica
         @cufe = Pac::FacturaElectronica::Cufe.new(@identificador_para_firma_electronica)
         @cufe.cargar
         true
-    rescue
-         false
+    rescue Exception => e
+        p e.backtrace
+        p e.message
+         
     end
 
     ##Metodo que carga los datos del emisor
