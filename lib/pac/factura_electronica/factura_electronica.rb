@@ -132,10 +132,8 @@ class Pac::FacturaElectronica::FacturaElectronica
     ##6.4.4. Grupo de Datos de Documento Fiscal Referenciado
     #
     def cargar_datos_doc_fiscal_referenciado
-        
         @lista_doc_fiscal_referenciado = Pac::FacturaElectronica::DocumentoFiscalReferenciado.listar(@xml_hash)
-
-
+        
     end
     
     ##Metodo que carga los datos del grupo autorizado para la descarga 

@@ -5,9 +5,10 @@ class Pac::FacturaElectronica::DocumentoFiscalReferenciado
     attr_accessor :ruc_contribuyente    #dRuc B6012
     attr_accessor :dv_ruc_contribuyente #dDv B6013
     attr_accessor :nombre_emisor        #dNombEmRef  B602
-    attr_accessor :fecha_emision        #dFechaDFRef B603
-    attr_accessor :cufe_fe_referenciada #dCUFERef B606
-    attr_accessor :numero_factura_papel #dNroFacPap B616
+    attr_accessor :fecha_emision        #dFechaDFRef B603 
+    attr_accessor :cufe_fe_referenciada #dCUFERef B606 esto es un cufe valido
+    attr_accessor :cufe 
+    attr_accessor :numero_factura_papel #dNroFacPap B616 
     attr_accessor :numero_factura_impresora_fiscal #dNroFacIE B621
 
     attr_accessor :existe_gDFRef        
@@ -43,11 +44,15 @@ class Pac::FacturaElectronica::DocumentoFiscalReferenciado
         @ruc_contribuyente = @xml_hash["gRucEmDFRef"]["dRuc"]
         @dv_ruc_contribuyente = @xml_hash["gRucEmDFRef"]["dDv"]
         @nombre_emisor = @xml_hash["dNombEmRef"]
-        @fecha_emision = @xml_hash["dFechaDFRef"]
-        @cufe_fe_referenciada = @xml_hash["gDFRefNum"]["gDFRefFE"]["dCUFERef"]
+        @fecha_emision = (@xml_hash["dFechaDFRef"]).to_time
+        @cufe_fe_referenciada = (@xml_hash["gDFRefNum"]["gDFRefFE"]["dCUFERef"]).to_time
         puts "Mensaje para el desarrollador: REVISAR ESTAS LINEAS DE CODIGO : #{Pac::FacturaElectronica::DocumentoFiscalReferenciado} LINEAS 42 Y 43"
        # @numero_factura_papel =  @xml_hash["gDFRefNum"]["gDFRefFacPap"]["dNroFacPap"]
        # @numero_factura_impresora_fiscal = @xml_hash["gDFRefNum"]["gDFRefFacIE"]["dNroFacIE"]
+       @cufe = Pac::FacturaElectronica::Cufe.new(@cufe_fe_referenciada)
+       @cufe.cargar
+
+
     end
     #113
 

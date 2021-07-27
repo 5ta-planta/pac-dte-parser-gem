@@ -35,27 +35,12 @@ class Pac::FacturaElectronica::Cufe
         @dv_cufe = cufe[63..63]
     end
 
-
-    def ping 
-        p cufe
-        p tipo_documento
-        p tipo_contribuyente
-        p ruc_del_emisor
-        p dv_rc
-        p codigo_sucursal
-        p fecha_emision
-        p numero_factura
-        p punto_facturacion
-        p tipo_de_emision
-        p ambiente_destino
-        p secuencia_seguridad
-        p dv_cufe
-    end
+    
 
 
     def obtener_digito_validador(cufe)
         cufe_sin_dv= cufe[0...cufe.length-1]
-        acumulado = 0 
+        acumulado = 0 ruc
         respuesta = 0
         cufe_sin_dv.reverse.to_s.chars.each_with_index   do |char,i|
             #validar si el char es una letra
