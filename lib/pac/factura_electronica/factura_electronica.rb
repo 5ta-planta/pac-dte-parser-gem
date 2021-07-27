@@ -123,7 +123,7 @@ class Pac::FacturaElectronica::FacturaElectronica
             @exportacion = Pac::FacturaElectronica::Exportacion.new(exportacion_hash)
             @exportacion.cargar()
         else
-            @exportacion = nil
+            @exportacion = Pac::FacturaElectronica::Exportacion.new("")
         end
     end
     

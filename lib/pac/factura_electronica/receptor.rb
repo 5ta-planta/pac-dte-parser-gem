@@ -16,6 +16,9 @@ class Pac::FacturaElectronica::Receptor
     attr_accessor :pais #cPaisRec
     attr_accessor :pais_descripcion #dPaisRecDesc
     attr_accessor :existe_gUbiRec 
+    attr_accessor :existe_gIdExt
+    attr_accessor :existe_gRucRec
+
 
     ##Recibe como parametro la seccion del hash que corresponde a gDatRec del xml
     ##
@@ -33,14 +36,17 @@ class Pac::FacturaElectronica::Receptor
         @dv_ruc  = @xml_hash["gRucRec"]["dDV"]
         @nombre  = @xml_hash["dNombRec"]
         @direccion  = @xml_hash["dDirecRec"]
+
+        @existe_gUbiRec = @xml_hash["gUbiRec"].present?
         
-        existe_gUbiRec = @xml_hash["gUbiRec"].present?
+        @existe_gRucRec = @xml_hash["gRucRec"].present?
 
         @codigo_ubicacion  = @xml_hash["gUbiRec"]["dCodUbi"]
         @corregimiento  = @xml_hash["gUbiRec"]["dCorreg"]
         @distrito  = @xml_hash["gUbiRec"]["dDistr"]
         @provincia  = @xml_hash["gUbiRec"]["dProv"]
 
+        @existe_gIdExt = @xml_hash["gIdExt"].present?
 
         @identificacion_extranjero  = @xml_hash["gIdExt"]["dIdExt"]
         @pais_extranjero  = @xml_hash["gIdExt"]["dPaisExt"]

@@ -36,7 +36,7 @@ class Pac::FacturaElectronica::Emisor
         @sucursal = @xml_hash["dSucEm"]
         @coordenadas = @xml_hash["dCoordEm"]
         @direccion = @xml_hash["dDirecEm"]
-        existe_gUbiEm = @xml_hash["gUbiEm"].present?
+        @existe_gUbiEm = @xml_hash["gUbiEm"].present?
         @codigo_ubicacion = @xml_hash["gUbiEm"]["dCodUbi"]
         @corregimiento = @xml_hash["gUbiEm"]["dCorreg"]
         @distrito = @xml_hash["gUbiEm"]["dDistr"]
