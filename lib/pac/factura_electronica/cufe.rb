@@ -40,7 +40,7 @@ class Pac::FacturaElectronica::Cufe
 
     def obtener_digito_validador(cufe)
         cufe_sin_dv= cufe[0...cufe.length-1]
-        acumulado = 0 ruc
+        acumulado = 0  
         respuesta = 0
         cufe_sin_dv.reverse.to_s.chars.each_with_index   do |char,i|
             #validar si el char es una letra
