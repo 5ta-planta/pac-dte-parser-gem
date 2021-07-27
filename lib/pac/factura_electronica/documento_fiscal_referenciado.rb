@@ -1,19 +1,21 @@
 class Pac::FacturaElectronica::DocumentoFiscalReferenciado
     attr_accessor :xml_hash
  
-    attr_accessor :tipo_contribuyente
-    attr_accessor :ruc_contribuyente
-    attr_accessor :dv_ruc_contribuyente
-    attr_accessor :nombre_emisor
-    attr_accessor :fecha_emision
-    attr_accessor :cufe_fe_referenciada
-    attr_accessor :numero_factura_papel
-    attr_accessor :numero_factura_impresora_fiscal
+    attr_accessor :tipo_contribuyente   #dTipoRuc B6011
+    attr_accessor :ruc_contribuyente    #dRuc B6012
+    attr_accessor :dv_ruc_contribuyente #dDv B6013
+    attr_accessor :nombre_emisor        #dNombEmRef  B602
+    attr_accessor :fecha_emision        #dFechaDFRef B603
+    attr_accessor :cufe_fe_referenciada #dCUFERef B606
+    attr_accessor :numero_factura_papel #dNroFacPap B616
+    attr_accessor :numero_factura_impresora_fiscal #dNroFacIE B621
 
+    attr_accessor :existe_gDFRef        
 
 
     def initialize(xml_hash)
         @xml_hash = xml_hash
+        @existe_gDFRef = false
     end
 
     def self.listar(hash)
@@ -33,11 +35,10 @@ class Pac::FacturaElectronica::DocumentoFiscalReferenciado
             end
         end
         return lista_doc_fiscal
-
     end
 
     def cargar()
-          
+        @existe_gDFRef = true
         @tipo_contribuyente = @xml_hash["gRucEmDFRef"]["dTipoRuc"]
         @ruc_contribuyente = @xml_hash["gRucEmDFRef"]["dRuc"]
         @dv_ruc_contribuyente = @xml_hash["gRucEmDFRef"]["dDv"]

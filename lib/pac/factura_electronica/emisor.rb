@@ -4,19 +4,19 @@
 #
 class Pac::FacturaElectronica::Emisor
     attr_accessor :xml_hash
-    attr_accessor :tipo_de_contribuyente #dTipoRuc  1 natural, 2 jujridico
-    attr_accessor :ruc #dRuc
-    attr_accessor :dv_ruc #dDV
-    attr_accessor :nombre #dNombEm
-    attr_accessor :sucursal #dSucEm
-    attr_accessor :coordenadas #dCoordEm
-    attr_accessor :direccion #dDirecEm
-    attr_accessor :codigo_ubicacion #dCodUbi
-    attr_accessor :corregimiento #dCorreg
-    attr_accessor :distrito #dDistr
-    attr_accessor :provincia #dProv
-    attr_accessor :telefono_contacto #dTfnEm
-    attr_accessor :correo #dCorElectEmi
+    attr_accessor :tipo_de_contribuyente #dTipoRuc  B3011  1 natural, 2 jujridico 
+    attr_accessor :ruc #dRuc B3012
+    attr_accessor :dv_ruc #dDV B3013 
+    attr_accessor :nombre #dNombEm B302
+    attr_accessor :sucursal #dSucEm B303
+    attr_accessor :coordenadas #dCoordEm B304
+    attr_accessor :direccion #dDirecEm  B305 
+    attr_accessor :codigo_ubicacion #dCodUbi B3061
+    attr_accessor :corregimiento #dCorreg B3062
+    attr_accessor :distrito #dDistr B3063
+    attr_accessor :provincia #dProv B3064
+    attr_accessor :telefono_contacto #dTfnEm B309
+    attr_accessor :correo #dCorElectEmi  B310
     attr_accessor :existe_gUbiEm
     
     
