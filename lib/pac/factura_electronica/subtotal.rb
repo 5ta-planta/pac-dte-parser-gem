@@ -24,19 +24,19 @@ class Pac::FacturaElectronica::Subtotal
 
     def cargar()
          
-        @total_neto = @xml_hash["dTotNeto"]
-        @total_itbms = @xml_hash["dTotITBMS"]
-        @total_isc = @xml_hash["dTotISC"]
-        @total_gravado = @xml_hash["dTotGravado"]
-        @total_descuentos = @xml_hash["dTotDesc"]
-        @total_acarreo = @xml_hash["dTotAcar"]
-        @total_seguro = @xml_hash["dTotSeg"]
-        @total_factura = @xml_hash["dVTot"]
-        @suma_valores_recibidos = @xml_hash["dTotRec"]
-        @vuelto = @xml_hash["dVuelto"]
+        @total_neto = @xml_hash["dTotNeto"].to_f
+        @total_itbms = @xml_hash["dTotITBMS"].to_f
+        @total_isc = @xml_hash["dTotISC"].to_f
+        @total_gravado = @xml_hash["dTotGravado"].to_f
+        @total_descuentos = @xml_hash["dTotDesc"].to_f
+        @total_acarreo = @xml_hash["dTotAcar"].to_f
+        @total_seguro = @xml_hash["dTotSeg"].to_f
+        @total_factura = @xml_hash["dVTot"].to_f
+        @suma_valores_recibidos = @xml_hash["dTotRec"].to_f
+        @vuelto = @xml_hash["dVuelto"].to_f
         @tiempo_pago = @xml_hash["iPzPag"]
-        @numero_total_items = @xml_hash["dNroItems"]
-        @total_items = @xml_hash["dVTotItems"]
+        @numero_total_items = @xml_hash["dNroItems"].to_f
+        @total_items = @xml_hash["dVTotItems"].to_f
 
       
  
