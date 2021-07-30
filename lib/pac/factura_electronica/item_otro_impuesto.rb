@@ -1,6 +1,6 @@
 class Pac::FacturaElectronica::ItemOtroImpuesto
     attr_accessor :xml_hash
-    attr_accessor :tasa_otro_impuesto #dCodOTI
+    attr_accessor :cod_tasa_otro_impuesto #dCodOTI
     attr_accessor :monto_otro_impuesto #dValOTI
    
 
@@ -30,8 +30,8 @@ class Pac::FacturaElectronica::ItemOtroImpuesto
 
 
     def cargar()
-        @tasa_otro_impuesto = @xml_hash["dCodOTI"]
-        @monto_otro_impuesto  = @xml_hash["dValOTI"] 
+        @cod_tasa_otro_impuesto = @xml_hash["dCodOTI"]
+        @monto_otro_impuesto  = @xml_hash["dValOTI"].to_f 
     end 
 
 

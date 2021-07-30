@@ -34,7 +34,7 @@ class Pac::FacturaElectronica::Item
     attr_accessor :monto_isc #dValISC
 
    # attr_accessor :tasa_otro_impuesto #dCodOTI
-   # attr_accessor :monto_otro_impuesto #dValOTI
+    #attr_accessor :monto_otro_impuesto #suma de dValOTI
     attr_accessor :lista_otros_impuestos
 
     attr_accessor :complemento_vehiculo_nuevo
@@ -43,6 +43,18 @@ class Pac::FacturaElectronica::Item
 
     def initialize(xml_hash)
         @xml_hash = xml_hash
+    end
+
+    def monto_otros_impuestos
+        if @lista_otros_impuestos.count == 0 
+            return 0
+        else
+            retorno = 0
+            @lista_otros_impuestos.each do |otro_impuesto|
+                retorno = retorno + otro_impuesto.monto_otro_impuesto
+            end
+            return retorno
+        end
     end
 
 
@@ -72,21 +84,21 @@ class Pac::FacturaElectronica::Item
         @descripcion_producto_servicio  = @xml_hash["dDescProd"] 
         @codigo_interno  = @xml_hash["dCodProd"] 
         @unidad_medida  = @xml_hash["cUnidad"] 
-        @cantidad_producto_servicio  = @xml_hash["dCantCodInt"] 
-        @fecha_fabricacion  = @xml_hash["dFechaFab"] 
-        @fecha_caducidad  = @xml_hash["dFechaCad"] 
+        @cantidad_producto_servicio  = @xml_hash["dCantCodInt"].to_f 
+        @fecha_fabricacion  = (@xml_hash["dFechaFab"]).to_time
+        @fecha_caducidad  = (@xml_hash["dFechaCad"]).to_time
         @codigo_item_codificacion_panama_abbreviada  = @xml_hash["dCodCPBSabr"] 
         @codigo_item_codificacion_panama  = @xml_hash["dCodCPBScmp"] 
         @unidad_medida_codificacion_panama  = @xml_hash["cUnidadCPBS"] 
         @informacion  = @xml_hash["dInfEmFE"] 
 
         #6.5.1. Grupo de Precios del Ítem
-        @precio_unitario  = @xml_hash["gPrecios"]["dPrUnit"]
-        @descuento  = @xml_hash["gPrecios"]["dPrUnitDesc"]
-        @precio  = @xml_hash["gPrecios"]["dPrItem"]
-        @precio_acarreo  = @xml_hash["gPrecios"]["dPrAcarItem"]
-        @precio_seguro  = @xml_hash["gPrecios"]["dPrSegItem"] 
-        @total_item  = @xml_hash["gPrecios"]["dValTotItem"] 
+        @precio_unitario  = @xml_hash["gPrecios"]["dPrUnit"].to_f
+        @descuento  = @xml_hash["gPrecios"]["dPrUnitDesc"].to_f
+        @precio  = @xml_hash["gPrecios"]["dPrItem"].to_f
+        @precio_acarreo  = @xml_hash["gPrecios"]["dPrAcarItem"].to_f
+        @precio_seguro  = @xml_hash["gPrecios"]["dPrSegItem"].to_f
+        @total_item  = @xml_hash["gPrecios"]["dValTotItem"].to_f
 
         #6.5.2. Grupo de Otros Códigos del Ítem
         @codigo_gtin_unidad_comercializadora  = @xml_hash["gCodItem"]["dGTINCom"]
@@ -94,27 +106,34 @@ class Pac::FacturaElectronica::Item
 
 
         @codigo_gtin_unidad_inventario  = @xml_hash["gCodItem"]["dGTINInv"]
-        @cantidad_gtin_unidad_inventario  = @xml_hash["gCodItem"]["dCantComInvent"] 
+        @cantidad_gtin_unidad_inventario  = @xml_hash["gCodItem"]["dCantComInvent"].to_f 
 
         #6.5.3. Grupo de ITBMS del Ítem
-        @tasa_itbms  =  @xml_hash["gITBMSItem"]["dTasaITBMS"]
-        @monto_itbms  = @xml_hash["gITBMSItem"]["dValITBMS"]
+        @tasa_itbms  =  @xml_hash["gITBMSItem"]["dTasaITBMS"].to_f
+        @monto_itbms  = @xml_hash["gITBMSItem"]["dValITBMS"].to_f
         
         #6.5.4. Grupo de ISC del Ítem
-        @tasa_isc  = @xml_hash["gISCItem"]["dTasaISC"]
-        @monto_isc  = @xml_hash["gISCItem"]["dValISC"]
+        @tasa_isc  = @xml_hash["gISCItem"]["dTasaISC"].to_f
+        @monto_isc  = @xml_hash["gISCItem"]["dValISC"].to_f
 
         #6.5.5. Grupo de Otras Tasas o Impuestos (OTI) del Ítem
        # @tasa_otro_impuesto  = @xml_hash["gOTIItem"]["dCodOTI"]
        # @monto_otro_impuesto  = @xml_hash["gOTIItem"]["dValOTI"]
        lista_otros_impuestos = Pac::FacturaElectronica::ItemOtroImpuesto.listar(@xml_hash)
 
+        if (@xml_hash["gVehicNuevo"].present?)
+            @complemento_vehiculo_nuevo = Pac::FacturaElectronica::CampoComplementario::VehiculoNuevo.new(@xml_hash["gVehicNuevo"])
+            @complemento_vehiculo_nuevo.cargar()
+        else
+            @complemento_vehiculo_nuevo = nil
+        end
 
-        @complemento_vehiculo_nuevo = Pac::FacturaElectronica::CampoComplementario::VehiculoNuevo.new(@xml_hash["gVehicNuevo"])
-        @complemento_vehiculo_nuevo.cargar()
-
-        @complemento_medicina = Pac::FacturaElectronica::CampoComplementario::Medicina.new(@xml_hash["gMedicina"])
-        @complemento_medicina.cargar()
+        if (@xml_hash["gMedicina"].present?)
+            @complemento_medicina = Pac::FacturaElectronica::CampoComplementario::Medicina.new(@xml_hash["gMedicina"])
+            @complemento_medicina.cargar()
+        else
+            @complemento_medicina = nil
+        end
 
         @complemento_pedido_comercial_relacionado_item= Pac::FacturaElectronica::CampoComplementario::InformacionPedidoComercialItem.new(@xml_hash["gPedComIr"])
         @complemento_pedido_comercial_relacionado_item.cargar()

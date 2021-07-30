@@ -30,7 +30,7 @@ class Pac::FacturaElectronica::CampoComplementario::VehiculoNuevo
 
 
     def cargar
-        @mod_operacion_vta_veh_nuevo =@xml_hash["iModOpVN"]
+        @mod_operacion_vta_veh_nuevo = @xml_hash["iModOpVN"]
         @mod_operacion_vta_veh_nuevo_no_listado = @xml_hash["dModOpVNDesc"]
         @chasis = @xml_hash["dChasi"]
         @color = @xml_hash["dColorCod"]
