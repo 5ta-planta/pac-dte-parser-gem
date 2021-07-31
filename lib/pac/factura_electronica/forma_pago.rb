@@ -1,8 +1,8 @@
 class Pac::FacturaElectronica::FormaPago
     attr_accessor :xml_hash
-    attr_accessor :forma_pago
-    attr_accessor :descripcion_forma_pago_no_listada
-    attr_accessor :valor_forma_pago
+    attr_accessor :forma_pago #iFormaPago d301
+    attr_accessor :descripcion_forma_pago_no_listada # dFormaPagoDesc d302
+    attr_accessor :valor_forma_pago # dVlrCuota D303
 
     def initialize(xml_hash)
         @xml_hash = xml_hash
@@ -29,7 +29,7 @@ class Pac::FacturaElectronica::FormaPago
     def cargar
         @forma_pago = @xml_hash["iFormaPago"]
         @descripcion_forma_pago_no_listada = @xml_hash["dFormaPagoDesc"]
-        @valor_cuota = @xml_hash["dVlrCuota"]
+        @valor_cuota = @xml_hash["dVlrCuota"].to_f id @xml_hash["dVlrCuota"].present?
     end
 
 end

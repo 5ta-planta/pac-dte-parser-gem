@@ -85,8 +85,10 @@ class Pac::FacturaElectronica::FacturaElectronica
         cargar_descuentos_bonificaciones_adicionales()
         cargar_forma_pago()
         cargar_retenciones()
+        cargar_informacion_pago_plazo()
         cargar_complementos_uso_comercial_general()
         cargar_firma_electronica()
+        cargar_datos_fuera_firma_electronica()
         @cufe = Pac::FacturaElectronica::Cufe.new(@identificador_para_firma_electronica)
         @cufe.cargar
         true
@@ -205,7 +207,6 @@ class Pac::FacturaElectronica::FacturaElectronica
     #
     def cargar_informacion_pago_plazo
         @lista_informacion_pago_plazo = Pac::FacturaElectronica::PagoPlazo.listar(@xml_hash)
-    endocal de entrega
         @lista_total_otras_tasas = Pac::FacturaElectronica::TotalOtraTasa.listar(@xml_hash)
     end
 

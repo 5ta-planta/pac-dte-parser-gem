@@ -27,7 +27,7 @@ class Pac::FacturaElectronica::DescuentoAdicional
 
     def cargar
         @descripcion_descuentos_adicionales = @xml_hash["dDetalDesc"]
-        @monto_descuentos_adicionales = @xml_hash["dValDesc"]
+        @monto_descuentos_adicionales = @xml_hash["dValDesc"].to_f if @xml_hash["dValDesc"].present?
     end
 
 end 

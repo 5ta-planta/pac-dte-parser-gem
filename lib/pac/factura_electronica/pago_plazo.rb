@@ -30,7 +30,7 @@ class Pac::FacturaElectronica::PagoPlazo
     def cargar
         @numero_cuota = @xml_hash["dSecItem"]
         @fecha_vencimiento_cuota = @xml_hash["dFecItPlazo"]
-        @valor_cuota = @xml_hash["dValItPlazo"]
+        @valor_cuota = @xml_hash["dValItPlazo"].to_f if @xml_hash["dValItPlazo"].present?
         @informacion = @xml_hash["dInfPagPlazo"]
     end
 
