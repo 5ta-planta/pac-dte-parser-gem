@@ -36,7 +36,7 @@ class Pac::FacturaElectronica::Subtotal
         @vuelto = @xml_hash["dVuelto"].to_f if @xml_hash["dVuelto"].present?
         @tiempo_pago = @xml_hash["iPzPag"].to_i if @xml_hash["iPzPag"].present?
         @numero_total_items = @xml_hash["dNroItems"].to_f if @xml_hash["dNroItems"].present?
-        @total_items = @xml_hash["dVTotItems"].to_fif @xml_hash["dVTotItems"].present? 
+        @total_items = @xml_hash["dVTotItems"].to_f if @xml_hash["dVTotItems"].present? 
     end
 
 
