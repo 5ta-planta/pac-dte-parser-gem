@@ -30,5 +30,43 @@ module Pac
 
 			autoload :VehiculoNuevo, 'pac/factura_electronica/campo_complementario/vehiculo_nuevo' 
 		end		
+ 
+		 def campos
+
+
+         json = JSON.parse self.to_json
+
+         def agregar_llaves(keys, campo = 0)
+          
+            if keys.class.to_s == "String" or keys.class.to_s == "NilClass"
+               puts "#{"-" * campo} #{keys.class}"
+               return keys.class
+            else
+                 keys.keys.each do |key|
+                    clase = keys[key].class.to_s               
+                    if key != "xml_hash"
+                         if clase == "Hash"   
+                              puts "#{"-" * campo} #{key}"                              
+                              agregar_llaves(keys[key], campo + 1)
+                         else                
+                              if clase == "Array"                                                                         
+                                   puts "#{"-" * campo} #{key}"
+                                   elemento = keys[key].first                                                                                                                                        
+                                   agregar_llaves(elemento, campo + 1)
+                              else                                                                      
+                                   puts "#{"-" * campo} #{key}"
+                              end
+                         end
+                    end
+                 end
+
+                return  true
+               end
+         end
+
+         agregar_llaves(json)
+         
+     end
+
 	end
 end
