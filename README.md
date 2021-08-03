@@ -25,41 +25,41 @@ campos del objeto
 - tipo_sucursal
 - informacion_interes_emisor_fe
 - emisor
-- - tipo_de_contribuyente
-- - ruc
-- - dv_ruc
-- - nombre
-- - sucursal
-- - coordenadas
-- - direccion
-- - existe_gUbiEm
-- - codigo_ubicacion
-- - corregimiento
-- - distrito
-- - provincia
-- - telefono_contacto
-- - correo
- receptor
-- tipo_receptor
-- tipo_de_contribuyente
-- ruc
-- dv_ruc
-- nombre
-- direccion
-- existe_gUbiRec
-- existe_gRucRec
-- codigo_ubicacion
-- corregimiento
-- distrito
-- provincia
-- existe_gIdExt
-- identificacion_extranjero
-- pais_extranjero
-- telefono
--- String
-- correo
-- pais
-- pais_descripcion
+ - tipo_de_contribuyente
+ - ruc
+ - dv_ruc
+ - nombre
+ - sucursal
+ - coordenadas
+ - direccion
+ - existe_gUbiEm
+ - codigo_ubicacion
+ - corregimiento
+ - distrito
+ - provincia
+ - telefono_contacto
+ - correo
+- receptor
+ - tipo_receptor
+ - tipo_de_contribuyente
+ - ruc
+ - dv_ruc
+ - nombre
+ - direccion
+ - existe_gUbiRec
+ - existe_gRucRec
+ - codigo_ubicacion
+ - corregimiento
+ - distrito
+ - provincia
+ - existe_gIdExt
+ - identificacion_extranjero
+ - pais_extranjero
+ - telefono
+  - String
+ - correo
+ - pais
+ - pais_descripcion
  exportacion
 - existe_gFExp
 - incoterm
