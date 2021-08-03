@@ -46,6 +46,10 @@ class Pac::FacturaElectronica::Item
     end
 
     def monto_otros_impuestos
+        if @lista_otros_impuestos.nil?
+            return 0
+        end
+
         if @lista_otros_impuestos.count == 0 
             return 0
         else
