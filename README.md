@@ -2,43 +2,43 @@
 
 campos del objeto
 
-version_del_formato
- identificador_para_firma_electronica
- ambiente_destino
- tipo_de_emision
- fecha_hora_inicio_contingencia
- razon_operacion_contingencia
- tipo_documento
- numero_documento_fiscal
- punto_facturacion_documento_fiscal
- codigo_de_seguridad
- fecha_emision_documento
- fecha_salida_estimada_mercancias
- naturaleza_operacion
- tipo_operacion
- destino_operacion
- formato_generacion_cafe
- manera_entrega_cafe
- envio_contenedor_cafe
- proceso_generacion_fe
- tipo_transaccion_venta
- tipo_sucursal
- informacion_interes_emisor_fe
- emisor
-- tipo_de_contribuyente
-- ruc
-- dv_ruc
-- nombre
-- sucursal
-- coordenadas
-- direccion
-- existe_gUbiEm
-- codigo_ubicacion
-- corregimiento
-- distrito
-- provincia
-- telefono_contacto
-- correo
+- version_del_formato
+- identificador_para_firma_electronica
+- ambiente_destino
+- tipo_de_emision
+- fecha_hora_inicio_contingencia
+- razon_operacion_contingencia
+- tipo_documento
+- numero_documento_fiscal
+- punto_facturacion_documento_fiscal
+- codigo_de_seguridad
+- fecha_emision_documento
+- fecha_salida_estimada_mercancias
+- naturaleza_operacion
+- tipo_operacion
+- destino_operacion
+- formato_generacion_cafe
+- manera_entrega_cafe
+- envio_contenedor_cafe
+- proceso_generacion_fe
+- tipo_transaccion_venta
+- tipo_sucursal
+- informacion_interes_emisor_fe
+- emisor
+- - tipo_de_contribuyente
+- - ruc
+- - dv_ruc
+- - nombre
+- - sucursal
+- - coordenadas
+- - direccion
+- - existe_gUbiEm
+- - codigo_ubicacion
+- - corregimiento
+- - distrito
+- - provincia
+- - telefono_contacto
+- - correo
  receptor
 - tipo_receptor
 - tipo_de_contribuyente
