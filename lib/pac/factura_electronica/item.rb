@@ -126,7 +126,7 @@ class Pac::FacturaElectronica::Item
             @complemento_vehiculo_nuevo = Pac::FacturaElectronica::CampoComplementario::VehiculoNuevo.new(@xml_hash["gVehicNuevo"])
             @complemento_vehiculo_nuevo.cargar()
         else
-            @complemento@dte_parser_vehiculo_nuevo = nil
+            @complemento_vehiculo_nuevo = nil
         end
 
         if (@xml_hash["gMedicina"].present?)
