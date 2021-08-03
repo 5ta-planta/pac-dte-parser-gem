@@ -16,12 +16,12 @@ class Pac::FacturaElectronica::PagoPlazo
                 hash["rFE"]["gTot"]["gPagPlazo"].each do |pago_a_plazo|
                     nueva_informacion = Pac::FacturaElectronica::PagoPlazo.new( pago_a_plazo)
                     nueva_informacion.cargar();
-                    lista_informacion_pago_plazo  << nuevo_descuento
+                    lista_informacion_pago_plazo << nueva_informacion
                 end
             else
                 nueva_informacion = Pac::FacturaElectronica::PagoPlazo.new( hash["rFE"]["gTot"]["gPagPlazo"])
                 nueva_informacion.cargar();
-                lista_informacion_pago_plazo  << nuevo_descuento
+                lista_informacion_pago_plazo  << nueva_informacion
             end 
         end
         return lista_informacion_pago_plazo
