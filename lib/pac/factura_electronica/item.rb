@@ -86,28 +86,28 @@ class Pac::FacturaElectronica::Item
         @codigo_interno  = @xml_hash["dCodProd"] 
         @unidad_medida  = @xml_hash["cUnidad"] 
         @cantidad_producto_servicio  = @xml_hash["dCantCodInt"].to_f if @xml_hash["dCantCodInt"].present?
-    #     @fecha_fabricacion  = (@xml_hash["dFechaFab"]).to_time
-    #     @fecha_caducidad  = (@xml_hash["dFechaCad"]).to_time
-    #     @codigo_item_codificacion_panama_abbreviada  = @xml_hash["dCodCPBSabr"] 
-    #     @codigo_item_codificacion_panama  = @xml_hash["dCodCPBScmp"] 
-    #     @unidad_medida_codificacion_panama  = @xml_hash["cUnidadCPBS"] 
-    #     @informacion  = @xml_hash["dInfEmFE"] 
+        @fecha_fabricacion  = (@xml_hash["dFechaFab"]).to_time
+        @fecha_caducidad  = (@xml_hash["dFechaCad"]).to_time
+        @codigo_item_codificacion_panama_abbreviada  = @xml_hash["dCodCPBSabr"] 
+        @codigo_item_codificacion_panama  = @xml_hash["dCodCPBScmp"] 
+        @unidad_medida_codificacion_panama  = @xml_hash["cUnidadCPBS"] 
+        @informacion  = @xml_hash["dInfEmFE"] 
 
-    #     #6.5.1. Grupo de Precios del Ítem
-    #     @precio_unitario  = @xml_hash["gPrecios"]["dPrUnit"].to_f if @xml_hash["gPrecios"]["dPrUnit"].present?
-    #     @descuento  = @xml_hash["gPrecios"]["dPrUnitDesc"].to_f if @xml_hash["gPrecios"]["dPrUnitDesc"].present?
-    #     @precio  = @xml_hash["gPrecios"]["dPrItem"].to_f if if @xml_hash["gPrecios"]["dPrItem"].present?
-    #     @precio_acarreo  = @xml_hash["gPrecios"]["dPrAcarItem"].to_f if @xml_hash["gPrecios"]["dPrAcarItem"].present?
-    #     @precio_seguro  = @xml_hash["gPrecios"]["dPrSegItem"].to_f if @xml_hash["gPrecios"]["dPrSegItem"].present?
-    #     @total_item  = @xml_hash["gPrecios"]["dValTotItem"].to_f if @xml_hash["gPrecios"]["dValTotItem"].present?
+        #6.5.1. Grupo de Precios del Ítem
+        @precio_unitario  = @xml_hash["gPrecios"]["dPrUnit"].to_f if @xml_hash["gPrecios"]["dPrUnit"].present?
+        @descuento  = @xml_hash["gPrecios"]["dPrUnitDesc"].to_f if @xml_hash["gPrecios"]["dPrUnitDesc"].present?
+        @precio  = @xml_hash["gPrecios"]["dPrItem"].to_f if if @xml_hash["gPrecios"]["dPrItem"].present?
+        @precio_acarreo  = @xml_hash["gPrecios"]["dPrAcarItem"].to_f if @xml_hash["gPrecios"]["dPrAcarItem"].present?
+        @precio_seguro  = @xml_hash["gPrecios"]["dPrSegItem"].to_f if @xml_hash["gPrecios"]["dPrSegItem"].present?
+        @total_item  = @xml_hash["gPrecios"]["dValTotItem"].to_f if @xml_hash["gPrecios"]["dValTotItem"].present?
 
-    #     #6.5.2. Grupo de Otros Códigos del Ítem
-    #     @codigo_gtin_unidad_comercializadora  = @xml_hash["gCodItem"]["dGTINCom"]
-    #     @cantidad_gtin_unidad_comercializadora  = @xml_hash["gCodItem"]["dCantGTINCom"]
+        #6.5.2. Grupo de Otros Códigos del Ítem
+        @codigo_gtin_unidad_comercializadora  = @xml_hash["gCodItem"]["dGTINCom"]
+        @cantidad_gtin_unidad_comercializadora  = @xml_hash["gCodItem"]["dCantGTINCom"]
 
 
-    #     @codigo_gtin_unidad_inventario  = @xml_hash["gCodItem"]["dGTINInv"]
-    #     @cantidad_gtin_unidad_inventario  = @xml_hash["gCodItem"]["dCantComInvent"].to_f if @xml_hash["gCodItem"]["dCantComInvent"].present?
+        @codigo_gtin_unidad_inventario  = @xml_hash["gCodItem"]["dGTINInv"]
+        @cantidad_gtin_unidad_inventario  = @xml_hash["gCodItem"]["dCantComInvent"].to_f if @xml_hash["gCodItem"]["dCantComInvent"].present?
 
     #     #6.5.3. Grupo de ITBMS del Ítem
     #     @tasa_itbms  =  @xml_hash["gITBMSItem"]["dTasaITBMS"].to_f if  @xml_hash["gITBMSItem"]["dTasaITBMS"].present?
