@@ -62,6 +62,41 @@ class Pac::FacturaElectronica::FacturaElectronica
         @xml_hash =  Hash.from_xml(xml_fe_recep_fe)
     end
 
+    #Auxiliar para obtener los campos del DTE
+     def campos
+         json = JSON.parse self.to_json
+
+         def agregar_llaves(keys, campo = 0)
+          
+            if keys.class.to_s == "String" or keys.class.to_s == "NilClass"
+               puts "#{"-" * campo} #{keys.class}"
+               return keys.class
+            else
+                 keys.keys.each do |key|
+                    clase = keys[key].class.to_s               
+                    if key != "xml_hash"
+                         if clase == "Hash"   
+                              puts "#{"-" * campo} #{key}"                              
+                              agregar_llaves(keys[key], campo + 1)
+                         else                
+                              if clase == "Array"                                                                         
+                                   puts "#{"-" * campo} #{key}"
+                                   elemento = keys[key].first                                                                                                                                        
+                                   agregar_llaves(elemento, campo + 1)
+                              else                                                                      
+                                   puts "#{"-" * campo} #{key}"
+                              end
+                         end
+                    end
+                 end
+
+                return  true
+               end
+         end
+         agregar_llaves(json)
+     end
+
+
 
     def self.cargar_xml_prueba
         file = File.open(Rails.root+"xml_demo/fe-01.xml")
