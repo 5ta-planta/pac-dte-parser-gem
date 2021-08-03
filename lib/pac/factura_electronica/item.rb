@@ -103,7 +103,7 @@ class Pac::FacturaElectronica::Item
         @precio  = @xml_hash["gPrecios"]["dPrItem"].to_f if @xml_hash["gPrecios"]["dPrItem"].present?
         @precio_acarreo  = @xml_hash["gPrecios"]["dPrAcarItem"].to_f if @xml_hash["gPrecios"]["dPrAcarItem"].present?
         @precio_seguro  = @xml_hash["gPrecios"]["dPrSegItem"].to_f if @xml_hash["gPrecios"]["dPrSegItem"].present?
-        @total_item  = @xml_hash["gPrecios"]["dValTotItem"].to_f if @xml_hash["gPrecios"]["dValTotItem"].present?
+        @total  = @xml_hash["gPrecios"]["dValTotItem"].to_f if @xml_hash["gPrecios"]["dValTotItem"].present?
 
         #6.5.2. Grupo de Otros Códigos del Ítem
         @codigo_gtin_unidad_comercializadora  = @xml_hash["gCodItem"]["dGTINCom"]
