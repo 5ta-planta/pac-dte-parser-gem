@@ -29,7 +29,7 @@ class Pac::FacturaElectronica::FormaPago
     def cargar
         @forma_pago = @xml_hash["iFormaPago"]
         @descripcion_forma_pago_no_listada = @xml_hash["dFormaPagoDesc"]
-        @valor_cuota = @xml_hash["dVlrCuota"].to_f id @xml_hash["dVlrCuota"].present?
+        @valor_cuota = @xml_hash["dVlrCuota"].to_f if @xml_hash["dVlrCuota"].present?
     end
 
 end
