@@ -1,28 +1,28 @@
 class Pac::FacturaElectronica::CampoComplementario::VehiculoNuevo
     attr_accessor :xml_hash
-    attr_accessor :mod_operacion_vta_veh_nuevo # iModOpVN
-    attr_accessor :mod_operacion_vta_veh_nuevo_no_listado # dModOpVNDesc
-    attr_accessor :chasis # dChasi
-    attr_accessor :color # dColorCod
-    attr_accessor :desc_color # dColorNomb
-    attr_accessor :potencia # dPotVeh
-    attr_accessor :capacidad_motor # dCilin
-    attr_accessor :peso_neto # dPesoNet
-    attr_accessor :peso_bruto # dPesoBruto
-    attr_accessor :mod_operacion_vta_veh_nuevo # iCombust
-    attr_accessor :tipo_combustible # dCombustDesc
-    attr_accessor :tipo_combustible_no_listado # dNroMotor
-    attr_accessor :numero_motor # dCapTracc
-    attr_accessor :cap_max_traccion # dEntreEj
-    attr_accessor :distancia_ejes # dEntreEj
-    attr_accessor :aaaa_mod_fabricacion # dAnoMod
-    attr_accessor :aaaa_fabricacion # dAnoFab
-    attr_accessor :tipo_pintura # iTipoPintura
-    attr_accessor :tipo_pintura_no_listada # dTipoPinturaDesc
-    attr_accessor :tipo # cTipoVehic
-    attr_accessor :uso # cUsoVehic
-    attr_accessor :condicion # iCondVehic
-    attr_accessor :cap_max_pasajeros # dLotac
+    attr_accessor :mod_operacion_vta_veh_nuevo # iModOpVN  E050
+    attr_accessor :mod_operacion_vta_veh_nuevo_no_listado # dModOpVNDesc E051
+    attr_accessor :chasis # dChasi E052
+    attr_accessor :color # dColorCod E053
+    attr_accessor :desc_color # dColorNomb E054
+    attr_accessor :potencia # dPotVeh E055
+    attr_accessor :capacidad_motor # dCilin E056
+    attr_accessor :peso_neto # dPesoNet E057
+    attr_accessor :peso_bruto # dPesoBruto E058
+    
+    attr_accessor :tipo_combustible # iCombust E060
+    attr_accessor :tipo_combustible_no_listado # dCombustDesc E061
+    attr_accessor :numero_motor # dNroMotor E062
+    attr_accessor :cap_max_traccion # dCapTracc E063
+    attr_accessor :distancia_ejes # dEntreEj E064
+    attr_accessor :aaaa_mod_fabricacion # dAnoMod E065
+    attr_accessor :aaaa_fabricacion # dAnoFab E067
+    attr_accessor :tipo_pintura # iTipoPintura E068
+    attr_accessor :tipo_pintura_no_listada # dTipoPinturaDesc E069
+    attr_accessor :tipo # cTipoVehic E070
+    attr_accessor :uso # cUsoVehic E071
+    attr_accessor :condicion # iCondVehic E072
+    attr_accessor :cap_max_pasajeros # dLotac E073
 
     def initialize(xml_hash)
         @xml_hash = xml_hash        

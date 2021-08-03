@@ -27,6 +27,6 @@ class Pac::FacturaElectronica::TotalOtraTasa
 
     def cargar
         @codigo_otras_tasas = @xml_hash["dCodOTITotal"]
-        @total = @xml_hash["dValOTITotal"]
+        @total = @xml_hash["dValOTITotal"].to_f if @xml_hash["dValOTITotal"].present?
     end
 end
