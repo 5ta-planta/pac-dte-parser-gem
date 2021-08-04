@@ -331,7 +331,7 @@ class Pac::FacturaElectronica::FacturaElectronica
         @fecha_salida_estimada_mercancias = (@xml_hash["rFE"]["gDGen"]["dFechaSalida"]).to_time if @xml_hash["rFE"]["gDGen"]["dFechaSalida"].present?
         @naturaleza_operacion = @xml_hash["rFE"]["gDGen"]["iNatOp"]
         @tipo_operacion = @xml_hash["rFE"]["gDGen"]["iTipoOp"].to_i if @xml_hash["rFE"]["gDGen"]["iTipoOp"].present?
-        @destino_operacion = @xml_hash["rFE"]["gDGen"]["iDest"]
+        @destino_operacion = @xml_hash["rFE"]["gDGen"]["iDest"].to_i  if @xml_hash["rFE"]["gDGen"]["iDest"].present?
         @formato_generacion_cafe = @xml_hash["rFE"]["gDGen"]["iFormCAFE"]
         @manera_entrega_cafe = @xml_hash["rFE"]["gDGen"]["iEntCAFE"]
         @envio_contenedor_cafe = @xml_hash["rFE"]["gDGen"]["dEnvFE"]
