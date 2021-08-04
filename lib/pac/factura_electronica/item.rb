@@ -90,8 +90,8 @@ class Pac::FacturaElectronica::Item
         @codigo_interno  = @xml_hash["dCodProd"] 
         @unidad_medida  = @xml_hash["cUnidad"] 
         @cantidad_producto_servicio  = @xml_hash["dCantCodInt"].to_f if @xml_hash["dCantCodInt"].present?
-        @fecha_fabricacion  = (@xml_hash["dFechaFab"]).to_time
-        @fecha_caducidad  = (@xml_hash["dFechaCad"]).to_time
+        @fecha_fabricacion  = (@xml_hash["dFechaFab"]).to_time if @xml_hash["dFechaFab"].present?
+        @fecha_caducidad  = (@xml_hash["dFechaCad"]).to_time if @xml_hash["dFechaCad"].present?
         @codigo_item_codificacion_panama_abbreviada  = @xml_hash["dCodCPBSabr"] 
         @codigo_item_codificacion_panama  = @xml_hash["dCodCPBScmp"] 
         @unidad_medida_codificacion_panama  = @xml_hash["cUnidadCPBS"] 
