@@ -318,7 +318,7 @@ class Pac::FacturaElectronica::FacturaElectronica
         @ambiente_destino = @xml_hash["rFE"]["gDGen"]["iAmb"]
         @tipo_de_emision = @xml_hash["rFE"]["gDGen"]["iTpEmis"]
         
-        @fecha_hora_inicio_contingencia = (@xml_hash["rFE"]["gDGen"]["dFechaCont"]).to_time
+        @fecha_hora_inicio_contingencia = (@xml_hash["rFE"]["gDGen"]["dFechaCont"]).to_time if @xml_hash["rFE"]["gDGen"]["dFechaCont"].present?
         @razon_operacion_contingencia = @xml_hash["rFE"]["gDGen"]["dMotCont"]
         @tipo_documento = @xml_hash["rFE"]["gDGen"]["iDoc"]
         @numero_documento_fiscal = @xml_hash["rFE"]["gDGen"]["dNroDF"]
