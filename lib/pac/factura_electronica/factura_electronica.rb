@@ -96,6 +96,9 @@ class Pac::FacturaElectronica::FacturaElectronica
          agregar_llaves(json)
      end
 
+     def identificador_fiscal
+        "#{self.punto_facturacion_documento_fiscal}-#{self.numero_documento_fiscal}-#{self.emisor.ruc}-#{self.emisor.sucursal}-#{self.tipo_documento}"
+     end
 
 
     def self.cargar_xml_prueba
