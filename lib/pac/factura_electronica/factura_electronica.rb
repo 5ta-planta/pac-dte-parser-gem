@@ -333,9 +333,9 @@ class Pac::FacturaElectronica::FacturaElectronica
         @tipo_operacion = @xml_hash["rFE"]["gDGen"]["iTipoOp"].to_i if @xml_hash["rFE"]["gDGen"]["iTipoOp"].present?
         @destino_operacion = @xml_hash["rFE"]["gDGen"]["iDest"].to_i  if @xml_hash["rFE"]["gDGen"]["iDest"].present?
         @formato_generacion_cafe = @xml_hash["rFE"]["gDGen"]["iFormCAFE"].to_i if @xml_hash["rFE"]["gDGen"]["iFormCAFE"].present?
-        @manera_entrega_cafe = @xml_hash["rFE"]["gDGen"]["iEntCAFE"]
-        @envio_contenedor_cafe = @xml_hash["rFE"]["gDGen"]["dEnvFE"]
-        @proceso_generacion_fe = @xml_hash["rFE"]["gDGen"]["iProGen"]
+        @manera_entrega_cafe = @xml_hash["rFE"]["gDGen"]["iEntCAFE"].to_i if @xml_hash["rFE"]["gDGen"]["iEntCAFE"].present?
+        @envio_contenedor_cafe = @xml_hash["rFE"]["gDGen"]["dEnvFE"].to_i if @xml_hash["rFE"]["gDGen"]["dEnvFE"].present?
+        @proceso_generacion_fe = @xml_hash["rFE"]["gDGen"]["iProGen"].to_i if @xml_hash["rFE"]["gDGen"]["iProGen"].present?
         @tipo_transaccion_venta = @xml_hash["rFE"]["gDGen"]["iTipoTranVenta"]
         @tipo_sucursal = @xml_hash["rFE"]["gDGen"]["iTipoSuc"]
         @informacion_interes_emisor_fe = @xml_hash["rFE"]["gDGen"]["dInfEmFE"]
