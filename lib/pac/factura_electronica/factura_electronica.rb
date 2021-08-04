@@ -102,7 +102,7 @@ class Pac::FacturaElectronica::FacturaElectronica
 
 
      def documento_pac_id
-        "#{self.tipo_documento}-#{self.emisor.ruc}-#{self.emisor.sucursal}-#{self.numero_documento_fiscal}-#{self.punto_facturacion_documento_fiscal}-#{self.ambiente_destino}--#{self.tipo_de_emision}"
+        "#{self.tipo_documento}-#{self.emisor.ruc}-#{self.emisor.sucursal}-#{self.numero_documento_fiscal}-#{self.punto_facturacion_documento_fiscal}-#{self.ambiente_destino}-#{self.tipo_de_emision}"
      end
 
 
