@@ -336,7 +336,7 @@ class Pac::FacturaElectronica::FacturaElectronica
         @manera_entrega_cafe = @xml_hash["rFE"]["gDGen"]["iEntCAFE"].to_i if @xml_hash["rFE"]["gDGen"]["iEntCAFE"].present?
         @envio_contenedor_cafe = @xml_hash["rFE"]["gDGen"]["dEnvFE"].to_i if @xml_hash["rFE"]["gDGen"]["dEnvFE"].present?
         @proceso_generacion_fe = @xml_hash["rFE"]["gDGen"]["iProGen"].to_i if @xml_hash["rFE"]["gDGen"]["iProGen"].present?
-        @tipo_transaccion_venta = @xml_hash["rFE"]["gDGen"]["iTipoTranVenta"]
+        @tipo_transaccion_venta = @xml_hash["rFE"]["gDGen"]["iTipoTranVenta"].to_id if @xml_hash["rFE"]["gDGen"]["iTipoTranVenta"].present?
         @tipo_sucursal = @xml_hash["rFE"]["gDGen"]["iTipoSuc"]
         @informacion_interes_emisor_fe = @xml_hash["rFE"]["gDGen"]["dInfEmFE"]
     end
