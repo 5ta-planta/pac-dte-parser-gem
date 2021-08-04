@@ -101,6 +101,12 @@ class Pac::FacturaElectronica::FacturaElectronica
      end
 
 
+     def documento_pac_id
+        "#{self.tipo_documento}-#{self.emisor.ruc}-#{self.emisor.sucursal}-#{self.numero_documento_fiscal}-#{self.punto_facturacion_documento_fiscal}-#{self.ambiente_destino}--#{self.tipo_de_emision}"
+     end
+
+
+
     def self.cargar_xml_prueba
         file = File.open(Rails.root+"xml_demo/fe-01.xml")
         xml = file.read
