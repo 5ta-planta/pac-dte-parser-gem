@@ -324,7 +324,7 @@ class Pac::FacturaElectronica::FacturaElectronica
         @version_del_formato = @xml_hash["rFE"]["dVerForm"]
         @identificador_para_firma_electronica = @xml_hash["rFE"]["dId"]
 
-        @ambiente_destino = @xml_hash["rFE"]["gDGen"]["iAmb"].to_id if @xml_hash["rFE"]["gDGen"]["iAmb"].present?
+        @ambiente_destino = @xml_hash["rFE"]["gDGen"]["iAmb"].to_i if @xml_hash["rFE"]["gDGen"]["iAmb"].present?
         @tipo_de_emision = @xml_hash["rFE"]["gDGen"]["iTpEmis"]
         
         @fecha_hora_inicio_contingencia = (@xml_hash["rFE"]["gDGen"]["dFechaCont"]).to_time if @xml_hash["rFE"]["gDGen"]["dFechaCont"].present?
