@@ -40,7 +40,7 @@ class Pac::FacturaElectronica::Emisor
         @codigo_ubicacion = @xml_hash["gUbiEm"]["dCodUbi"]
         @corregimiento = @xml_hash["gUbiEm"]["dCorreg"]
         @distrito = @xml_hash["gUbiEm"]["dDistr"]
-        @provincia = @xml_hash["gUbiEm"]["dProv"]
+        @provincia = @xml_hash["gUbiEm"]["dProv"].to_i if @xml_hash["gUbiEm"]["dProv"].present?
         @telefono_contacto = @xml_hash["dTfnEm"]
         @correo = @xml_hash["dCorElectEmi"]
     end 
