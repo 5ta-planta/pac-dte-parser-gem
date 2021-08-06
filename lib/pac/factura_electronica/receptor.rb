@@ -45,7 +45,7 @@ class Pac::FacturaElectronica::Receptor
         @codigo_ubicacion  = @xml_hash["gUbiRec"]["dCodUbi"]
         @corregimiento  = @xml_hash["gUbiRec"]["dCorreg"]
         @distrito  = @xml_hash["gUbiRec"]["dDistr"]
-        @provincia  = @xml_hash["gUbiRec"]["dProv"]
+        @provincia  = @xml_hash["gUbiRec"]["dProv"].to_i if @xml_hash["gUbiRec"]["dProv"].present?
 
         
         @identificacion_extranjero  = @xml_hash["gIdExt"]["dIdExt"]
