@@ -29,7 +29,7 @@ class Pac::FacturaElectronica::Emisor
 
     def cargar()
         
-        @tipo_de_contribuyente = @xml_hash["gRucEmi"]["dTipoRuc"]
+        @tipo_de_contribuyente = @xml_hash["gRucEmi"]["dTipoRuc"].to_i if @xml_hash["gRucEmi"]["dTipoRuc"].present?
         @ruc  = @xml_hash["gRucEmi"]["dRuc"]
         @dv_ruc = @xml_hash["gRucEmi"]["dDV"]
         @nombre = @xml_hash["dNombEm"]
