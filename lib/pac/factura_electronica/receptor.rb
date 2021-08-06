@@ -18,6 +18,7 @@ class Pac::FacturaElectronica::Receptor
     attr_accessor :existe_gUbiRec 
     attr_accessor :existe_gIdExt
     attr_accessor :existe_gRucRec
+    attr_accessor :xml_hash
 
 
     ##Recibe como parametro la seccion del hash que corresponde a gDatRec del xml
