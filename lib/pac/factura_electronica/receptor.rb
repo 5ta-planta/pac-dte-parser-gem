@@ -58,5 +58,17 @@ class Pac::FacturaElectronica::Receptor
         @pais_descripcion  = @xml_hash["dPaisRecDesc"]
     end 
 
+    def validar_si_existe_grupoB406
+        if @xml_hash["gIdExt"].present?
+            if @identificacion_extranjero.present?  and @pais_extranjero.present?
+                return true
+            else
+                return false
+            end
+        else
+            return false
+        end
+    end
+
 
 end
