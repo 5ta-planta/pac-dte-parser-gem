@@ -60,13 +60,18 @@ class Pac::FacturaElectronica::Receptor
     end 
 
     def validar_si_existe_grupoB406
+        puts "Validando si existe el grupo B406"
         if @xml_hash["gIdExt"].present?
+            puts "Si esta presente gIdExt"
             if @identificacion_extranjero.present?  and @pais_extranjero.present?
+                puts "Si esta presente 2"
                 return true
             else
+                puts "Se fue por el else interno"
                 return false
             end
         else
+            puts "Se fue por el else externo"
             return false
         end
     end
