@@ -11,18 +11,20 @@ class Pac::FacturaElectronica::Exportacion
 
     def initialize(xml_hash)
         @xml_hash = xml_hash
-        @existe_gFExp = true
+        @existe_gFExp = false
     end
 
 
     def cargar
-        @existe_gFExp = true
+        @existe_gFExp = false
         @incoterm= @xml_hash["cCondEntr"]
         @moneda= @xml_hash["cMoneda"]
         @moneda_descripcion= @xml_hash["cMonedaDesc"]
         @tipo_cambio= @xml_hash["dCambio"]
         @monto_moneda_extranjera= @xml_hash["dVTotEst"]
         @puerto_embarque= @xml_hash["dPuertoEmbarq"]
+
+        
     end
 
 
