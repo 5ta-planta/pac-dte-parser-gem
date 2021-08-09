@@ -16,7 +16,7 @@ class Pac::FacturaElectronica::Exportacion
 
 
     def cargar
-        @existe_gFExp = false
+        @existe_gFExp = true
         @incoterm= @xml_hash["cCondEntr"]
         @moneda= @xml_hash["cMoneda"]
         @moneda_descripcion= @xml_hash["cMonedaDesc"]
@@ -24,7 +24,7 @@ class Pac::FacturaElectronica::Exportacion
         @monto_moneda_extranjera= @xml_hash["dVTotEst"]
         @puerto_embarque= @xml_hash["dPuertoEmbarq"]
 
-        
+
     end
 
 
