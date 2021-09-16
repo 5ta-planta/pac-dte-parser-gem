@@ -1,5 +1,11 @@
 require 'rails'
 module Pac	     
+	module Lote
+
+
+	end
+
+	
 	module FacturaElectronica		  
 		autoload :FacturaElectronica, 'pac/factura_electronica/factura_electronica'
 		autoload :Emisor, 'pac/factura_electronica/emisor'
