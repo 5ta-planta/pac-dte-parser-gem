@@ -1,4 +1,4 @@
-class  Pac::Lote
+class  Pac::Lote::Lote
     attr_accessor :version_del_formato # dVerForm
     attr_accessor :identificador_para_firma_electronica # dId
     attr_accessor :ambiente_destino # iAmb
