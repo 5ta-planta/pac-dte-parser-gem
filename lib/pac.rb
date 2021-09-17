@@ -1,7 +1,7 @@
 require 'rails'
 module Pac	     
 	module Lote
-
+		autoload :Lote, 'pac/lote/lote'
 
 	end
 
