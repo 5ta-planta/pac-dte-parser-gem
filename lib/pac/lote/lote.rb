@@ -52,12 +52,21 @@ class Pac::Lote::Lote
         @identificador_para_firma_electronica = @xml_hash["rEnviLoteFe"]["dId"]
         @ambiente_destino = @xml_hash["rEnviLoteFe"]["iAmb"].to_i if @xml_hash["rEnviLoteFe"]["iAmb"].present?
         @facturas = []
-        @xml_hash["rEnviLoteFe"]["xFe"].each do |factura|
-            factura  = Pac::FacturaElectronica::FacturaElectronica.new(factura)
-            factura.cargar
-            @facturas << factura
+
+        if ( @xml_hash["rEnviLoteFe"]["xFe"].present?)
+            if (@xml_hash["rEnviLoteFe"]["xFe"].class == Array)
+                @xml_hash["rEnviLoteFe"]["xFe"].each do |factura|
+                    factura  = Pac::FacturaElectronica::FacturaElectronica.new(factura)
+                    factura.cargar
+                    @facturas << factura
+                end 
+            else
+                factura  = Pac::FacturaElectronica::FacturaElectronica.new(@xml_hash["rEnviLoteFe"]["xFe"])
+                factura.cargar
+                @facturas << factura
+            end
+            true
         end 
-        true
     rescue Exception => e
         p e.backtrace
         p e.message
