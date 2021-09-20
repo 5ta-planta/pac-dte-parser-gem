@@ -9,6 +9,7 @@ class Pac::Lote::Lote
     def initialize(xml_recep_lote_fe)
         @xml_recep_lote_fe = xml_recep_lote_fe
         @xml_hash =  Hash.from_xml(xml_recep_lote_fe)
+        @xml_hash = @xml_hash["feDatosMsg"]
     end
 
     #Auxiliar para obtener los campos del DTE
@@ -51,11 +52,11 @@ class Pac::Lote::Lote
         @identificador_para_firma_electronica = @xml_hash["rEnviLoteFe"]["dId"]
         @ambiente_destino = @xml_hash["rEnviLoteFe"]["iAmb"].to_i if @xml_hash["rEnviLoteFe"]["iAmb"].present?
         @facturas = []
-        @xml_hash["rEnviLoteFe"]["xFe"].each do |factura|
-            factura  = Pac::FacturaElectronica::FacturaElectronica.new(factura)
-            factura.cargar
-            @facturas << factura
-        end 
+        # @xml_hash["rEnviLoteFe"]["xFe"].each do |factura|
+        #     factura  = Pac::FacturaElectronica::FacturaElectronica.new(factura)
+        #     factura.cargar
+        #     @facturas << factura
+        # end 
         true
     rescue Exception => e
         p e.backtrace
