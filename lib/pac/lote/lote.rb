@@ -9,7 +9,7 @@ class Pac::Lote::Lote
     def initialize(xml_recep_lote_fe)
         @xml_recep_lote_fe = xml_recep_lote_fe
         @xml_hash =  Hash.from_xml(xml_recep_lote_fe)
-   
+        @xml_hash =  @xml_hash["feDatosMsg"]
     end
 
     #Auxiliar para obtener los campos del DTE
