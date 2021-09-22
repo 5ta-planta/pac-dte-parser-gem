@@ -56,11 +56,26 @@ class Pac::FacturaElectronica::FacturaElectronica
     attr_accessor :resultado_validacion
 
     attr_accessor :cufe
+
+    attr_accessor :json #data source, texto (json o xml o cualquier otra cosa)
+    attr_accessor :xml_factura
+    attr_accessor :header 
     ##
     #
-    def initialize(xml_fe_recep_fe)
-        @xml_hash =  Hash.from_xml(xml_fe_recep_fe)
+    def initialize(str_fe_recep_fe)
+        require 'json'
+        self.header  = Pac::FacturaElectronica::Header.new
+        self.json = str_fe_recep_fe
+        mensaje = JSON.parse(self.json)
+        self.header.dVerForm = mensaje["dVerForm"]
+        self.header.dId = mensaje["dId"]
+        self.header.iAmb = mensaje["iAmb"]
+        self.header.xFE = Base64.decode64(mensaje["xFE"])
+        self.xml_factura = self.header.xFE
+        self.xml_hash =  Hash.from_xml(self.xml_factura)
     end
+
+
 
     #Auxiliar para obtener los campos del DTE
      def campos
@@ -113,6 +128,9 @@ class Pac::FacturaElectronica::FacturaElectronica
         #return Hash.from_xml(xml)
         xml
     end
+
+
+    
 
     ##Metodo para cargar la FE a partir del XML 
     ##  
