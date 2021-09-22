@@ -4,12 +4,9 @@ class Pac::Lote::Lote
     attr_accessor :ambiente_destino # iAmb
     attr_accessor :facturas
     attr_accessor :xml_recep_lote_fe
-    attr_accessor :xml_hash
 
     def initialize(xml_recep_lote_fe)
-        @xml_recep_lote_fe = xml_recep_lote_fe
-        @xml_hash =  Hash.from_xml(xml_recep_lote_fe)
-        @xml_hash =  @xml_hash["feDatosMsg"]
+        @xml_recep_lote_fe = xml_recep_lote_fe        
     end
 
     #Auxiliar para obtener los campos del DTE
@@ -48,25 +45,20 @@ class Pac::Lote::Lote
 
 
     def cargar()
-        @version_del_formato = @xml_hash["rEnviLoteFe"]["dVerForm"]
-        @identificador_para_firma_electronica = @xml_hash["rEnviLoteFe"]["dId"]
-        @ambiente_destino = @xml_hash["rEnviLoteFe"]["iAmb"].to_i if @xml_hash["rEnviLoteFe"]["iAmb"].present?
+#        @version_del_formato = @xml_hash["rEnviLoteFe"]["dVerForm"]
+#        @identificador_para_firma_electronica = @xml_hash["rEnviLoteFe"]["dId"]
+#        @ambiente_destino = @xml_hash["rEnviLoteFe"]["iAmb"].to_i if @xml_hash["rEnviLoteFe"]["iAmb"].present?
         @facturas = []
 
-        if ( @xml_hash["rEnviLoteFe"]["xFe"].present?)
-            if (@xml_hash["rEnviLoteFe"]["xFe"].class == Array)
-                @xml_hash["rEnviLoteFe"]["xFe"].each do |factura|
-                    factura  = Pac::FacturaElectronica::FacturaElectronica.new(factura)
-                    factura.cargar
-                    @facturas << factura
-                end 
-            else
-                factura  = Pac::FacturaElectronica::FacturaElectronica.new(@xml_hash["rEnviLoteFe"]["xFe"])
-                factura.cargar
-                @facturas << factura
-            end
-            true
-        end 
+        parseXmlFe =  Nokogiri::XML::parse(@xml_recep_lote_fe)
+
+        parseXmlFe.xpath("//dgi:xFe").each do |xfe|
+            factura  = Pac::FacturaElectronica::FacturaElectronica.new(xfe.content.to_s)
+            factura.cargar
+            @facturas << factura
+        end
+
+   
     rescue Exception => e
         p e.backtrace
         p e.message
