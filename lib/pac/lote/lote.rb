@@ -45,14 +45,19 @@ class Pac::Lote::Lote
 
 
     def cargar()
-#        @version_del_formato = @xml_hash["rEnviLoteFe"]["dVerForm"]
-#        @identificador_para_firma_electronica = @xml_hash["rEnviLoteFe"]["dId"]
-#        @ambiente_destino = @xml_hash["rEnviLoteFe"]["iAmb"].to_i if @xml_hash["rEnviLoteFe"]["iAmb"].present?
-        @facturas = []
-
+        puts "Iniciando la carga del lote"
         parseXmlFe =  Nokogiri::XML::parse(@xml_recep_lote_fe)
 
-        parseXmlFe.xpath("//dgi:xFe").each do |xfe|
+        @version_del_formato = parseXmlFe.xpath("//feDatosMsg//dgi:rEnviLoteFe//dgi:dVerForm")[0].content.to_s
+        @identificador_para_firma_electronica = parseXmlFe.xpath("//feDatosMsg//dgi:rEnviLoteFe//dgi:dId")[0].content.to_s
+        @ambiente_destino = parseXmlFe.xpath("//feDatosMsg//dgi:rEnviLoteFe//dgi:iAmb")[0].content.to_s
+        @facturas = []
+
+
+
+        parseXmlFe.xpath("//dgi:xFe").each_with_index do |xfe,idx|
+            puts "Procesando Factur no...................................................................................................#{idx}"
+            p xfe.content.to_s
             factura  = Pac::FacturaElectronica::FacturaElectronica.new(xfe.content.to_s)
             factura.cargar
             @facturas << factura
