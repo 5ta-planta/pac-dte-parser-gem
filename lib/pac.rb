@@ -10,6 +10,7 @@ module Pac
 		autoload :FacturaElectronica, 'pac/factura_electronica/factura_electronica'
 		autoload :Emisor, 'pac/factura_electronica/emisor'
 		autoload :Cufe, 'pac/factura_electronica/cufe'
+		autoload :Header, 'pac/factura_electronica/header'
 		autoload :DescuentoAdicional, 'pac/factura_electronica/descuento_adicional'
 		autoload :DocumentoFiscalReferenciado, 'pac/factura_electronica/documento_fiscal_referenciado'
 		autoload :Exportacion, 'pac/factura_electronica/exportacion'
