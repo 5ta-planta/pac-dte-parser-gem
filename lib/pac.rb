@@ -6,6 +6,12 @@ module Pac
 
 	end
 
+
+	module Emisro
+		autoload :Lote, 'pac/emisor/emisor'
+
+	end
+
 	
 	module FacturaElectronica		  
 		autoload :FacturaElectronica, 'pac/factura_electronica/factura_electronica'
