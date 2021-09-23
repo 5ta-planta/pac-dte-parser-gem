@@ -11,16 +11,15 @@ class Pac::Emisor::Emisor
 
 	 
 
-    def initialize
-        
+    
+
+     
+
+    def ultimo_registro
+        Pac::Emisor::Emisor.last
     end
 
-    def set_nombre(nombre)
-        self.nombre = nombre
-    end
 
-    def self.total_registros
-        Pac::Emisor::Emisor.count
-    end
+
 
 end
