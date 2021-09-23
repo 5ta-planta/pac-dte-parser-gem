@@ -1,7 +1,7 @@
 class Pac::Emisor::Emisor
     include Dynamoid::Document
     table name: :emisores, key: :id
-    field :id, :integer
+     
     field :nombre
     field :tipo
     field :correo
@@ -9,8 +9,7 @@ class Pac::Emisor::Emisor
     #field :sucursales, :array  
     field :secret
 
-	field  :created_at, :date
-	field  :updated_at, :date
+	 
 
     def initialize
         
