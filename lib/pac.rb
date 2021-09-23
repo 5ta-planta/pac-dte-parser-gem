@@ -1,5 +1,6 @@
 require 'rails'
 require 'dynamoid'
+
 module Pac	     
 	module Lote
 		autoload :Lote, 'pac/lote/lote'
