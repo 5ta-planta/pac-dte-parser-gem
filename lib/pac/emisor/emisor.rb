@@ -6,7 +6,7 @@ class Pac::Emisor::Emisor
     field :tipo
     field :correo
     field :estado
-    field :sucursales, :array  
+    #field :sucursales, :array  
     field :secret
 
 	field  :created_at, :date
