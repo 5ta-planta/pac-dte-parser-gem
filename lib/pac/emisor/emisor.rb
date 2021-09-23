@@ -1,4 +1,3 @@
- 
 class Pac::Emisor::Emisor
     include Dynamoid::Document
     table name: :emisores, key: :id
@@ -9,18 +8,4 @@ class Pac::Emisor::Emisor
     field :estado
     #field :sucursales, :array  
     field :secret
-
-	 
-
-    
-
-     
-
-    def ultimo_registro
-        Pac::Emisor::Emisor.last
-    end
-
-
-
-
 end
