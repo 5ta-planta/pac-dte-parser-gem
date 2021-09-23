@@ -15,4 +15,8 @@ class Pac::Emisor::Emisor
         
     end
 
+    def set_nombre(nombre)
+        self.nombre = nombre
+    end
+
 end
