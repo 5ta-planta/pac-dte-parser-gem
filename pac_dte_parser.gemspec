@@ -9,4 +9,5 @@ Gem::Specification.new do |s|
   s.licenses    = ["MIT"]
 
   s.add_dependency("railties", ">= 4.1.0")
+  s.add_dependency("dynamoid", ">= 4.1.0")
 end  

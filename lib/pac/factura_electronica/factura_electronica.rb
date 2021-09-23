@@ -129,9 +129,6 @@ class Pac::FacturaElectronica::FacturaElectronica
         xml
     end
 
-
-    
-
     ##Metodo para cargar la FE a partir del XML 
     ##  
     #
