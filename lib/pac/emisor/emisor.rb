@@ -20,7 +20,7 @@ class Pac::Emisor::Emisor
     end
 
     def self.total_registros
-        self.count
+        Pac::Emisor::Emisor.count
     end
 
 end
