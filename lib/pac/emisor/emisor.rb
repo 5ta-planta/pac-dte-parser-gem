@@ -1,4 +1,4 @@
-class Pac::Emisor::Emisor
+class Pac::Emisor::Emisor<Dynamoid::Document
     include Dynamoid::Document
     table name: :emisores, key: :id
     range :nombre
