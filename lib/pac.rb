@@ -7,9 +7,8 @@ module Pac
 	end
 
 
-	module Emisro
-		autoload :Lote, 'pac/emisor/emisor'
-
+	module Emisor
+		autoload :Emisor, 'pac/emisor/emisor'
 	end
 
 	
