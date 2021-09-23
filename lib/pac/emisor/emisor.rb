@@ -19,4 +19,8 @@ class Pac::Emisor::Emisor
         self.nombre = nombre
     end
 
+    def self.total_registros
+        self.count
+    end
+
 end
