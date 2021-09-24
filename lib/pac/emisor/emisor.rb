@@ -3,6 +3,7 @@ class Pac::Emisor::Emisor
     table name: :emisores, key: :ruc
     field :tipo_contribuyente
     field :nombre
+    field :correo
     field :digito_verificador
     field :ruc_afiliado_sfe, :boolean
     field :resolucion_autorizacion
