@@ -69,10 +69,13 @@ class Pac::FacturaElectronica::FacturaElectronica
         self.json = str_fe_recep_fe
         p "1111111111111111111111111111111111..............................................................."
         mensaje = JSON.parse(self.json)
+        p "222222222222222222222222222222222222..............................................................."
         self.header.dVerForm = mensaje["dVerForm"]
+        p "333333333333333333333333333333333333..............................................................."
         self.header.dId = mensaje["dId"]
         self.header.iAmb = mensaje["iAmb"]
         self.header.xFE = Base64.decode64(mensaje["xFE"])
+        p "444444444444444444444444444444444444444444444444444..............................................................."
         self.xml_factura = self.header.xFE
         self.xml_hash =  Hash.from_xml(self.xml_factura)
     end
