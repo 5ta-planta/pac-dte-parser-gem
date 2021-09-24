@@ -63,9 +63,11 @@ class Pac::FacturaElectronica::FacturaElectronica
     ##
     #
     def initialize(str_fe_recep_fe)
+        p "Inicio..............................................................."
         require 'json'
         self.header  = Pac::FacturaElectronica::Header.new
         self.json = str_fe_recep_fe
+        p "1111111111111111111111111111111111..............................................................."
         mensaje = JSON.parse(self.json)
         self.header.dVerForm = mensaje["dVerForm"]
         self.header.dId = mensaje["dId"]
