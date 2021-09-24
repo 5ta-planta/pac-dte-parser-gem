@@ -72,6 +72,7 @@ class Pac::FacturaElectronica::FacturaElectronica
         p "222222222222222222222222222222222222..............................................................."
         self.header.dVerForm = mensaje["dVerForm"]
         p "333333333333333333333333333333333333..............................................................."
+        byebug
         self.header.dId = mensaje["dId"]
         self.header.iAmb = mensaje["iAmb"]
         self.header.xFE = Base64.decode64(mensaje["xFE"])
