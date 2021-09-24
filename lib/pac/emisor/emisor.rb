@@ -1,11 +1,10 @@
 class Pac::Emisor::Emisor
     include Dynamoid::Document
-    table name: :emisores, key: :id
-    range :nombre
+    table name: :emisores, key: :ruc
     field :nombre
     field :tipo
     field :correo
+    field :secreto
     field :estado
-    #field :sucursales, :array  
-    field :secret
+    field :sucursales, :array  
 end
