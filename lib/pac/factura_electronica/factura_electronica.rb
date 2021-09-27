@@ -63,21 +63,14 @@ class Pac::FacturaElectronica::FacturaElectronica
     ##
     #
     def initialize(str_fe_recep_fe)
-        p "Inicio..............................................................."
         require 'json'
         self.header  = Pac::FacturaElectronica::Header.new
-        self.json = str_fe_recep_fe
-        p "1111111111111111111111111111111111..............................................................."
-        byebug
+        self.json = str_fe_recep_fen
         mensaje = JSON.parse(self.json)
-        p "222222222222222222222222222222222222..............................................................."
-        self.header.dVerForm = mensaje["dVerForm"]
-        p "333333333333333333333333333333333333..............................................................."
-         
-        self.header.dId = mensaje["dId"]
-        self.header.iAmb = mensaje["iAmb"]
-        self.header.xFE = Base64.decode64(mensaje["xFe"])
-        p "444444444444444444444444444444444444444444444444444..............................................................."
+        self.header.dVerForm =mensaje["feDatosMsg"]["rEnviFe"]["dVerForm"] # mensaje["dVerForm"]
+        self.header.dId = mensaje["feDatosMsg"]["rEnviFe"]["dId"]# mensaje["dId"]
+        self.header.iAmb = mensaje["feDatosMsg"]["rEnviFe"]["iAmb"] #mensaje["iAmb"]
+        self.header.xFE =  mensaje["feDatosMsg"]["rEnviFe"]["xFe"] #mensaje["iAmb"] #Base64.decode64(mensaje["xFe"])
         self.xml_factura = self.header.xFE
         self.xml_hash =  Hash.from_xml(self.xml_factura)
     end
