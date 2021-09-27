@@ -66,7 +66,7 @@ class Pac::FacturaElectronica::FacturaElectronica
         require 'json'
         byebug
         self.header  = Pac::FacturaElectronica::Header.new
-        self.json = str_fe_recep_fen
+        self.json = str_fe_recep_fe
         mensaje = JSON.parse(self.json)
         self.header.dVerForm =mensaje["feDatosMsg"]["rEnviFe"]["dVerForm"] # mensaje["dVerForm"]
         self.header.dId = mensaje["feDatosMsg"]["rEnviFe"]["dId"]# mensaje["dId"]
