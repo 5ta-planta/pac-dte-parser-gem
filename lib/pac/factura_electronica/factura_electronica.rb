@@ -64,6 +64,7 @@ class Pac::FacturaElectronica::FacturaElectronica
     #
     def initialize(str_fe_recep_fe)
         require 'json'
+        byebug
         self.header  = Pac::FacturaElectronica::Header.new
         self.json = str_fe_recep_fen
         mensaje = JSON.parse(self.json)
