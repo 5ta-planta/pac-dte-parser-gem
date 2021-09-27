@@ -68,6 +68,7 @@ class Pac::FacturaElectronica::FacturaElectronica
         self.header  = Pac::FacturaElectronica::Header.new
         self.json = str_fe_recep_fe
         p "1111111111111111111111111111111111..............................................................."
+        byebug
         mensaje = JSON.parse(self.json)
         p "222222222222222222222222222222222222..............................................................."
         self.header.dVerForm = mensaje["dVerForm"]
