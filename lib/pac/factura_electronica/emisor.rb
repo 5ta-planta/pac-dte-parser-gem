@@ -18,17 +18,17 @@ class Pac::FacturaElectronica::Emisor
     attr_accessor :telefono_contacto #dTfnEm B309
     attr_accessor :correo #dCorElectEmi  B310
     attr_accessor :existe_gUbiEm
-    
+    attr_accessor :emisor_dynamo 
     
     ##Recibe como parametro la seccion del hash que corresponde a gEmis del xml
     ##
     #
     def initialize(xml_hash)
         @xml_hash = xml_hash
+        #self.emisor_dynamo=  Pac::Emisor::Emisor.new
     end
 
     def cargar()
-        
         @tipo_de_contribuyente = @xml_hash["gRucEmi"]["dTipoRuc"].to_i if @xml_hash["gRucEmi"]["dTipoRuc"].present?
         @ruc  = @xml_hash["gRucEmi"]["dRuc"]
         @dv_ruc = @xml_hash["gRucEmi"]["dDV"]
@@ -44,5 +44,12 @@ class Pac::FacturaElectronica::Emisor
         @telefono_contacto = @xml_hash["dTfnEm"]
         @correo = @xml_hash["dCorElectEmi"]
     end 
+    
+    ###Valida que en dynamo exista la sucursal 
+    ##
+    #
+    def sucursal_valida?
+        Pac::Emisor::Emisor.where(ruc:self.ruc).first.present?
+    end
 
 end
