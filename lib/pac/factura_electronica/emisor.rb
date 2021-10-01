@@ -50,7 +50,8 @@ class Pac::FacturaElectronica::Emisor
     ##
     #
     def sucursal_valida?
-        self.emisor_dynamo.present? ? self.emisor_dynamo.sucursales.include?(self.sucursal) : false
+        self.emisor_dynamo.present? ? self.emisor_dynamo.sucursales.select {|suc| suc["codigo"] == self.sucursal }.present? 
+                                    : false
     end
 
 end
