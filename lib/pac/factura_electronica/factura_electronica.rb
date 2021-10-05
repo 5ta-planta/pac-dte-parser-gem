@@ -76,16 +76,7 @@ class Pac::FacturaElectronica::FacturaElectronica
         self.xml_hash =  Hash.from_xml(self.xml_factura)
     end
 
-
-    def self.tipo_receptor
-        [
-
-            ["Contribuyente","01"],
-            ["Consumidor final","02"],
-            ["Consumidor final","03"],
-            ["Consumidor final","04"]
-        ]
-    end
+ 
 
     #Auxiliar para obtener los campos del DTE
      def campos

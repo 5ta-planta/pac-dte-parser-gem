@@ -14,7 +14,7 @@ module Pac
 
 
 	module Constante
-		autoload :Emisor, 'pac/constante/constante'
+		autoload :Constante, 'pac/constante/constante'
 	end
 	
 	module FacturaElectronica		  
