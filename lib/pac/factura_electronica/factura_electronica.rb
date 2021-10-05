@@ -77,6 +77,15 @@ class Pac::FacturaElectronica::FacturaElectronica
     end
 
 
+    def self.tipo_receptor
+        [
+
+            ["Contribuyente","01"],
+            ["Consumidor final","02"],
+            ["Consumidor final","03"],
+            ["Consumidor final","04"]
+        ]
+    end
 
     #Auxiliar para obtener los campos del DTE
      def campos
