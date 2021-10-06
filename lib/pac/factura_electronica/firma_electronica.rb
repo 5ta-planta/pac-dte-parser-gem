@@ -14,8 +14,8 @@ class Pac::FacturaElectronica::FirmaElectronica
 
     def cargar
         puts "*************************************************************************************************************CARGAANDO LOA FIRMA ELECTRONICA*************************************************************************************************************"
-        signed_info = SignedInfo.new
-        signed_info.cargar
+        self.signed_info = SignedInfo.new
+        self.signed_info.cargar
     end
 
 
@@ -32,7 +32,7 @@ end
 
      def cargar
         puts "*************************************************************************************************************CARGAANDO LOA FIRMA ELECTRONICA signed infor*************************************************************************************************************"
-         reference = Reference.new
+         self.reference = Reference.new
      end
 
  end
