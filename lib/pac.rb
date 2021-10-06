@@ -19,6 +19,7 @@ module Pac
 	
 	module FacturaElectronica		  
 		autoload :FacturaElectronica, 'pac/factura_electronica/factura_electronica'
+		autoload :FirmaElectronica, 'pac/factura_electronica/firma_electronica'
 		autoload :Emisor, 'pac/factura_electronica/emisor'
 		autoload :Cufe, 'pac/factura_electronica/cufe'
 		autoload :Header, 'pac/factura_electronica/header'

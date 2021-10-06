@@ -2,7 +2,7 @@
 ##Representa un emisor de una factura electronica
 ##6.4.1. Grupo de Datos que Identifican al emisor
 #
-class Pac::FacturaElectronica::Emisor
+class gem install bundler:2.0.2
     attr_accessor :xml_hash
     attr_accessor :tipo_de_contribuyente #dTipoRuc  B3011  1 natural, 2 jujridico 
     attr_accessor :ruc #dRuc B3012

@@ -40,4 +40,4 @@ class Reference
     attr_accessor :digest_value
 end
 
-class KeyInfo
+ 
