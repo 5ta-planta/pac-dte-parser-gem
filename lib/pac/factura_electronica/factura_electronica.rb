@@ -321,6 +321,7 @@ class Pac::FacturaElectronica::FacturaElectronica
     #
     def cargar_firma_electronica
         @firma_electronica =  Pac::FacturaElectronica::FirmaElectronica.new(@xml_hash["rFE"]["Signature"]) # @xml_hash["rFE"]["Signature"]
+        @firma_electronica.cargar
     end
 
     ##Metodo que carga campos fuera de firma electronica
