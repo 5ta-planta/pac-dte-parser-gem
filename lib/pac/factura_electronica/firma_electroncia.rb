@@ -1,3 +1,4 @@
+
 class Pac::FacturaElectronica::FirmaElectronica
 
 
@@ -11,7 +12,7 @@ class Pac::FacturaElectronica::FirmaElectronica
 
 
     def cargar
-        signed_info = SignedInfo.new
+       # signed_info = SignedInfo.new
 
     end
 
@@ -23,21 +24,21 @@ end
 
 
 
-class SignedInfo
-    attr_accessor :canonicalization_method
-    attr_accessor :signature_method
-    attr_accessor :reference
+# class SignedInfo
+#     attr_accessor :canonicalization_method
+#     attr_accessor :signature_method
+#     attr_accessor :reference
 
-    def cargar
-        reference = Reference.new
-    end
+#     def cargar
+#         reference = Reference.new
+#     end
 
-end
+# end
 
-class Reference
-    attr_accessor :transforms
-    attr_accessor :digest_method
-    attr_accessor :digest_value
-end
+# class Reference
+#     attr_accessor :transforms
+#     attr_accessor :digest_method
+#     attr_accessor :digest_value
+# end
 
  
