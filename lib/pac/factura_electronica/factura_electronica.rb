@@ -320,7 +320,7 @@ class Pac::FacturaElectronica::FacturaElectronica
     ##6.9. Información de la Firma Electrónica de la FE
     #
     def cargar_firma_electronica
-        @firma_electronica =  Pac::FacturaElectronica::FirmaElectronica.new(@xml_hash["rFE"]["Signature"]) # @xml_hash["rFE"]["Signature"]
+        @firma_electronica =  Pac::FacturaElectronica::FirmaElectronica.new(@xml_hash["rFE"]) # @xml_hash["rFE"]["Signature"]
         @firma_electronica.cargar
     end
 
