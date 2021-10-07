@@ -54,10 +54,11 @@ end
     end
     
     def cargar
-        puts "*************************************************************************************************************CARGAANDO LOA FIRMA ELECTRONICA signed infor*************************************************************************************************************"
-        self.canonicalization_method=signed_info["CanonicalizationMethod"]
-        self.signature_method=signed_info["SignatureMethod"]
-        self.reference = Reference.new(signed_info["Reference"])
+        byebug
+        puts "*********************************************************************************************por aqui voy ****************CARGAANDO LOA FIRMA ELECTRONICA signed infor*************************************************************************************************************"
+        self.canonicalization_method = self.signed_info["CanonicalizationMethod"]
+        self.signature_method = self.signed_info["SignatureMethod"]
+        self.reference = Reference.new(self.signed_info["Reference"])
     end
 
  end
