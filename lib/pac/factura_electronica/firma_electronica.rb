@@ -69,7 +69,7 @@ end
      end
 
      def cargar
-        byebug
+        
         if self.reference["Transforms"]["Transform"].count > 1
             self.reference["Transforms"]["Transform"].each do |t|
                 self.transforms << {transform:t}
