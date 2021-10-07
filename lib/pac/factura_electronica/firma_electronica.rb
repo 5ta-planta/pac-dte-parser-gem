@@ -14,7 +14,8 @@ class Pac::FacturaElectronica::FirmaElectronica
 
 
     def cargar
-        puts "*************************************************************************************************************CARGAANDO LOA FIRMA ELECTRONICA*************************************************************************************************************"
+        byebug
+        puts "************************************************************************12121*************************************CARGAANDO LOA FIRMA ELECTRONICA*************************************************************************************************************"
         self.signed_info = SignedInfo.new(self.signature["Signature"]["SignedInfo"])
         self.key_info  = X09Data.new(self.signature["Signature"]["KeyInfo"])
         self.signed_info.cargar
