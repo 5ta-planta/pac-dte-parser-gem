@@ -70,12 +70,12 @@ end
 
      def cargar
         byebug
-        if self.reference["Transforms"].count > 1
-            self.reference["Transforms"].each do |t|
+        if self.reference["Transforms"]["Transform"].count > 1
+            self.reference["Transforms"]["Transform"].each do |t|
                 self.transforms << {transform:t["Transform"]}
             end 
         else
-            if (self.reference["Transforms"].count == 1)
+            if (self.reference["Transforms"]["Transform"].count == 1)
                 self.transforms << {transform:t["Transform"][0]}
             end
 
