@@ -1,7 +1,5 @@
 
 class Pac::FacturaElectronica::FirmaElectronica
-
-
     attr_accessor :firma_electronica
     attr_accessor :signed_info
     attr_accessor :signature_value
@@ -14,7 +12,6 @@ class Pac::FacturaElectronica::FirmaElectronica
 
 
     def cargar
-        byebug
         puts "************************************************************************12121*************************************CARGAANDO LOA FIRMA ELECTRONICA*************************************************************************************************************"
         self.signed_info = SignedInfo.new(self.signature["Signature"]["SignedInfo"])
         self.key_info  = X09Data.new(self.signature["Signature"]["KeyInfo"])
@@ -22,9 +19,6 @@ class Pac::FacturaElectronica::FirmaElectronica
         self.key_info.cargar
         self.signature_value = self.signature["Signature"]["SignatureValue"]
     end
-
-
-
 end
 
 class X09Data
@@ -36,7 +30,7 @@ class X09Data
         self.key_info = key_info
     end
 
-    def cargar        
+    def cargar
         self.x509_certificate = key_info["X509Data"]["X509Certificate"]
         self.x509_subject_name = key_info["X509Data"]["X509SubjectName"]
     end
@@ -53,13 +47,12 @@ end
     def initialize(info)
         self.signed_info = info
     end
-    
+
     def cargar
-        byebug
-        puts "*********************************************************************************************por aqui voy ****************CARGAANDO LOA FIRMA ELECTRONICA signed infor*************************************************************************************************************"
         self.canonicalization_method = self.signed_info["CanonicalizationMethod"]
         self.signature_method = self.signed_info["SignatureMethod"]
         self.reference = Reference.new(self.signed_info["Reference"])
+        self.reference.cargar
     end
 
  end
@@ -76,7 +69,7 @@ end
      end
 
      def cargar
-        
+        byebug
         if reference["DigestMethod"]["Transforms"].count > 1
             reference["DigestMethod"]["Transforms"].each do |t|
                 self.transforms << {transform:t["Transform"]}
