@@ -72,11 +72,11 @@ end
         byebug
         if self.reference["Transforms"]["Transform"].count > 1
             self.reference["Transforms"]["Transform"].each do |t|
-                self.transforms << {transform:t["Transform"]}
+                self.transforms << {transform:t}
             end 
         else
             if (self.reference["Transforms"]["Transform"].count == 1)
-                self.transforms << {transform:t["Transform"][0]}
+                self.transforms << {transform: self.reference["Transforms"]["Transform"]}
             end
 
         end
