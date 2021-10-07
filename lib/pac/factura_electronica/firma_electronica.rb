@@ -70,18 +70,18 @@ end
 
      def cargar
         byebug
-        if reference["DigestMethod"]["Transforms"].count > 1
-            reference["DigestMethod"]["Transforms"].each do |t|
+        if self.reference["DigestMethod"]["Transforms"].count > 1
+            self.reference["DigestMethod"]["Transforms"].each do |t|
                 self.transforms << {transform:t["Transform"]}
             end 
         else
-            if (reference["DigestMethod"]["Transforms"].count == 1)
+            if (self.reference["DigestMethod"]["Transforms"].count == 1)
                 self.transforms << {transform:t["Transform"][0]}
             end
 
         end
 
-        self.digest_method = reference["DigestMethod"]
-        self.digest_value = reference["DigestValue"]
+        self.digest_method = self.reference["DigestMethod"]
+        self.digest_value = self.reference["DigestValue"]
      end
  end
