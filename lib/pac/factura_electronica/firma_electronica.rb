@@ -43,6 +43,7 @@ end
      attr_accessor :signature_method
      attr_accessor :reference
      attr_accessor :signed_info
+     
 
     def initialize(info)
         self.signed_info = info
@@ -52,6 +53,7 @@ end
         self.canonicalization_method = self.signed_info["CanonicalizationMethod"]
         self.signature_method = self.signed_info["SignatureMethod"]
         self.reference = Reference.new(self.signed_info["Reference"])
+        
         self.reference.cargar
     end
 
@@ -62,6 +64,7 @@ end
      attr_accessor :digest_method
      attr_accessor :digest_value
      attr_accessor :reference
+     attr_accessor :uri
 
      def initialize(reference)
         self.reference = reference
@@ -83,5 +86,6 @@ end
 
         self.digest_method = self.reference["DigestMethod"]
         self.digest_value = self.reference["DigestValue"]
+        self.uri =  self.reference["URI"]
      end
  end
