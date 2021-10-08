@@ -7,17 +7,16 @@ class Pac::FacturaElectronica::FirmaElectronica
     attr_accessor :signature
 
     def initialize(firma_electronica)
-        self.signature = firma_electronica
+       # self.signature = firma_electronica
+       self.signed_info = SignedInfo.new(firma_electronica["Signature"]["SignedInfo"])
+       self.key_info  = X09Data.new(firma_electronica["Signature"]["KeyInfo"])
+       self.signed_info.cargar
+       self.key_info.cargar
+       self.signature_value = firma_electronica["Signature"]["SignatureValue"].strip
     end 
 
 
     def cargar
-        puts "************************************************************************12121*************************************CARGAANDO LOA FIRMA ELECTRONICA*************************************************************************************************************"
-        self.signed_info = SignedInfo.new(self.signature["Signature"]["SignedInfo"])
-        self.key_info  = X09Data.new(self.signature["Signature"]["KeyInfo"])
-        self.signed_info.cargar
-        self.key_info.cargar
-        self.signature_value = self.signature["Signature"]["SignatureValue"]
     end
 end
 
@@ -31,7 +30,7 @@ class X09Data
     end
 
     def cargar
-        self.x509_certificate = key_info["X509Data"]["X509Certificate"]
+        self.x509_certificate = key_info["X509Data"]["X509Certificate"].strip
         self.x509_subject_name = key_info["X509Data"]["X509SubjectName"]
     end
 
