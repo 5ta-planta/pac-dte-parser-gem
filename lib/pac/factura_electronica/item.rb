@@ -106,12 +106,15 @@ class Pac::FacturaElectronica::Item
         @total  = @xml_hash["gPrecios"]["dValTotItem"].to_f if @xml_hash["gPrecios"]["dValTotItem"].present?
 
         #6.5.2. Grupo de Otros Códigos del Ítem
-        @codigo_gtin_unidad_comercializadora  = @xml_hash["gCodItem"]["dGTINCom"]
-        @cantidad_gtin_unidad_comercializadora  = @xml_hash["gCodItem"]["dCantGTINCom"]
+
+        if ( @xml_hash["gCodItem"].present?)
+            @codigo_gtin_unidad_comercializadora  = @xml_hash["gCodItem"]["dGTINCom"] if @xml_hash["gCodItem"]["dGTINCom"].present?
+            @cantidad_gtin_unidad_comercializadora  = @xml_hash["gCodItem"]["dCantGTINCom"] if @xml_hash["gCodItem"]["dCantGTINCom"].present?
 
 
-        @codigo_gtin_unidad_inventario  = @xml_hash["gCodItem"]["dGTINInv"]
-        @cantidad_gtin_unidad_inventario  = @xml_hash["gCodItem"]["dCantComInvent"].to_f if @xml_hash["gCodItem"]["dCantComInvent"].present?
+            @codigo_gtin_unidad_inventario  = @xml_hash["gCodItem"]["dGTINInv"] if @xml_hash["gCodItem"]["dGTINInv"].present?
+            @cantidad_gtin_unidad_inventario  = @xml_hash["gCodItem"]["dCantComInvent"].to_f if @xml_hash["gCodItem"]["dCantComInvent"].present?
+        end
 
         #6.5.3. Grupo de ITBMS del Ítem
         @tasa_itbms  =  @xml_hash["gITBMSItem"]["dTasaITBMS"].to_f if  @xml_hash["gITBMSItem"]["dTasaITBMS"].present?
