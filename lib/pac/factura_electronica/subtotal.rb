@@ -25,18 +25,18 @@ class Pac::FacturaElectronica::Subtotal
     def cargar()
          
         @total_neto = @xml_hash["dTotNeto"].to_f if @xml_hash["dTotNeto"].present?
-        @total_itbms = @xml_hash["dTotITBMS"].to_f if @xml_hash["dTotITBMS"].present?
-        @total_isc = @xml_hash["dTotISC"].to_f if @xml_hash["dTotISC"].present?
-        @total_gravado = @xml_hash["dTotGravado"].to_f if @xml_hash["dTotGravado"].present?
-        @total_descuentos = @xml_hash["dTotDesc"].to_f if @xml_hash["dTotDesc"].present?
-        @total_acarreo = @xml_hash["dTotAcar"].to_f if @xml_hash["dTotAcar"].present?
-        @total_seguro = @xml_hash["dTotSeg"].to_f if @xml_hash["dTotSeg"].present?
-        @total_factura = @xml_hash["dVTot"].to_f if @xml_hash["dVTot"].present?
-        @suma_valores_recibidos = @xml_hash["dTotRec"].to_f if @xml_hash["dTotRec"].present?
-        @vuelto = @xml_hash["dVuelto"].to_f if @xml_hash["dVuelto"].present?
-        @tiempo_pago = @xml_hash["iPzPag"].to_i if @xml_hash["iPzPag"].present?
-        @numero_total_items = @xml_hash["dNroItems"].to_f if @xml_hash["dNroItems"].present?
-        @total_items = @xml_hash["dVTotItems"].to_f if @xml_hash["dVTotItems"].present? 
+        @total_itbms = @xml_hash["dTotITBMS"].to_f if @xml_hash["dTotITBMS"].present? rescue 0
+        @total_isc = @xml_hash["dTotISC"].to_f if @xml_hash["dTotISC"].present? rescue 0
+        @total_gravado = @xml_hash["dTotGravado"].to_f if @xml_hash["dTotGravado"].present? rescue 0
+        @total_descuentos = @xml_hash["dTotDesc"].to_f if @xml_hash["dTotDesc"].present? rescue 0
+        @total_acarreo = @xml_hash["dTotAcar"].to_f if @xml_hash["dTotAcar"].present? rescue 0
+        @total_seguro = @xml_hash["dTotSeg"].to_f if @xml_hash["dTotSeg"].present? rescue 0
+        @total_factura = @xml_hash["dVTot"].to_f if @xml_hash["dVTot"].present? rescue 0
+        @suma_valores_recibidos = @xml_hash["dTotRec"].to_f if @xml_hash["dTotRec"].present? rescue 0
+        @vuelto = @xml_hash["dVuelto"].to_f if @xml_hash["dVuelto"].present? rescue 0
+        @tiempo_pago = @xml_hash["iPzPag"].to_i if @xml_hash["iPzPag"].present? rescue 0
+        @numero_total_items = @xml_hash["dNroItems"].to_f if @xml_hash["dNroItems"].present? rescue 0
+        @total_items = @xml_hash["dVTotItems"].to_f if @xml_hash["dVTotItems"].present?  rescue 0
     end
 
 
