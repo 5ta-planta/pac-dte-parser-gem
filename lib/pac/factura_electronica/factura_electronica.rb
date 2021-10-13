@@ -287,7 +287,7 @@ class Pac::FacturaElectronica::FacturaElectronica
         if  @xml_hash["rFE"]["gPedComGl"].present?        
             @pedido_comercial = Pac::FacturaElectronica::CampoComplementario::InformacionFactura.new(@xml_hash["rFE"]["gPedComGl"])
             @pedido_comercial.cargar()
-        else-generada-rene-alejandro
+        else
             @pedido_comercial = nil
         end
     end
