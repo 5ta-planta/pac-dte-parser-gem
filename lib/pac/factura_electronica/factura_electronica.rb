@@ -329,7 +329,10 @@ class Pac::FacturaElectronica::FacturaElectronica
     #
     def cargar_datos_fuera_firma_electronica
         if @xml_hash["rFE"]["gNoFirm"].present?
-        @codigo_qr = @xml_hash["rFE"]["gNoFirm"]["dQRCode"] if  @xml_hash["rFE"]["gNoFirm"]["dQRCode"].present?
+            @codigo_qr = @xml_hash["rFE"]["gNoFirm"]["dQRCode"] if @xml_hash["rFE"]["gNoFirm"]["dQRCode"].present?
+        else
+            @codigo_qr = nil
+        end
     end
 
     
