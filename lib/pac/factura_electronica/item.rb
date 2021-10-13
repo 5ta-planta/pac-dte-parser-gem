@@ -147,8 +147,12 @@ class Pac::FacturaElectronica::Item
             @complemento_medicina = nil
         end
 
-        @complemento_pedido_comercial_relacionado_item= Pac::FacturaElectronica::CampoComplementario::InformacionPedidoComercialItem.new(@xml_hash["gPedComIr"])
-        @complemento_pedido_comercial_relacionado_item.cargar()
+        if (@xml_hash["gPedComIr"].present?)
+            @complemento_pedido_comercial_relacionado_item= Pac::FacturaElectronica::CampoComplementario::InformacionPedidoComercialItem.new(@xml_hash["gPedComIr"])
+            @complemento_pedido_comercial_relacionado_item.cargar()
+        else
+            @complemento_pedido_comercial_relacionado_item=nil
+        end 
 
 
     end 
