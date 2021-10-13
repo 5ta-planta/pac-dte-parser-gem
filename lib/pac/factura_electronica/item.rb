@@ -101,8 +101,8 @@ class Pac::FacturaElectronica::Item
         @precio_unitario  = @xml_hash["gPrecios"]["dPrUnit"].to_f if @xml_hash["gPrecios"]["dPrUnit"].present?
         @descuento  = @xml_hash["gPrecios"]["dPrUnitDesc"].to_f if @xml_hash["gPrecios"]["dPrUnitDesc"].present?
         @precio  = @xml_hash["gPrecios"]["dPrItem"].to_f if @xml_hash["gPrecios"]["dPrItem"].present?
-        @precio_acarreo  = @xml_hash["gPrecios"]["dPrAcarItem"].to_f if @xml_hash["gPrecios"]["dPrAcarItem"].present?
-        @precio_seguro  = @xml_hash["gPrecios"]["dPrSegItem"].to_f if @xml_hash["gPrecios"]["dPrSegItem"].present?
+        @precio_acarreo  = @xml_hash["gPrecios"]["dPrAcarItem"].to_f rescue 0.0
+        @precio_seguro  = @xml_hash["gPrecios"]["dPrSegItem"].to_f rescue 0.0
         @total  = @xml_hash["gPrecios"]["dValTotItem"].to_f if @xml_hash["gPrecios"]["dValTotItem"].present?
 
         #6.5.2. Grupo de Otros Códigos del Ítem
@@ -118,14 +118,14 @@ class Pac::FacturaElectronica::Item
 
         #6.5.3. Grupo de ITBMS del Ítem
         if (@xml_hash["gITBMSItem"].present?)
-            @tasa_itbms  =  @xml_hash["gITBMSItem"]["dTasaITBMS"].to_f if  @xml_hash["gITBMSItem"]["dTasaITBMS"].present?
-            @monto_itbms  = @xml_hash["gITBMSItem"]["dValITBMS"].to_f if @xml_hash["gITBMSItem"]["dValITBMS"].present?
+            @tasa_itbms  =  @xml_hash["gITBMSItem"]["dTasaITBMS"].to_f rescue 0
+            @monto_itbms  = @xml_hash["gITBMSItem"]["dValITBMS"].to_f rescue 0
         end
         
         #6.5.4. Grupo de ISC del Ítem
         if (@xml_hash["gISCItem"].present?)
-            @tasa_isc  = @xml_hash["gISCItem"]["dTasaISC"].to_f if @xml_hash["gISCItem"]["dTasaISC"].present?
-            @monto_isc  = @xml_hash["gISCItem"]["dValISC"].to_f if @xml_hash["gISCItem"]["dValISC"].present?
+            @tasa_isc  = @xml_hash["gISCItem"]["dTasaISC"].to_f rescue 0
+            @monto_isc  = @xml_hash["gISCItem"]["dValISC"].to_f rescue 0
         end
 
         #6.5.5. Grupo de Otras Tasas o Impuestos (OTI) del Ítem
