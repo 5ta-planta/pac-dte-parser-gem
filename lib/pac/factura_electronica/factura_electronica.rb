@@ -328,7 +328,8 @@ class Pac::FacturaElectronica::FacturaElectronica
     ##6.10. Campos Fuera de la Firma Electrónica de la FE
     #
     def cargar_datos_fuera_firma_electronica
-        @codigo_qr = @xml_hash["rFE"]["gNoFirm"]["dQRCode"]
+        if @xml_hash["rFE"]["gNoFirm"].present?
+        @codigo_qr = @xml_hash["rFE"]["gNoFirm"]["dQRCode"] if  @xml_hash["rFE"]["gNoFirm"]["dQRCode"].present?
     end
 
     
