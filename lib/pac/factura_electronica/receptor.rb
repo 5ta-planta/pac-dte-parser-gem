@@ -48,8 +48,8 @@ class Pac::FacturaElectronica::Receptor
         @provincia  = @xml_hash["gUbiRec"]["dProv"].to_i if @xml_hash["gUbiRec"]["dProv"].present?
 
         
-        @identificacion_extranjero  = @xml_hash["gIdExt"]["dIdExt"]
-        @pais_extranjero  = @xml_hash["gIdExt"]["dPaisExt"]
+        @identificacion_extranjero  = @xml_hash["gIdExt"]["dIdExt"] if @xml_hash["gIdExt"]["dIdExt"].present?
+        @pais_extranjero  = @xml_hash["gIdExt"]["dPaisExt"] if @xml_hash["gIdExt"]["dPaisExt"]
         
         @existe_gIdExt = validar_si_existe_grupoB406 # @xml_hash["gIdExt"].present?
 
