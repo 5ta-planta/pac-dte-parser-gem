@@ -117,12 +117,16 @@ class Pac::FacturaElectronica::Item
         end
 
         #6.5.3. Grupo de ITBMS del Ítem
-        @tasa_itbms  =  @xml_hash["gITBMSItem"]["dTasaITBMS"].to_f if  @xml_hash["gITBMSItem"]["dTasaITBMS"].present?
-        @monto_itbms  = @xml_hash["gITBMSItem"]["dValITBMS"].to_f if @xml_hash["gITBMSItem"]["dValITBMS"].present?
+        if (@xml_hash["gITBMSItem"].present?)
+            @tasa_itbms  =  @xml_hash["gITBMSItem"]["dTasaITBMS"].to_f if  @xml_hash["gITBMSItem"]["dTasaITBMS"].present?
+            @monto_itbms  = @xml_hash["gITBMSItem"]["dValITBMS"].to_f if @xml_hash["gITBMSItem"]["dValITBMS"].present?
+        end
         
         #6.5.4. Grupo de ISC del Ítem
-        @tasa_isc  = @xml_hash["gISCItem"]["dTasaISC"].to_f if @xml_hash["gISCItem"]["dTasaISC"].present?
-        @monto_isc  = @xml_hash["gISCItem"]["dValISC"].to_f if @xml_hash["gISCItem"]["dValISC"].present?
+        if (@xml_hash["gISCItem"].present?)
+            @tasa_isc  = @xml_hash["gISCItem"]["dTasaISC"].to_f if @xml_hash["gISCItem"]["dTasaISC"].present?
+            @monto_isc  = @xml_hash["gISCItem"]["dValISC"].to_f if @xml_hash["gISCItem"]["dValISC"].present?
+        end
 
         #6.5.5. Grupo de Otras Tasas o Impuestos (OTI) del Ítem
        # @tasa_otro_impuesto  = @xml_hash["gOTIItem"]["dCodOTI"]
