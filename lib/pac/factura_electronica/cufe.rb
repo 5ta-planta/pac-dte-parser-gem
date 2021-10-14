@@ -51,8 +51,8 @@ class Pac::FacturaElectronica::Cufe
             acumulado+= multiplicacion.to_s.length > 1 ? multiplicacion.to_s[0].to_i + multiplicacion.to_s[1].to_i : multiplicacion.to_s[0].to_i
         end
         resto = acumulado % 10 
-        division = (acumulado / 10).to_i
-        respuesta  = resto != 0 ? 10 -  resto : division
+        division   = (acumulado / 10).to_i
+        respuesta  = (resto == 0)? 0 : 10-resto
         return respuesta
     end
 
