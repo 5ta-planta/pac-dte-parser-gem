@@ -30,29 +30,40 @@ class Pac::FacturaElectronica::Receptor
 
 
     def cargar()
+        cargar_ruc_rec = true
         
         @tipo = @xml_hash["iTipoRec"]
-        @tipo_de_contribuyente = @xml_hash["gRucRec"]["dTipoRuc"] if @xml_hash["gRucRec"]["dTipoRuc"].present?
-        @ruc  =  @xml_hash["gRucRec"]["dRuc"]
-        @dv_ruc  = @xml_hash["gRucRec"]["dDV"]
-        @nombre  = @xml_hash["dNombRec"]
-        @direccion  = @xml_hash["dDirecRec"]
+
+        if @tipo == '02'
+            cargar_ruc_rec = @xml_hash["gRucRec"].present?
+        end
+
+        if (cargar_ruc_rec)
+            @tipo_de_contribuyente = @xml_hash["gRucRec"]["dTipoRuc"] if @xml_hash["gRucRec"]["dTipoRuc"].present?
+            @ruc  =  @xml_hash["gRucRec"]["dRuc"]
+            @dv_ruc  = @xml_hash["gRucRec"]["dDV"]
+        end
+
+        if @tipo == '01' || @tipo == '03'
+            @nombre  = @xml_hash["dNombRec"]
+            @direccion  = @xml_hash["dDirecRec"]
+            @codigo_ubicacion  = @xml_hash["gUbiRec"]["dCodUbi"]
+            @corregimiento  = @xml_hash["gUbiRec"]["dCorreg"]
+            @distrito  = @xml_hash["gUbiRec"]["dDistr"]
+            @provincia  = @xml_hash["gUbiRec"]["dProv"] if @xml_hash["gUbiRec"]["dProv"].present?
+        end
 
         @existe_gUbiRec = @xml_hash["gUbiRec"].present?
-        
         @existe_gRucRec = @xml_hash["gRucRec"].present?
 
-        @codigo_ubicacion  = @xml_hash["gUbiRec"]["dCodUbi"]
-        @corregimiento  = @xml_hash["gUbiRec"]["dCorreg"]
-        @distrito  = @xml_hash["gUbiRec"]["dDistr"]
-        @provincia  = @xml_hash["gUbiRec"]["dProv"] if @xml_hash["gUbiRec"]["dProv"].present?
 
-
-        if (@xml_hash["gIdExt"].present?)
-            @identificacion_extranjero  = @xml_hash["gIdExt"]["dIdExt"] if @xml_hash["gIdExt"]["dIdExt"].present?
-            @pais_extranjero  = @xml_hash["gIdExt"]["dPaisExt"] if @xml_hash["gIdExt"]["dPaisExt"].present?
+        if @tipo == '04' 
+            if (@xml_hash["gIdExt"].present?)
+                @identificacion_extranjero  = @xml_hash["gIdExt"]["dIdExt"] if @xml_hash["gIdExt"]["dIdExt"].present?
+                @pais_extranjero  = @xml_hash["gIdExt"]["dPaisExt"] if @xml_hash["gIdExt"]["dPaisExt"].present?
+            end
         end
-        
+            
         @existe_gIdExt = validar_si_existe_grupoB406 # @xml_hash["gIdExt"].present?
 
         @telefono  = @xml_hash["dTfnRec"] 
