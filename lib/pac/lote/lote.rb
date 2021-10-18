@@ -68,19 +68,13 @@ class Pac::Lote::Lote
 
         byebug
 
-       
+       array = self.xml_facturas["xFe"]["rFE"]
 
-        self.xml_facturas["xFe"]["rFE"].each_with_index do |xfe,idx|
+        
+        array.each_with_index do | xfe, index |
             puts "Mensaje para el team: Hay que ver si es necesario armar de nuevo del json de entrada.... "
 
-            factura_a_parsear = {
-                                    "dVerForm":self.version_del_formato,
-                                    "dId":self.identificador_para_firma_electronica,
-                                    "iAmb": self.ambiente_destino,
-                                    "xFe": xfe.to_s ,
-                                    "certificado": self.certificado,
-                                    "servicio": self.servicio
-                                }
+            factura_a_parsear = {"dVerForm":self.version_del_formato,"dId":self.identificador_para_firma_electronica,"iAmb": self.ambiente_destino,"xFe": xfe.to_s ,"certificado": self.certificado,"servicio": self.servicio}
 
             factura  = Pac::FacturaElectronica::FacturaElectronica.new(factura_a_parsear.to_s)
             factura.cargar
