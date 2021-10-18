@@ -18,7 +18,7 @@ class Pac::Lote::Lote
         self.header.dVerForm =mensaje["dVerForm"] # mensaje["dVerForm"]
         self.header.dId = mensaje["dId"]# mensaje["dId"]
         self.header.iAmb = mensaje["iAmb"] #mensaje["iAmb"]
-        self.header.xFE =  Base64.decode64(mensaje["xFe"]) #mensaje["iAmb"] #Base64.decode64(mensaje["xFe"])
+        self.header.xFE = "<xFe> #{Base64.decode64(mensaje["xFe"])} </xFe>" #mensaje["iAmb"] #Base64.decode64(mensaje["xFe"])
 #       self.xml_factura = self.header.xFE
 #       self.xml_hash =  Hash.from_xml(self.xml_factura)
         self.xml_facturas = Hash.from_xml(self.header.xFE)
