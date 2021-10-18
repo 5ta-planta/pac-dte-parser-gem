@@ -68,9 +68,9 @@ class Pac::Lote::Lote
 
         byebug
 
-        fact = self.xml_facturas["xFe"]["rFE"]
+       
 
-        fact.each_with_index do |xfe,idx|
+        self.xml_facturas["xFe"]["rFE"].each_with_index do |xfe,idx|
             puts "Mensaje para el team: Hay que ver si es necesario armar de nuevo del json de entrada.... "
 
             factura_a_parsear = {
