@@ -12,7 +12,7 @@ class Pac::Lote::Lote
     def initialize(str_recep_lote_fe)
         require 'json'
         self.header  = Pac::FacturaElectronica::Header.new
-        self.json = str_fe_recep_fe
+        self.json = str_recep_lote_fe
         mensaje = JSON.parse(self.json)
         self.header.dVerForm =mensaje["dVerForm"] # mensaje["dVerForm"]
         self.header.dId = mensaje["dId"]# mensaje["dId"]
