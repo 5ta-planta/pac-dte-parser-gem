@@ -74,7 +74,7 @@ class Pac::Lote::Lote
             puts "Mensaje para el team: Hay que ver si es necesario armar de nuevo del json de entrada.... "
             
             byebug
-            factura_a_parsear = {"dVerForm":self.header.dVerForm,"dId":self.header.dId,"iAmb":self.header.iAmb ,"xFe":  Base64.encode64(factura_a_parsear.to_json) ,"certificado": self.certificado,"servicio": self.servicio}
+            factura_a_parsear = {"dVerForm":self.header.dVerForm,"dId":self.header.dId,"iAmb":self.header.iAmb ,"xFe":  Base64.encode64(xfe.to_json) ,"certificado": self.certificado,"servicio": self.servicio}
 
             factura  = Pac::FacturaElectronica::FacturaElectronica.new(factura_a_parsear.to_json)
             factura.cargar
