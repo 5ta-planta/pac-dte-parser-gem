@@ -73,6 +73,7 @@ class Pac::Lote::Lote
 
         
         doc.search('rFE').map do |listing|
+            byebug
             puts listing
         end
             
