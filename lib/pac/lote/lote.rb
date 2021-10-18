@@ -2,11 +2,26 @@ class Pac::Lote::Lote
     attr_accessor :version_del_formato # dVerForm
     attr_accessor :identificador_para_firma_electronica # dId
     attr_accessor :ambiente_destino # iAmb
-    attr_accessor :facturas
+  
     attr_accessor :xml_recep_lote_fe
 
-    def initialize(xml_recep_lote_fe)
-        @xml_recep_lote_fe = xml_recep_lote_fe        
+    attr_accessor :json #data source, texto (json o xml o cualquier otra cosa)
+    attr_accessor :header 
+    attr_accessor :xml_facturas
+
+    def initialize(str_recep_lote_fe)
+        require 'json'
+        self.header  = Pac::FacturaElectronica::Header.new
+        self.json = str_fe_recep_fe
+        mensaje = JSON.parse(self.json)
+        self.header.dVerForm =mensaje["dVerForm"] # mensaje["dVerForm"]
+        self.header.dId = mensaje["dId"]# mensaje["dId"]
+        self.header.iAmb = mensaje["iAmb"] #mensaje["iAmb"]
+        self.header.xFE =  Base64.decode64(mensaje["xFe"]) #mensaje["iAmb"] #Base64.decode64(mensaje["xFe"])
+#       self.xml_factura = self.header.xFE
+#       self.xml_hash =  Hash.from_xml(self.xml_factura)
+        self.xml_facturas = Hash.from_xml(self.header.xFE)
+ 
     end
 
     #Auxiliar para obtener los campos del DTE
@@ -46,19 +61,14 @@ class Pac::Lote::Lote
 
     def cargar()
         puts "Iniciando la carga del lote"
-        parseXmlFe =  Nokogiri::XML::parse(@xml_recep_lote_fe)
 
-        @version_del_formato = parseXmlFe.xpath("//feDatosMsg//dgi:rEnviLoteFe//dgi:dVerForm")[0].content.to_s
-        @identificador_para_firma_electronica = parseXmlFe.xpath("//feDatosMsg//dgi:rEnviLoteFe//dgi:dId")[0].content.to_s
-        @ambiente_destino = parseXmlFe.xpath("//feDatosMsg//dgi:rEnviLoteFe//dgi:iAmb")[0].content.to_s
-        @facturas = []
+        self.facturas = []
+        byebug
+        self.facturas = self.xml_facturas["rFe"]
 
-
-
-        parseXmlFe.xpath("//dgi:xFe").each_with_index do |xfe,idx|
-            puts "Procesando Factur no...................................................................................................#{idx}"
-            p xfe.content.to_s
-            factura  = Pac::FacturaElectronica::FacturaElectronica.new(xfe.content.to_s)
+        self.facturas.each_with_index do |xfe,idx|
+            puts "Mensaje para el team: Hay que ver si es necesario armar de nuevo del json de entrada.... "
+            factura  = Pac::FacturaElectronica::FacturaElectronica.new(xfe.to_s)
             factura.cargar
             @facturas << factura
         end
