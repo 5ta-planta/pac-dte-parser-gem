@@ -76,7 +76,7 @@ class Pac::Lote::Lote
             byebug
             factura_a_parsear = {"dVerForm":self.header.dVerForm,"dId":self.header.dId,"iAmb":self.header.iAmb ,"xFe": xfe.to_s ,"certificado": self.certificado,"servicio": self.servicio}
 
-            factura  = Pac::FacturaElectronica::FacturaElectronica.new(factura_a_parsear.to_s)
+            factura  = Pac::FacturaElectronica::FacturaElectronica.new(factura_a_parsear.to_json)
             factura.cargar
             self.facturas << factura
         end
