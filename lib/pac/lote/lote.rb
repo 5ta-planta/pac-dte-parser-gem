@@ -8,20 +8,22 @@ class Pac::Lote::Lote
     attr_accessor :json #data source, texto (json o xml o cualquier otra cosa)
     attr_accessor :header 
     attr_accessor :xml_facturas
+    attr_accessor :certificado
+    attr_accessor :servicio
 
     def initialize(str_recep_lote_fe)
-        byebug
         require 'json'
         self.header  = Pac::FacturaElectronica::Header.new
         self.json = str_recep_lote_fe
         mensaje = JSON.parse(self.json)
-        self.header.dVerForm =mensaje["dVerForm"] # mensaje["dVerForm"]
-        self.header.dId = mensaje["dId"]# mensaje["dId"]
-        self.header.iAmb = mensaje["iAmb"] #mensaje["iAmb"]
-        self.header.xFE = "<xFe> #{Base64.decode64(mensaje["xFe"])} </xFe>" #mensaje["iAmb"] #Base64.decode64(mensaje["xFe"])
-#       self.xml_factura = self.header.xFE
-#       self.xml_hash =  Hash.from_xml(self.xml_factura)
+        self.header.dVerForm =mensaje["dVerForm"] 
+        self.header.dId = mensaje["dId"]
+        self.header.iAmb = mensaje["iAmb"] 
+        self.header.xFE = "<xFe> #{Base64.decode64(mensaje["xFe"])} </xFe>" 
         self.xml_facturas = Hash.from_xml(self.header.xFE)
+        self.facturas=[]
+        self.certificado = mensaje["certificado"] 
+        self.servicio = mensaje["servicio"] 
  
     end
 
@@ -63,15 +65,25 @@ class Pac::Lote::Lote
     def cargar()
         puts "Iniciando la carga del lote"
 
-        self.facturas = []
         byebug
-        self.facturas = self.xml_facturas["rFe"]
 
-        self.facturas.each_with_index do |xfe,idx|
+        fact = self.xml_facturas["xFe"]["rFE"]
+
+        fact.each_with_index do |xfe,idx|
             puts "Mensaje para el team: Hay que ver si es necesario armar de nuevo del json de entrada.... "
-            factura  = Pac::FacturaElectronica::FacturaElectronica.new(xfe.to_s)
+
+            factura_a_parsear = {
+                                    "dVerForm":self.version_del_formato,
+                                    "dId":self.identificador_para_firma_electronica,
+                                    "iAmb": self.ambiente_destino,
+                                    "xFe": xfe.to_s ,
+                                    "certificado": self.certificado,
+                                    "servicio": self.servicio
+                                }
+
+            factura  = Pac::FacturaElectronica::FacturaElectronica.new(factura_a_parsear.to_s)
             factura.cargar
-            @facturas << factura
+            self.facturas << factura
         end
 
    
