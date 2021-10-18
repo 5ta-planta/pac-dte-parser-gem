@@ -10,6 +10,7 @@ class Pac::Lote::Lote
     attr_accessor :xml_facturas
     attr_accessor :certificado
     attr_accessor :servicio
+    attr_accessor :facturas
 
     def initialize(str_recep_lote_fe)
         require 'json'
