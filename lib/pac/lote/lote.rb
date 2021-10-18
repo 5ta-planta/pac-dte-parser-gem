@@ -20,7 +20,9 @@ class Pac::Lote::Lote
         self.header.dVerForm =mensaje["dVerForm"] 
         self.header.dId = mensaje["dId"]
         self.header.iAmb = mensaje["iAmb"] 
+        
         self.header.xFE = "<xFe> #{Base64.decode64(mensaje["xFe"])} </xFe>" 
+
         self.xml_facturas = Hash.from_xml(self.header.xFE)
         self.facturas=[]
         self.certificado = mensaje["certificado"] 
@@ -64,22 +66,28 @@ class Pac::Lote::Lote
 
 
     def cargar()
+        require 'nokogiri'
+
         puts "Iniciando la carga del lote"
+        doc = Nokogiri::XML(self.header.xFE)
 
         
+        doc.search('rFE').map do |listing|
+            puts listing
+        end
+            
         array = self.xml_facturas["xFe"]["rFE"]
         
-        
-        array.each_with_index do | xfe, index |
-            puts "Mensaje para el team: Hay que ver si es necesario armar de nuevo del json de entrada.... "
+        # array.each_with_index do | xfe, index |
+        #     puts "Mensaje para el team: Hay que ver si es necesario armar de nuevo del json de entrada.... "
             
-            byebug
-           # factura_a_parsear = {"dVerForm":self.header.dVerForm,"dId":self.header.dId,"iAmb":self.header.iAmb ,"xFe":  Base64.encode64(xfe.to_json) ,"certificado": self.certificado,"servicio": self.servicio}
+        #     byebug
+        #    # factura_a_parsear = {"dVerForm":self.header.dVerForm,"dId":self.header.dId,"iAmb":self.header.iAmb ,"xFe":  Base64.encode64(xfe.to_json) ,"certificado": self.certificado,"servicio": self.servicio}
 
-            factura  = Pac::FacturaElectronica::FacturaElectronica.new(xfe.to_json)
-            factura.cargar
-            self.facturas << factura
-        end
+        #     factura  = Pac::FacturaElectronica::FacturaElectronica.new(xfe.to_json)
+        #     factura.cargar
+        #     self.facturas << factura
+        # end
 
    
     rescue Exception => e
