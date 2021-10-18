@@ -71,7 +71,7 @@ class Pac::Lote::Lote
         puts "Iniciando la carga del lote"
         doc = Nokogiri::XML(self.header.xFE)
 
-        
+        byebug
         doc.search('rFE').map do |listing|
             byebug
             puts listing
