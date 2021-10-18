@@ -10,6 +10,7 @@ class Pac::Lote::Lote
     attr_accessor :xml_facturas
 
     def initialize(str_recep_lote_fe)
+        byebug
         require 'json'
         self.header  = Pac::FacturaElectronica::Header.new
         self.json = str_recep_lote_fe
