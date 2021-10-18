@@ -66,15 +66,15 @@ class Pac::Lote::Lote
     def cargar()
         puts "Iniciando la carga del lote"
 
-        byebug
-
-       array = self.xml_facturas["xFe"]["rFE"]
-
+        
+        array = self.xml_facturas["xFe"]["rFE"]
+        
         
         array.each_with_index do | xfe, index |
             puts "Mensaje para el team: Hay que ver si es necesario armar de nuevo del json de entrada.... "
-
-            factura_a_parsear = {"dVerForm":self.version_del_formato,"dId":self.identificador_para_firma_electronica,"iAmb": self.ambiente_destino,"xFe": xfe.to_s ,"certificado": self.certificado,"servicio": self.servicio}
+            
+            byebug
+            factura_a_parsear = {"dVerForm":self.header.dVerForm,"dId":self.header.dId,"iAmb":self.header.iAmb ,"xFe": xfe.to_s ,"certificado": self.certificado,"servicio": self.servicio}
 
             factura  = Pac::FacturaElectronica::FacturaElectronica.new(factura_a_parsear.to_s)
             factura.cargar
