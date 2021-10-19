@@ -64,18 +64,32 @@ class Pac::FacturaElectronica::FacturaElectronica
     #
     def initialize(str_fe_recep_fe)
         require 'json'
-        self.header  = Pac::FacturaElectronica::Header.new
+        #self.header  = Pac::FacturaElectronica::Header.new
         self.json = str_fe_recep_fe
         mensaje = JSON.parse(self.json)
-        self.header.dVerForm =mensaje["dVerForm"] # mensaje["dVerForm"]
-        self.header.dId = mensaje["dId"]# mensaje["dId"]
-        self.header.iAmb = mensaje["iAmb"] #mensaje["iAmb"]
-        self.header.xFE =  Base64.decode64(mensaje["xFe"]) #mensaje["iAmb"] #Base64.decode64(mensaje["xFe"])
-        self.xml_factura = self.header.xFE
+       # self.header.dVerForm =mensaje["dVerForm"] # mensaje["dVerForm"]
+       # self.header.dId = mensaje["dId"]# mensaje["dId"]
+       # self.header.iAmb = mensaje["iAmb"] #mensaje["iAmb"]
+       # self.header.xFE =  Base64.decode64(mensaje["xFe"]) #mensaje["iAmb"] #Base64.decode64(mensaje["xFe"])
+        self.xml_factura = mensaje["xml"] #self.header.xFE
         self.xml_hash =  Hash.from_xml(self.xml_factura)
     end
 
+
+    # def crear_from_lote()
+    #     f =  Pac::FacturaElectronica::FacturaElectronica()
+    #     f.asdklfjlska
+    #     f.asjkldfjasdlfkjsa
+    #     return f
+    # end
  
+
+    # def crear_from_factura()
+    #     f =  Pac::FacturaElectronica::FacturaElectronica()
+    #     f.asdklfjlska
+    #     f.asjkldfjasdlfkjsa
+    #     return f
+    # end
 
     #Auxiliar para obtener los campos del DTE
      def campos

@@ -11,19 +11,23 @@ class Pac::Lote::Lote
     attr_accessor :certificado
     attr_accessor :servicio
     attr_accessor :facturas
+    attr_accessor :xml_lote
 
     def initialize(str_recep_lote_fe)
         require 'json'
-        self.header  = Pac::FacturaElectronica::Header.new
+        #self.header  = Pac::FacturaElectronica::Header.new
         self.json = str_recep_lote_fe
         mensaje = JSON.parse(self.json)
-        self.header.dVerForm =mensaje["dVerForm"] 
-        self.header.dId = mensaje["dId"]
-        self.header.iAmb = mensaje["iAmb"] 
-        
-        self.header.xFE = "<xFe> #{Base64.decode64(mensaje["xFe"])} </xFe>" 
 
-        self.xml_facturas = Hash.from_xml(self.header.xFE)
+        #self.header.dVerForm =mensaje["dVerForm"] 
+        #self.header.dId = mensaje["dId"]
+        #self.header.iAmb = mensaje["iAmb"] 
+        
+        #self.header.xFE = "<xFe> #{Base64.decode64(mensaje["xFe"])} </xFe>" 
+
+        #self.xml_facturas = Hash.from_xml(self.header.xFE)
+        self.xml_lote = Base64.decode64(mensaje["xml"] )
+        
         self.facturas=[]
         self.certificado = mensaje["certificado"] 
         self.servicio = mensaje["servicio"] 
@@ -66,29 +70,17 @@ class Pac::Lote::Lote
 
 
     def cargar()
-        require 'nokogiri'
 
-        puts "Iniciando la carga del lote"
-        doc = Nokogiri::XML(self.header.xFE)
+        hash_lote = Hash.from_xml(self.xml_lote)
 
-        byebug
-        doc.search('rFE').map do |listing|
-            byebug
-            puts listing
-        end
-            
-        array = self.xml_facturas["xFe"]["rFE"]
         
-        # array.each_with_index do | xfe, index |
-        #     puts "Mensaje para el team: Hay que ver si es necesario armar de nuevo del json de entrada.... "
+        hash_lote["xFe"].each_with_index do | xfe, index |
+             puts "Mensaje para el team: Hay que ver si es necesario armar de nuevo del json de entrada.... "
             
-        #     byebug
-        #    # factura_a_parsear = {"dVerForm":self.header.dVerForm,"dId":self.header.dId,"iAmb":self.header.iAmb ,"xFe":  Base64.encode64(xfe.to_json) ,"certificado": self.certificado,"servicio": self.servicio}
-
-        #     factura  = Pac::FacturaElectronica::FacturaElectronica.new(xfe.to_json)
-        #     factura.cargar
-        #     self.facturas << factura
-        # end
+            factura  = Pac::FacturaElectronica::FacturaElectronica.new(xfe)
+            factura.cargar
+            self.facturas << factura
+        end
 
    
     rescue Exception => e
