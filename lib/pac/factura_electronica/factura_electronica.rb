@@ -58,42 +58,17 @@ class Pac::FacturaElectronica::FacturaElectronica
     attr_accessor :cufe
 
     attr_accessor :json #data source, texto (json o xml o cualquier otra cosa)
-    attr_accessor :xml_factura
     attr_accessor :header 
     ##
     #
-    def initialize(str_fe_recep_fe)
-        require 'json'
-        #self.header  = Pac::FacturaElectronica::Header.new
-        self.json = str_fe_recep_fe
-        mensaje = JSON.parse(self.json)
-       # self.header.dVerForm =mensaje["dVerForm"] # mensaje["dVerForm"]
-       # self.header.dId = mensaje["dId"]# mensaje["dId"]
-       # self.header.iAmb = mensaje["iAmb"] #mensaje["iAmb"]
-       # self.header.xFE =  Base64.decode64(mensaje["xFe"]) #mensaje["iAmb"] #Base64.decode64(mensaje["xFe"])
-        self.xml_factura = mensaje["xml"] #self.header.xFE
-        self.xml_hash =  Hash.from_xml(self.xml_factura)
+    def initialize(xml_rFE)
+        self.xml_hash =  Hash.from_xml(xml_rFE)
     end
 
 
-    # def crear_from_lote()
-    #     f =  Pac::FacturaElectronica::FacturaElectronica()
-    #     f.asdklfjlska
-    #     f.asjkldfjasdlfkjsa
-    #     return f
-    # end
- 
-
-    # def crear_from_factura()
-    #     f =  Pac::FacturaElectronica::FacturaElectronica()
-    #     f.asdklfjlska
-    #     f.asjkldfjasdlfkjsa
-    #     return f
-    # end
-
     #Auxiliar para obtener los campos del DTE
      def campos
-         json = JSON.parse self.to_json
+         json = JSON.parse self.xml_hash
 
          def agregar_llaves(keys, campo = 0)
           
