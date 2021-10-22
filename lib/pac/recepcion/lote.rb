@@ -5,12 +5,14 @@ class Pac::Recepcion::Lote
     :facturas,
     :certificado,
     :servicio,
-    :xml_rfes
+    :xml_rfes,
     :xml_validacion_firmas
 
     def initialize(datos)
         mensaje = JSON.parse(datos)
         self.facturas = Array.new
+        self.xml_rfes = Array.new
+        self.xml_validacion_firmas = Array.new
         self.xml_lote = Base64.decode64(mensaje["feDatosMsg"])
         self.certificado = mensaje["certificado"] 
         self.servicio = mensaje["servicio"] 

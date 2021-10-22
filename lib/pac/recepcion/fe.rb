@@ -4,7 +4,7 @@ class Pac::Recepcion::Fe
     :xml_xfe,
     :certificado,
     :servicio,
-    :factura
+    :factura,
     :xml_validar_firma
 
     def initialize(datos)
