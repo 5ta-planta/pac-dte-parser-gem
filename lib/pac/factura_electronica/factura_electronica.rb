@@ -68,7 +68,7 @@ class Pac::FacturaElectronica::FacturaElectronica
 
     #Auxiliar para obtener los campos del DTE
      def campos
-         json = JSON.parse self.xml_hash
+        json = JSON.parse self.xml_hash.to_json
 
          def agregar_llaves(keys, campo = 0)
           
