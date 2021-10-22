@@ -16,14 +16,15 @@ class Pac::Recepcion::Fe
 
     def cargar
         xml = Nokogiri::XML.parse(self.xml)
-        xml_factura = xml.at("//xFe").content
-        factura = Pac::FacturaElectronica::FacturaElectronica.new(xml_factura.to_s)
+        xml_factura = xml.at("xFe").content
+        factura = Pac::FacturaElectronica::FacturaElectronica.new(xml_factura)
         factura.cargar
         self.factura = factura
         self.xml_xfe = xml_factura
-        xml_codigo_qr = Nokogiri::XML(xml_factura)
-        xml_codigo_qr.at("//gNoFirm").remove
-        self.xml_validar_firma = xml_codigo_qr.to_s
+        xml_validacion_firma = Nokogiri::XML(xml_factura)
+        xml_validacion_firma.at("gNoFirm").remove
+        xml_validacion_firma.root.to_xml(save_with: 0)
+        self.xml_validar_firma = xml_validacion_firma
 
     end
 

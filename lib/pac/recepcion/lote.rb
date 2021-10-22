@@ -4,7 +4,9 @@ class Pac::Recepcion::Lote
     attr_accessor :xml_lote,
     :facturas,
     :certificado,
-    :servicio
+    :servicio,
+    :xml_rfes
+    :xml_validacion_firmas
 
     def initialize(datos)
         mensaje = JSON.parse(datos)
@@ -23,6 +25,13 @@ class Pac::Recepcion::Lote
             factura_parse = Pac::FacturaElectronica::FacturaElectronica.new(factura.to_s)
             factura_parse.cargar
             self.facturas << factura_parse
+            self.xml_rfes << factura
+            xml_validacion_firma = Nokogiri::XML(factura)
+            xml_validacion_firma.at("gNoFirm").remove
+            xml_validacion_firma.root.to_xml(save_with: 0)
+            self.xml_validacion_firmas = xml_validacion_firma
+
+
         end
     end
 
