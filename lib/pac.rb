@@ -2,8 +2,9 @@ require 'rails'
 require 'dynamoid'
 
 module Pac	     
-	module Lote
-		autoload :Lote, 'pac/lote/lote'
+	module Recepcion
+		autoload :Fe, 	'pac/recepcion/fe'
+		autoload :Lote, 'pac/recepcion/lote'
 
 	end
 
