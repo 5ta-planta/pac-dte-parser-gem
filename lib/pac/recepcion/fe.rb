@@ -1,6 +1,6 @@
 class Pac::Recepcion::Fe
 
-    attr_accessor :xml
+    attr_accessor :xml,
     :xml_xfe,
     :certificado,
     :servicio,
