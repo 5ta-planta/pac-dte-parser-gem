@@ -70,7 +70,7 @@ class Pac::FacturaElectronica::FacturaElectronica
      def campos
         json = JSON.parse self.xml_hash.to_json
 
-         def agregar_llaves(keys, campo = 0)
+        def agregar_llaves(keys, campo = 0)
           
             if keys.class.to_s == "String" or keys.class.to_s == "NilClass"
                puts "#{"-" * campo} #{keys.class}"
