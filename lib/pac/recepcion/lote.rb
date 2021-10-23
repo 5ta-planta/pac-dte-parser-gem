@@ -24,7 +24,7 @@ class Pac::Recepcion::Lote
         array_xml_facturas = "<root>#{xml.at("xFe").content}</root>"
         documento = Nokogiri::XML(array_xml_facturas)
         documento.xpath("//rFE").each do |factura|
-            factura_parse = Pac::FacturaElectronica::FacturaElectronica.new(factura.to_s)
+            factura_parse = Pac::FacturaElectronica::FacturaElectronica.new(factura)
             factura_parse.cargar
             self.facturas << factura_parse
             self.xml_rfes << factura
@@ -32,6 +32,7 @@ class Pac::Recepcion::Lote
             xml_validacion_firma.at("gNoFirm").remove
             xml_validacion_firma.root.to_xml(save_with: 0)
             self.xml_validacion_firmas << xml_validacion_firma
+            xml_validacion_firma = nil
         end
     end
 
