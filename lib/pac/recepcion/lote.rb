@@ -31,9 +31,7 @@ class Pac::Recepcion::Lote
             xml_validacion_firma = Nokogiri::XML(factura)
             xml_validacion_firma.at("gNoFirm").remove
             xml_validacion_firma.root.to_xml(save_with: 0)
-            self.xml_validacion_firmas = xml_validacion_firma
-
-
+            self.xml_validacion_firmas << xml_validacion_firma
         end
     end
 
