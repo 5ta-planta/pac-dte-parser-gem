@@ -2,10 +2,10 @@ require "base64"
 class Pac::Recepcion::Lote
 
     attr_accessor :xml_lote,
-    :facturas,
+    :parse_facturas,
     :certificado,
     :servicio,
-    :xml_rfes,
+    :xml_facturas,
     :xml_validacion_firmas
 
     def initialize(datos)
@@ -20,20 +20,24 @@ class Pac::Recepcion::Lote
 
     def cargar
 
-        xml = Nokogiri::XML.parse(self.xml_lote)
+        self.parse_facturas          = []
+        self.xml_facturas            = []
+        self.xml_validacion_firmas   = []
+
+        xml_lote = Base64.decode64(datos_mensaje["feDatosMsg"])
+
+        xml = Nokogiri::XML(xml_lote)
         array_xml_facturas = "<root>#{xml.at("xFe").content}</root>"
         documento = Nokogiri::XML(array_xml_facturas)
         documento.xpath("//rFE").each do |factura|
-            factura_parse = Pac::FacturaElectronica::FacturaElectronica.new(factura)
+            factura_parse = Pac::FacturaElectronica::FacturaElectronica.new(factura.to_xml(save_with: 0))
             factura_parse.cargar
-            self.facturas << factura_parse
-            self.xml_rfes << factura
-            xml_validacion_firma = Nokogiri::XML(factura)
-            xml_validacion_firma.at("gNoFirm").remove
-            xml_validacion_firma.root.to_xml(save_with: 0)
-            self.xml_validacion_firmas << xml_validacion_firma
-            xml_validacion_firma = nil
+            self.parse_facturas << factura_parse
+            self.xml_facturas << factura.to_xml(save_with: 0)
+            factura.at("gNoFirm").remove
+            self.xml_validacion_firmas << factura.to_xml(save_with: 0)
         end
+        
     end
 
 end
