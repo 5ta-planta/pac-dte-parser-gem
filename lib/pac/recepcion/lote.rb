@@ -10,8 +10,6 @@ class Pac::Recepcion::Lote
 
     def initialize(datos)
         mensaje = JSON.parse(datos)
-        self.facturas = Array.new
-        self.xml_rfes = Array.new
         self.xml_validacion_firmas = Array.new
         self.xml_lote = Base64.decode64(mensaje["feDatosMsg"])
         self.certificado = mensaje["certificado"] 
@@ -24,7 +22,7 @@ class Pac::Recepcion::Lote
         self.xml_facturas            = []
         self.xml_validacion_firmas   = []
 
-        xml_lote = Base64.decode64(datos_mensaje["feDatosMsg"])
+        xml_lote = Base64.decode64(self.xml_lote)
 
         xml = Nokogiri::XML(xml_lote)
         array_xml_facturas = "<root>#{xml.at("xFe").content}</root>"
@@ -37,7 +35,7 @@ class Pac::Recepcion::Lote
             factura.at("gNoFirm").remove
             self.xml_validacion_firmas << factura.to_xml(save_with: 0)
         end
-        
+
     end
 
 end
