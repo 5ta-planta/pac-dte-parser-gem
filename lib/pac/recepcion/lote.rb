@@ -8,9 +8,8 @@ class Pac::Recepcion::Lote
     :xml_facturas,
     :xml_validacion_firmas
 
-    def initialize(datos)
-        mensaje = JSON.parse(datos)
-        self.xml_lote = Base64.decode64(mensaje["feDatosMsg"])
+    def initialize(xml)
+        self.xml_lote = Base64.decode64(xml)
     end
 
     def cargar

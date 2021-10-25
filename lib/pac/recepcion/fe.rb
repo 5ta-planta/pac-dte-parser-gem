@@ -7,9 +7,8 @@ class Pac::Recepcion::Fe
     :factura,
     :xml_validar_firma
 
-    def initialize(datos)
-        mensaje = JSON.parse(datos)
-        self.xml = Base64.decode64(mensaje["feDatosMsg"])
+    def initialize(xml)
+        self.xml = Base64.decode64(xml)
     end 
 
     def cargar
