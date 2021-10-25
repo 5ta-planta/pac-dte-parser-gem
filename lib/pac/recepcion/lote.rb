@@ -26,6 +26,7 @@ class Pac::Recepcion::Lote
 
         xml = Nokogiri::XML(xml_lote)
         array_xml_facturas = "<root>#{xml.at("xFe").content}</root>"
+        puts "\n\n\n#{array_xml_facturas}\n\n\n\n"
         documento = Nokogiri::XML(array_xml_facturas)
         documento.xpath("//rFE").each do |factura|
             factura_parse = Pac::FacturaElectronica::FacturaElectronica.new(factura.to_xml(save_with: 0))
