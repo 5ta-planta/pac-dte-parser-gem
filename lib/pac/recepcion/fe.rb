@@ -10,8 +10,6 @@ class Pac::Recepcion::Fe
     def initialize(datos)
         mensaje = JSON.parse(datos)
         self.xml = Base64.decode64(mensaje["feDatosMsg"])
-        self.certificado = mensaje["certificado"] 
-        self.servicio = mensaje["servicio"] 
     end 
 
     def cargar
