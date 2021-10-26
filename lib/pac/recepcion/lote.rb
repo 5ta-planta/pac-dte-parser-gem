@@ -3,7 +3,7 @@ class Pac::Recepcion::Lote
 
     attr_accessor :version_del_formato,
     :dId,
-    :ambiente
+    :ambiente,
     :xml_lote,
     :facturas,
     :certificado,
