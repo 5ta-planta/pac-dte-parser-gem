@@ -53,7 +53,7 @@ class Pac::Recepcion::Lote
     end
 
     def procesar_xml
-        xml = Nokogiri::XML(self.xml_lote)
+        xml = Nokogiri::XML(self.lote)
         self.version_del_formato = xml.at("dVerForm")
         self.dId                 = xml.at("dId")
         self.ambiente            = xml.at("iAmb")
