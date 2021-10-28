@@ -54,9 +54,9 @@ class Pac::Recepcion::Lote
 
     def procesar_xml
         xml = Nokogiri::XML(self.lote)
-        self.version_del_formato = xml.at("dVerForm")
-        self.dId                 = xml.at("dId")
-        self.ambiente            = xml.at("iAmb")
+        self.version_del_formato = xml.at("dVerForm").content
+        self.dId                 = xml.at("dId").content
+        self.ambiente            = xml.at("iAmb").content
         array_facturas           = "<root>#{xml.at("xFe").content}</root>"
     end
 

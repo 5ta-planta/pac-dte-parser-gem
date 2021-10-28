@@ -49,9 +49,9 @@ class Pac::Recepcion::Fe
     end
 
     def procesar_xml
-        self.version_del_formato = xml.at("dVerForm")
-        self.dId                 = xml.at("dId")
-        self.ambiente            = xml.at("iAmb")
+        self.version_del_formato = xml.at("dVerForm").content
+        self.dId                 = xml.at("dId").content
+        self.ambiente            = xml.at("iAmb").content
         xFe                      = xml.at("xFe").content
     end
 
