@@ -10,7 +10,8 @@ class Pac::Recepcion::Lote
     :servicio,
     :xml_facturas,
     :xml_validacion_firmas,
-    :formato_entrada
+    :formato_entrada,
+    :ruc_transmisor
 
     def initialize(lote)
         if is_json_valid?(lote)
@@ -42,6 +43,15 @@ class Pac::Recepcion::Lote
         end
 
     end
+
+    def identificador_lote
+        time = Time.now.year.to_s
+        anio = time[2..3]
+        identificador = Time.now.strftime("%H%M%S%3N")
+        did = self.dId[-4..-1]
+        "#{anio}#{did}#{identificador}"
+    end
+
 
     private
     def procesar_json
