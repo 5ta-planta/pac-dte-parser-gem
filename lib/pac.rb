@@ -5,14 +5,12 @@ module Pac
 	module Recepcion
 		autoload :Fe, 	'pac/recepcion/fe'
 		autoload :Lote, 'pac/recepcion/lote'
-
+		autoload :Evento, 'pac/recepcion/evento'
 	end
-
 
 	module Emisor
 		autoload :Emisor, 'pac/emisor/emisor'
 	end
-
 
 	module Constante
 		autoload :Constante, 'pac/constante/constante'
@@ -50,8 +48,8 @@ module Pac
 
 			autoload :VehiculoNuevo, 'pac/factura_electronica/campo_complementario/vehiculo_nuevo' 
 		end		
- 
+	end
+	module Evento
 		
-
 	end
 end
