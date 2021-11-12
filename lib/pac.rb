@@ -50,6 +50,7 @@ module Pac
 		end		
 	end
 	module Evento
-		
+		autoload :Anulacion, 'pac/evento/anulacion'
+		autoload :Manifestacion, 'pac/evento/manifestacion'
 	end
 end
