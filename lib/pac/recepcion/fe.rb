@@ -33,7 +33,7 @@ class Pac::Recepcion::Fe
         self.factura = factura
         self.xml_xfe = xml_factura
         xml_validacion_firma = Nokogiri::XML(xml_factura)
-        xml_validacion_firma.at("gNoFirm").remove
+        #xml_validacion_firma.at("gNoFirm").remove
         self.xml_validar_firma = xml_validacion_firma.root.to_xml(save_with: 0)
     end
 
