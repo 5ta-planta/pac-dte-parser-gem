@@ -52,15 +52,18 @@ class Pac::Recepcion::Fe
         self.version_del_formato = self.xml["dVerForm"]
         self.dId                 = self.xml["dId"]
         self.ambiente            = self.xml["iAmb"]
-        xFe                      = Base64.decode64(self.xml["xFe"])
-        
+        return Base64.decode64(self.xml["xFe"])
     end
 
     def procesar_xml
-        self.version_del_formato = xml.at("dVerForm").content
-        self.dId                 = xml.at("dId").content
-        self.ambiente            = xml.at("iAmb").content
-        xFe                      = xml.at("xFe").content
+        nodo = xml.at("dVerForm")
+        self.version_del_formato = ( if nodo.present? then nodo.content else nil end)
+        nodo = xml.at("dId")
+        self.dId          = ( if nodo.present? then nodo.content else nil end)
+        nodo = xml.at("iAmb")
+        self.ambiente     = ( if nodo.present? then nodo.content else nil end)
+        nodo = xml.at("xFe")
+        return (if nodo.present? then nodo.content else nil end)
     end
 
     def is_json_valid?(valor)
