@@ -346,8 +346,8 @@ class Pac::FacturaElectronica::FacturaElectronica
     ##6.8. Campos Complementarios de Uso Comercial General
     #
     def cargar_datos_generales
-        @version_del_formato = @xml_hash["rFE"]["dVerForm"]
-        @identificador_para_firma_electronica = @xml_hash["rFE"]["dId"]
+        @version_del_formato = @xml_hash.dig("rFE","dVerForm")
+        @identificador_para_firma_electronica = @xml_hash.dig("rFE","dId")
 
         @ambiente_destino = @xml_hash["rFE"]["gDGen"]["iAmb"].to_i if @xml_hash["rFE"]["gDGen"]["iAmb"].present?
         @tipo_de_emision = @xml_hash["rFE"]["gDGen"]["iTpEmis"]
