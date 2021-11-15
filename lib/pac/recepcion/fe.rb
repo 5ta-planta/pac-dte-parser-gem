@@ -23,6 +23,7 @@ class Pac::Recepcion::Fe
     end 
 
     def cargar
+        puts "0"
         if self.formato_entrada == 'json'
             xml_factura = procesar_json
         else
