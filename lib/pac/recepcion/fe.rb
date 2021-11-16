@@ -23,25 +23,17 @@ class Pac::Recepcion::Fe
     end 
 
     def cargar
-        puts "0"
         if self.formato_entrada == 'json'
             xml_factura = procesar_json
         else
             xml_factura = procesar_xml
         end
-        puts "1"
         factura = Pac::FacturaElectronica::FacturaElectronica.new(xml_factura)
-        puts "2"
         factura.cargar
-        puts "3"
         self.factura = factura
-        puts "4"
         self.xml_xfe = xml_factura
-        puts "5"
         xml_validacion_firma = Nokogiri::XML(xml_factura)
-        puts "6"
-        #xml_validacion_firma.at("gNoFirm").remove
-        puts "7"
+        xml_validacion_firma.at("gNoFirm").remove
         self.xml_validar_firma = xml_validacion_firma.root.to_xml(save_with: 0)
     end
 

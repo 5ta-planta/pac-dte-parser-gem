@@ -122,37 +122,21 @@ class Pac::FacturaElectronica::FacturaElectronica
     ##  
     #
     def cargar()
-        puts "02.01"
         cargar_datos_generales()
-        puts "02.02"
         cargar_datos_emisor()
-        puts "02.03"
         cargar_datos_receptor()
-        puts "02.04"
         cargar_exportacion()
-        puts "02.05"
         cargar_datos_doc_fiscal_referenciado()
-        puts "02.06"
         cargar_datos_grupo_autorizado_descarga()
-        puts "02.07"
         cargar_items()
-        puts "02.08"
         cargar_sub_totales()
-        puts "02.09"
         cargar_descuentos_bonificaciones_adicionales()
-        puts "02.10"
         cargar_forma_pago()
-        puts "02.11"
         cargar_retenciones()
-        puts "02.12"
         cargar_informacion_pago_plazo()
-        puts "02.13"
         cargar_complementos_uso_comercial_general()
-        puts "02.14"
         cargar_firma_electronica()
-        puts "02.15"
         cargar_datos_fuera_firma_electronica()
-        puts "02.16"
         @cufe = Pac::FacturaElectronica::Cufe.new(@identificador_para_firma_electronica)
         @cufe.cargar
         true
@@ -352,7 +336,7 @@ class Pac::FacturaElectronica::FacturaElectronica
         @ambiente_destino = @xml_hash["rFE"]["gDGen"]["iAmb"].to_i if @xml_hash["rFE"]["gDGen"]["iAmb"].present?
         @tipo_de_emision = @xml_hash["rFE"]["gDGen"]["iTpEmis"]
         
-        @fecha_hora_inicio_contingencia = (@xml_hash["rFE"]["gDGen"]["dFechaCont"]).to_time if @xml_hash["rFE"]["gDGen"]["dFechaCont"].present?
+        @fecha_hora_inicio_contingencia =  (@xml_hash["rFE"]["gDGen"]["dFechaCont"]).to_time if @xml_hash["rFE"]["gDGen"]["dFechaCont"].present?
         @razon_operacion_contingencia = @xml_hash["rFE"]["gDGen"]["dMotCont"]
         @tipo_documento = @xml_hash["rFE"]["gDGen"]["iDoc"]
         @numero_documento_fiscal = @xml_hash["rFE"]["gDGen"]["dNroDF"]

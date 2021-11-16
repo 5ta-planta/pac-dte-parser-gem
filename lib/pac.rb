@@ -5,7 +5,7 @@ module Pac
 	module Recepcion
 		autoload :Fe, 	'pac/recepcion/fe'
 		autoload :Lote, 'pac/recepcion/lote'
-		autoload :Evento, 'pac/recepcion/evento'
+		autoload :Ev, 'pac/recepcion/ev'
 	end
 
 	module Emisor
