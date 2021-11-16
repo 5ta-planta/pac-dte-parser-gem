@@ -1,4 +1,4 @@
-class Pac::Recepcion::Fe
+class Pac::Recepcion::Ev
 
     attr_accessor :version_del_formato,
         :dId,
@@ -10,7 +10,7 @@ class Pac::Recepcion::Fe
         :anulacion,
         :manifestacion,
         :xml_validar_firma,
-        :formato_entrada
+        :formato_entrada,
         :tipo
 
     def initialize(evento)
