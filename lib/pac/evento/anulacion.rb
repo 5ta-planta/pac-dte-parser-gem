@@ -69,7 +69,7 @@ class Pac::Evento::Anulacion
 
     def cargar_datos_emisor
         emisor_hash = @xml_hash["rEvAnulaFe"]["gInfProt"]["gRucEm"]
-        @emisor = Pac::FacturaElectronica::Emisor.new(emisor_hash)
+        @emisor = Pac::Evento::Emisor.new(emisor_hash)
         @emisor.cargar();
     end
 
