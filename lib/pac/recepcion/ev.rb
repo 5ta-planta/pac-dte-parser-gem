@@ -34,16 +34,19 @@ class Pac::Recepcion::Ev
         end
         #carga según tipo de ejemplo
         if xml_evento.include? "rEvAnulaFe" 
+            puts "anulacion #####################"
             self.tipo = "anulacion"
             anulacion = Pac::Evento:Anulacion.new xml_evento
             anulacion.cargar
             self.anulacion = anulacion
         else 
+            puts "manifestacion #################"
             self.tipo = "manifestacion"
             manifestacion = Pac::Evento.Manifestacion(xml_evento)
             manifestacion.cargar
             self.manifestacion.cargar
         end
+        puts "sale #######################"
         self.xml_evento = xml_evento
         xml_validacion_firma = Nokogiri::XML(xml_evento)
         xml_validacion_firma.at("gNoFirm").remove
