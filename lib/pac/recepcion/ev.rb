@@ -27,10 +27,12 @@ class Pac::Recepcion::Ev
     def cargar
         if self.formato_entrada == 'json'
             xml_evento = procesar_json
+            tipoEvento = xml_evento.first
         else
             xml_evento = procesar_xml
+            tipoEvento = xml_evento.xpath('/*').first.name
         end
-        tipoEvento = xml_evento.xpath('/*').first.name
+        puts tipoEvento
         #carga según tipo de ejemplo
         if tipoEvento == "rEvAnulaFe" 
             self.tipo = "anulacion"
