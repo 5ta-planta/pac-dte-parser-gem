@@ -36,13 +36,13 @@ class Pac::Recepcion::Ev
         if xml_evento.include? "rEvAnulaFe" 
             puts "anulacion #####################"
             self.tipo = "anulacion"
-            anulacion = Pac::Evento:Anulacion.new xml_evento
+            anulacion = Pac::Evento::Anulacion.new xml_evento
             anulacion.cargar
             self.anulacion = anulacion
         else 
             puts "manifestacion #################"
             self.tipo = "manifestacion"
-            manifestacion = Pac::Evento.Manifestacion(xml_evento)
+            manifestacion = Pac::Evento::Manifestacion(xml_evento)
             manifestacion.cargar
             self.manifestacion.cargar
         end
