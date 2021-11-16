@@ -1,7 +1,7 @@
 ##Clase para representar una anulación
 ##
 #
-class Pac::evento::manifestacion
+class Pac::Evento::Manifestacion
     
     attr_accessor :version_del_formato # dVerForm
     attr_accessor :identificador_para_firma_electronica # dIdFirma
