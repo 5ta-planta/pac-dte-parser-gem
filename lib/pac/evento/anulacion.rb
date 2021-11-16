@@ -85,11 +85,11 @@ class Pac::Evento::Anulacion
  
     def cargar_datos_generales
         @version_del_formato = @xml_hash["rEvAnulaFe"]["dVerForm"]
-        @identificador_para_firma_electronica = @xml_hash["rEvAnulaFe"]["gRucEm"]["dIdFirma"]
+        @identificador_para_firma_electronica = @xml_hash["rEvAnulaFe"]["gInfProt"]["dIdFirma"]
 
-        @ambiente_destino = @xml_hash["rEvAnulaFe"]["gRucEm"]["iAmb"].to_i if @xml_hash["rEvAnulaFe"]["gRucEm"]["iAmb"].present?
-        @codigo_factura_anular = @xml_hash["rEvAnulaFe"]["gRucEm"]["dCufe"].to_i if @xml_hash["rEvAnulaFe"]["gRucEm"]["dCufe"].present?
-        @motivo_anulacion = @xml_hash["rEvAnulaFe"]["gRucEm"]["dMotivoAn"].to_i if @xml_hash["rEvAnulaFe"]["gRucEm"]["dMotivoAn"].present?
+        @ambiente_destino = @xml_hash["rEvAnulaFe"]["gInfProt"]["iAmb"].to_i if @xml_hash["rEvAnulaFe"]["gInfProt"]["iAmb"].present?
+        @codigo_factura_anular = @xml_hash["rEvAnulaFe"]["gInfProt"]["dCufe"].to_i if @xml_hash["rEvAnulaFe"]["gInfProt"]["dCufe"].present?
+        @motivo_anulacion = @xml_hash["rEvAnulaFe"]["gInfProt"]["dMotivoAn"].to_i if @xml_hash["rEvAnulaFe"]["gInfProt"]["dMotivoAn"].present?
         
     end
 

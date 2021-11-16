@@ -42,7 +42,7 @@ class Pac::Recepcion::Ev
         else 
             puts "manifestacion #################"
             self.tipo = "manifestacion"
-            manifestacion = Pac::Evento::Manifestacion(xml_evento)
+            manifestacion = Pac::Evento::Manifestacion xml_evento
             manifestacion.cargar
             self.manifestacion.cargar
         end
