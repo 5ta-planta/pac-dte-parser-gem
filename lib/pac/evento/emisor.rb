@@ -13,8 +13,6 @@ class Pac::Evento::Emisor
     #
     def initialize(xml_hash)
         @xml_hash = xml_hash
-        puts "xml_hash #########"
-        puts xml_hash
     end
 
     def cargar()
