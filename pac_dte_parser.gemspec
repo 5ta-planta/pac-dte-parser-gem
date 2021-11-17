@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'pac_dte_parser'
-  s.version     = '0.0.170'
+  s.version     = '0.0.171'
   s.summary     = "Parseo de XML"
   s.description = "Parser de XML PAC Panama"
   s.authors     = ["Team GFIP"]
@@ -8,5 +8,4 @@ Gem::Specification.new do |s|
   s.files       = Dir["{lib}/**/*"]
   s.licenses    = ["MIT"]
   s.add_dependency("railties", ">= 4.1.0")
-  s.add_dependency("dynamoid")
 end  
