@@ -46,11 +46,11 @@ class Pac::Recepcion::Ev
             manifestacion.cargar
             self.manifestacion.cargar
         end
-        puts "sale #######################"
         self.xml_evento = xml_evento
         xml_validacion_firma = Nokogiri::XML(xml_evento)
-        xml_validacion_firma.at("gNoFirm").remove
+        xml_validacion_firma.at("gNoFirm").remove if xml_validacion_firma.at("gNoFirm").present?
         self.xml_validar_firma = xml_validacion_firma.root.to_xml(save_with: 0)
+        puts "sale #######################"
     end
 
 
