@@ -71,7 +71,6 @@ class Pac::Evento::Anulacion
         emisor_hash = @xml_hash["rEvAnulaFe"]["gInfProt"]["gRucEm"]
         @emisor = Pac::Evento::Emisor.new(emisor_hash)
         @emisor.cargar();
-        puts "### fin emisor"
     end
 
     ##Metodo que carga datos relacionados con firma electronica
@@ -79,9 +78,7 @@ class Pac::Evento::Anulacion
     def cargar_firma_electronica
         @firma_electronica =  Pac::FacturaElectronica::FirmaElectronica.new(@xml_hash["rEvAnulaFe"]) 
         @firma_electronica.cargar
-        puts "### fin firma"
     end
-
 
     ##Metodo que carga los datos complementarios de la factura electronica de uso general
  
@@ -92,7 +89,6 @@ class Pac::Evento::Anulacion
         @ambiente_destino = @xml_hash["rEvAnulaFe"]["gInfProt"]["iAmb"].to_i if @xml_hash["rEvAnulaFe"]["gInfProt"]["iAmb"].present?
         @codigo_factura_anular = @xml_hash["rEvAnulaFe"]["gInfProt"]["dCufe"].to_i if @xml_hash["rEvAnulaFe"]["gInfProt"]["dCufe"].present?
         @motivo_anulacion = @xml_hash["rEvAnulaFe"]["gInfProt"]["dMotivoAn"].to_i if @xml_hash["rEvAnulaFe"]["gInfProt"]["dMotivoAn"].present?
-        puts "### fin generales"
     end
 
 end
