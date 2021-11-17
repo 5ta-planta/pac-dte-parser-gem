@@ -43,15 +43,15 @@ class Pac::FacturaElectronica::Emisor
         @provincia = @xml_hash["gUbiEm"]["dProv"].to_i if @xml_hash["gUbiEm"]["dProv"].present?
         @telefono_contacto = @xml_hash["dTfnEm"]
         @correo = @xml_hash["dCorElectEmi"]
-        self.emisor_dynamo = Pac::Emisor::Emisor.where(ruc:self.ruc).first
+        #self.emisor_dynamo = Pac::Emisor::Emisor.where(ruc:self.ruc).first
     end 
     
     ###Valida que en dynamo exista la sucursal 
     ##
     #
-    def sucursal_valida?
-        self.emisor_dynamo.present? ? self.emisor_dynamo.sucursales.select {|suc| suc["codigo"] == self.sucursal }.present? 
-                                    : false
-    end
+    # def sucursal_valida?
+    #     self.emisor_dynamo.present? ? self.emisor_dynamo.sucursales.select {|suc| suc["codigo"] == self.sucursal }.present? 
+    #                                 : false
+    # end
 
 end
