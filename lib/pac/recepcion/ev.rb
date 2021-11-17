@@ -25,7 +25,6 @@ class Pac::Recepcion::Ev
     end 
 
     def cargar
-        puts ""
         if self.formato_entrada == 'json'
             xml_evento = procesar_json
         else
@@ -34,13 +33,11 @@ class Pac::Recepcion::Ev
         end
         #carga según tipo de ejemplo
         if xml_evento.include? "rEvAnulaFe" 
-            puts "anulacion #####################"
             self.tipo = "anulacion"
             anulacion = Pac::Evento::Anulacion.new xml_evento
             anulacion.cargar
             self.anulacion = anulacion
         else 
-            puts "manifestacion #################"
             self.tipo = "manifestacion"
             manifestacion = Pac::Evento::Manifestacion.new xml_evento
             manifestacion.cargar
@@ -50,7 +47,6 @@ class Pac::Recepcion::Ev
         xml_validacion_firma = Nokogiri::XML(xml_evento)
         xml_validacion_firma.at("gNoFirm").remove if xml_validacion_firma.at("gNoFirm").present?
         self.xml_validar_firma = xml_validacion_firma.root.to_xml(save_with: 0)
-        puts "sale #######################"
     end
 
 
