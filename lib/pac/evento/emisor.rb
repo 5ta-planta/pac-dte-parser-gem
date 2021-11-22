@@ -16,7 +16,7 @@ class Pac::Evento::Emisor
     end
 
     def cargar()
-        @tipo_de_contribuyente = @xml_hash["dTipoContEm"].to_i if @xml_hash["dTipoContEm"].present?
+        @tipo_de_contribuyente = @xml_hash["dTipContEm"].to_i if @xml_hash["dTipContEm"].present?
         @ruc  = @xml_hash["dRucEm"]
         @dv_ruc = @xml_hash["dDvEm"]
     end 
