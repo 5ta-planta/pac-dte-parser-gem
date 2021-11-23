@@ -6,7 +6,7 @@ class Pac::Evento::Anulacion
     attr_accessor :version_del_formato # dVerForm
     attr_accessor :identificador_para_firma_electronica # dIdFirma
     attr_accessor :ambiente_destino # iAmb
-    attr_accessor :codigo_factura_anular #dCufe 
+    attr_accessor :codigo_factura_anulacion #dCufe 
     attr_accessor :emisor # Pac::FacturaElectronica::Emisor
     attr_accessor :motivo_anulacion # dMotivoAn
     attr_accessor :firma_electronica #Signature
@@ -87,7 +87,7 @@ class Pac::Evento::Anulacion
         @identificador_para_firma_electronica = @xml_hash["rEvAnulaFe"]["gInfProt"]["dIdFirma"]
 
         @ambiente_destino = @xml_hash["rEvAnulaFe"]["gInfProt"]["iAmb"].to_i if @xml_hash["rEvAnulaFe"]["gInfProt"]["iAmb"].present?
-        @codigo_factura_anular = @xml_hash["rEvAnulaFe"]["gInfProt"]["dCufe"].to_i if @xml_hash["rEvAnulaFe"]["gInfProt"]["dCufe"].present?
+        @codigo_factura_anulacion = @xml_hash["rEvAnulaFe"]["gInfProt"]["dCufe"].to_i if @xml_hash["rEvAnulaFe"]["gInfProt"]["dCufe"].present?
         @motivo_anulacion = @xml_hash["rEvAnulaFe"]["gInfProt"]["dMotivoAn"].to_i if @xml_hash["rEvAnulaFe"]["gInfProt"]["dMotivoAn"].present?
     end
 
