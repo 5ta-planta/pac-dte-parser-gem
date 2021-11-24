@@ -84,10 +84,10 @@ class Pac::Evento::Manifestacion
         @version_del_formato = @xml_hash["rEvManifRecep"]["dVerForm"]
         @identificador_para_firma_electronica = @xml_hash["rEvManifRecep"]["gInfProt"]["dIdFirma"]
         @ambiente_destino = @xml_hash["rEvManifRecep"]["gInfProt"]["iAmb"].to_i if @xml_hash["rEvManifRecep"]["gInfProt"]["iAmb"].present?
-        @codigo_factura_manifestacion = @xml_hash["rEvManifRecep"]["gInfProt"]["dCufe"].to_i if @xml_hash["rEvManifRecep"]["gInfProt"]["dCufe"].present?
-        @ruc_contribuyente_receptor = @xml_hash["rEvManifRecep"]["gInfProt"]["dRucRec"].to_i if @xml_hash["rEvManifRecep"]["gInfProt"]["dRucRec"].present?
-        @codigo_evento_manifestacion = @xml_hash["rEvManifRecep"]["gInfProt"]["dManifRecep"].to_i if @xml_hash["rEvManifRecep"]["gInfProt"]["dManifRecep"].present?
-        @motivo_manifestacion = @xml_hash["rEvManifRecep"]["gInfProt"]["dMotManif"].to_i if @xml_hash["rEvManifRecep"]["gInfProt"]["dMotManif"].present?
+        @codigo_factura_manifestacion = @xml_hash["rEvManifRecep"]["gInfProt"]["dCufe"] if @xml_hash["rEvManifRecep"]["gInfProt"]["dCufe"].present?
+        @ruc_contribuyente_receptor = @xml_hash["rEvManifRecep"]["gInfProt"]["dRucRec"] if @xml_hash["rEvManifRecep"]["gInfProt"]["dRucRec"].present?
+        @codigo_evento_manifestacion = @xml_hash["rEvManifRecep"]["gInfProt"]["dManifRecep"] if @xml_hash["rEvManifRecep"]["gInfProt"]["dManifRecep"].present?
+        @motivo_manifestacion = @xml_hash["rEvManifRecep"]["gInfProt"]["dMotManif"] if @xml_hash["rEvManifRecep"]["gInfProt"]["dMotManif"].present?
                 
         
     end
