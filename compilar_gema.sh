@@ -1,4 +1,4 @@
-echo 'iniciando compilacion version $1'  
+echo 'iniciando compilacion version ' $1   
 gem build pac_dte_parser.gemspec
 gem install ./pac_dte_parser-0.0.177.gem
 git add . 
