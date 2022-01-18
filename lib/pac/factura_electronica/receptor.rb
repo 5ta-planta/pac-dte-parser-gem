@@ -24,65 +24,72 @@ class Pac::FacturaElectronica::Receptor
     ##Recibe como parametro la seccion del hash que corresponde a gDatRec del xml
     ##
     #
+    
     def initialize(xml_hash)
         @xml_hash = xml_hash
+        self.tipo = nil
+        self.tipo_de_contribuyente = nil
+        self.ruc  = nil
+        self.dv_ruc = nil
+        self.nombre = nil
+        self.direccion = nil
+        self.codigo_ubicacion = nil
+        self.corregimiento = nil
+        self.distrito = nil
+        self.provincia = nil
+        self.identificacion_extranjero = nil
+        self.pais_extranjero = nil
+        self.telefono = nil
+        self.correo = nil
+        self.pais = nil
+        self.pais_descripcion = nil
     end
 
 
     def cargar()
-        cargar_ruc_rec = true
-        
-        @tipo = @xml_hash["iTipoRec"]
+       
+        @tipo = @xml_hash["iTipoRec"] if @xml_hash["gRucRec"]["dTipoRuc"].present?
 
-        if @tipo == '02'
-            cargar_ruc_rec = @xml_hash["gRucRec"].present?
-        end
-
-        if (cargar_ruc_rec)
+        ## Datos del ruc
+        if @xml_hash["gRucRec"].present?
+            @existe_gRucRec = true
             @tipo_de_contribuyente = @xml_hash["gRucRec"]["dTipoRuc"] if @xml_hash["gRucRec"]["dTipoRuc"].present?
-            @ruc  =  @xml_hash["gRucRec"]["dRuc"]
-            @dv_ruc  = @xml_hash["gRucRec"]["dDV"]
-        end
-
-        if @tipo == '01' || @tipo == '03'
-            @nombre  = @xml_hash["dNombRec"]
-            @direccion  = @xml_hash["dDirecRec"]
-            @codigo_ubicacion  = @xml_hash["gUbiRec"]["dCodUbi"]
-            @corregimiento  = @xml_hash["gUbiRec"]["dCorreg"]
-            @distrito  = @xml_hash["gUbiRec"]["dDistr"]
-            @provincia  = @xml_hash["gUbiRec"]["dProv"] if @xml_hash["gUbiRec"]["dProv"].present?
-        end
-
-        @existe_gUbiRec = @xml_hash["gUbiRec"].present?
-        @existe_gRucRec = @xml_hash["gRucRec"].present?
-
-
-        if @tipo == '04' 
-            if (@xml_hash["gIdExt"].present?)
-                @identificacion_extranjero  = @xml_hash["gIdExt"]["dIdExt"] if @xml_hash["gIdExt"]["dIdExt"].present?
-                @pais_extranjero  = @xml_hash["gIdExt"]["dPaisExt"] if @xml_hash["gIdExt"]["dPaisExt"].present?
-            end
-        end
-            
-        @existe_gIdExt = validar_si_existe_grupoB406 # @xml_hash["gIdExt"].present?
-
-        @telefono  = @xml_hash["dTfnRec"] 
-        @correo  = @xml_hash["dCorElectRec"]
-        @pais  = @xml_hash["cPaisRec"]
-        @pais_descripcion  = @xml_hash["dPaisRecDesc"]
-    end 
-
-    def validar_si_existe_grupoB406
-        if @xml_hash["gIdExt"].present?
-            if @identificacion_extranjero.present?  and @pais_extranjero.present?
-                return true
-            else
-                return false
-            end
+            @ruc = @xml_hash["gRucRec"]["dRuc"] if @xml_hash["gRucRec"]["dRuc"].present?
+            @dv_ruc  = @xml_hash["gRucRec"]["dDV"] if @xml_hash["gRucRec"]["dDV"].present?
         else
-            return false
+            @existe_gRucRec = false
         end
-    end
+
+        ## Datos del la ubicacion
+        if @xml_hash["gUbiRec"].present?
+            @existe_gUbiRec = true
+            @codigo_ubicacion  = @xml_hash["gUbiRec"]["dCodUbi"] if @xml_hash["gUbiRec"]["dDistr"].present?
+            @corregimiento  = @xml_hash["gUbiRec"]["dCorreg"] if @xml_hash["gUbiRec"]["dDistr"].present?
+            @distrito  = @xml_hash["gUbiRec"]["dDistr"] if @xml_hash["gUbiRec"]["dDistr"].present?
+            @provincia  = @xml_hash["gUbiRec"]["dProv"] if @xml_hash["gUbiRec"]["dProv"].present?
+        else
+            @existe_gUbiRec = false
+        end
+
+        ## Datos del la extanjero
+        if @xml_hash["gIdExt"].present?
+            @existe_gUbiRec = true
+            @identificacion_extranjero  = @xml_hash["gIdExt"]["dIdExt"] if @xml_hash["gIdExt"]["dIdExt"].present?
+            @pais_extranjero  = @xml_hash["gIdExt"]["dPaisExt"] if @xml_hash["gIdExt"]["dPaisExt"].present?
+        else
+            @existe_gUbiRec = false
+        end
+
+        @nombre = @xml_hash["dNombRec"] if @xml_hash["dNombRec"].present?
+        @direccion = @xml_hash["dDirecRec"] if @xml_hash["dDirecRec"].present?
+
+        @telefono = @xml_hash["dTfnRec"] if @xml_hash["dTfnRec"].present?
+        @correo = @xml_hash["dCorElectRec"] if @xml_hash["dCorElectRec"].present?
+        @pais = @xml_hash["cPaisRec"] if @xml_hash["cPaisRec"].present?
+        @pais_descripcion = @xml_hash["dPaisRecDesc"] if @xml_hash["dPaisRecDesc"].present?
+
+      
+    end 
 
 
 end
