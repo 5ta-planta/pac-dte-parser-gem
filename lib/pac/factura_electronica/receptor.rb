@@ -73,11 +73,11 @@ class Pac::FacturaElectronica::Receptor
 
         ## Datos del la extanjero
         if @xml_hash["gIdExt"].present?
-            @existe_gUbiRec = true
+            @existe_gIdExt = true
             @identificacion_extranjero  = @xml_hash["gIdExt"]["dIdExt"] if @xml_hash["gIdExt"]["dIdExt"].present?
             @pais_extranjero  = @xml_hash["gIdExt"]["dPaisExt"] if @xml_hash["gIdExt"]["dPaisExt"].present?
         else
-            @existe_gUbiRec = false
+            @existe_gIdExt = false
         end
 
         @nombre = @xml_hash["dNombRec"] if @xml_hash["dNombRec"].present?
