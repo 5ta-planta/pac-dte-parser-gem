@@ -48,7 +48,7 @@ class Pac::FacturaElectronica::Receptor
 
     def cargar()
        
-        @tipo = @xml_hash["iTipoRec"] if @xml_hash["gRucRec"]["dTipoRuc"].present?
+        @tipo = @xml_hash["iTipoRec"] if @xml_hash["iTipoRec"].present?
 
         ## Datos del ruc
         if @xml_hash["gRucRec"].present?
