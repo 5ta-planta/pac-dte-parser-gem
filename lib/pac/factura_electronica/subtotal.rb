@@ -38,13 +38,7 @@ class Pac::FacturaElectronica::Subtotal
         @tiempo_pago = @xml_hash["iPzPag"].to_i             rescue 0
         @numero_total_items = @xml_hash["dNroItems"].to_f   rescue 0
         @total_items = @xml_hash["dVTotItems"].to_f         rescue 0
-        self.total_otros_impuestos
     end
-
-    def total_otros_impuestos
-       otros_impuestos =  Pac::FacturaElectronica::TotalOtraTasa.listar(@xml_hash)
-       otros_impuestos.cargar()
-       @total_otra_tasa = otros_impuestos.total.to_f rescue 0
-    end
+    
 end
 
