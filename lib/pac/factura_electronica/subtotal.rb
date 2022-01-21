@@ -46,7 +46,7 @@ class Pac::FacturaElectronica::Subtotal
             return 0.0
         end
 
-        if lista_otros_impuestos.count == 0 
+        if lista_total_otras_tasas.count == 0 
             return 0.0
         else
             retorno = 0.0
