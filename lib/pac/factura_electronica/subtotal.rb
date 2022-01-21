@@ -40,23 +40,6 @@ class Pac::FacturaElectronica::Subtotal
         @total_items = @xml_hash["dVTotItems"].to_f         rescue 0
     end
 
-    def total_otros_tasas_impuestos
-        lista_total_otras_tasas = Pac::FacturaElectronica::TotalOtraTasa.listar(@xml_hash)
-        if lista_total_otras_tasas.nil?
-            return 0.0
-        end
-
-        if lista_total_otras_tasas.count == 0 
-            return 0.0
-        else
-            retorno = 0.0
-            lista_total_otras_tasas.each do |otro_impuesto|
-                retorno = retorno + otro_impuesto.total
-            end
-            return retorno
-        end
-        
-    end
     
 end
 
