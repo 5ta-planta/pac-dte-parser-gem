@@ -44,9 +44,6 @@ class Pac::Recepcion::Ev
             self.manifestacion = manifestacion
         end
         self.xml_evento = xml_evento
-        xml_validacion_firma = Nokogiri::XML(xml_evento)
-        xml_validacion_firma.at("gNoFirm").remove if xml_validacion_firma.at("gNoFirm").present?
-        self.xml_validar_firma = xml_validacion_firma.root.to_xml(save_with: 0)
     end
 
 

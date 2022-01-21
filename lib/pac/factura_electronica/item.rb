@@ -135,9 +135,9 @@ class Pac::FacturaElectronica::Item
         end
 
         #6.5.5. Grupo de Otras Tasas o Impuestos (OTI) del Ítem
-       # @tasa_otro_impuesto  = @xml_hash["gOTIItem"]["dCodOTI"]
-       # @monto_otro_impuesto  = @xml_hash["gOTIItem"]["dValOTI"]
-       lista_otros_impuestos = Pac::FacturaElectronica::ItemOtroImpuesto.listar(@xml_hash)
+        # @tasa_otro_impuesto  = @xml_hash["gOTIItem"]["dCodOTI"]
+        # @monto_otro_impuesto  = @xml_hash["gOTIItem"]["dValOTI"]
+        @lista_otros_impuestos = Pac::FacturaElectronica::ItemOtroImpuesto.listar(@xml_hash)
 
         if (@xml_hash["gVehicNuevo"].present?)
             @complemento_vehiculo_nuevo = Pac::FacturaElectronica::CampoComplementario::VehiculoNuevo.new(@xml_hash["gVehicNuevo"])
