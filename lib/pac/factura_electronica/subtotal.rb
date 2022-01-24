@@ -37,7 +37,7 @@ class Pac::FacturaElectronica::Subtotal
         @vuelto = @xml_hash["dVuelto"].to_f                 rescue 0
         @tiempo_pago = @xml_hash["iPzPag"].to_i             rescue 0
         @numero_total_items = @xml_hash["dNroItems"].to_f   rescue 0
-        @total_items = @xml_hash["dVTotItems"].to_f         rescue 0
+        @total_items = @xml_hash["dVTotItems"].to_i         rescue 0
     end
 
     
