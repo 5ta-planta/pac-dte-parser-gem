@@ -32,12 +32,12 @@ class Pac::FacturaElectronica::DocumentoFiscalReferenciado
             if (hash["rFE"]["gDGen"]["gDFRef"].class == Array)
                 hash["rFE"]["gDGen"]["gDFRef"].each do |item_hash|
                     nuevo_item = Pac::FacturaElectronica::DocumentoFiscalReferenciado.new(item_hash)
-                    nuevo_item.cargar();
+                    nuevo_item.cargar()
                     lista_doc_fiscal << nuevo_item
                 end
             else                
                 nuevo_item = Pac::FacturaElectronica::DocumentoFiscalReferenciado.new(hash["rFE"]["gDGen"]["gDFRef"])
-                nuevo_item.cargar();
+                nuevo_item.cargar()
                 lista_doc_fiscal << nuevo_item
             end
         end
@@ -46,9 +46,9 @@ class Pac::FacturaElectronica::DocumentoFiscalReferenciado
 
     def cargar()
         @existe_gDFRef = true
-        @tipo_contribuyente = @xml_hash["gRucEmDFRef"]["dTipoRuc"]
+        @tipo_contribuyente = @xml_hash["gRucEmDFRef"]["dTipoRuc"].to_i
         @ruc_contribuyente = @xml_hash["gRucEmDFRef"]["dRuc"]
-        @dv_ruc_contribuyente = @xml_hash["gRucEmDFRef"]["dDv"]
+        @dv_ruc_contribuyente = @xml_hash["gRucEmDFRef"]["dDV"]
         @nombre_emisor = @xml_hash["dNombEmRef"]
         @fecha_emision = (@xml_hash["dFechaDFRef"]).to_time if @xml_hash["dFechaDFRef"].present?
 
@@ -70,6 +70,5 @@ class Pac::FacturaElectronica::DocumentoFiscalReferenciado
         end
 
     end
-    #113
 
 end
