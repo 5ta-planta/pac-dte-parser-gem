@@ -49,7 +49,7 @@ class Pac::FacturaElectronica::CampoComplementario::VehiculoNuevo
         @tipo_pintura = @xml_hash["iTipoPintura"].to_i
         @tipo_pintura_no_listada = @xml_hash["dTipoPinturaDesc"]
         @tipo = @xml_hash["cTipoVehic"].to_i
-        @uso = @xml_hash["cUsoVehic"]
+        @uso = @xml_hash["cUsoVehic"].to_i
         @condicion = @xml_hash["iCondVehic"].to_i
         @cap_max_pasajeros = @xml_hash["dLotac"]
     end
