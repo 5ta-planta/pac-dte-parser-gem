@@ -11,12 +11,18 @@ class Pac::FacturaElectronica::DocumentoFiscalReferenciado
     attr_accessor :numero_factura_papel #dNroFacPap B616 
     attr_accessor :numero_factura_impresora_fiscal #dNroFacIE B621
 
-    attr_accessor :existe_gDFRef        
+    attr_accessor :existe_gDFRef
+    attr_accessor :existe_gDFRefFE
+    attr_accessor :existe_gDFRefFacPap
+    attr_accessor :existe_gDFRefFacIE        
 
 
     def initialize(xml_hash)
-        @xml_hash = xml_hash
-        @existe_gDFRef = false
+        @xml_hash            = xml_hash
+        @existe_gDFRef       = false
+        @existe_gDFRefFE     = false
+        @existe_gDFRefFacPap = false
+        @existe_gDFRefFacIE  = false
     end
 
     def self.listar(hash)
@@ -44,14 +50,24 @@ class Pac::FacturaElectronica::DocumentoFiscalReferenciado
         @ruc_contribuyente = @xml_hash["gRucEmDFRef"]["dRuc"]
         @dv_ruc_contribuyente = @xml_hash["gRucEmDFRef"]["dDv"]
         @nombre_emisor = @xml_hash["dNombEmRef"]
-        @fecha_emision = (@xml_hash["dFechaDFRef"]).to_time if @xml_hash["dFechaDFRef"].present?
-        @cufe_fe_referenciada = @xml_hash["gDFRefNum"]["gDFRefFE"]["dCUFERef"]
-        puts "Mensaje para el desarrollador: REVISAR ESTAS LINEAS DE CODIGO : #{Pac::FacturaElectronica::DocumentoFiscalReferenciado} LINEAS 42 Y 43"
-       # @numero_factura_papel =  @xml_hash["gDFRefNum"]["gDFRefFacPap"]["dNroFacPap"]
-       # @numero_factura_impresora_fiscal = @xml_hash["gDFRefNum"]["gDFRefFacIE"]["dNroFacIE"]
-       @cufe = Pac::FacturaElectronica::Cufe.new(@cufe_fe_referenciada)
-       @cufe.cargar
+        @fecha_emision = DateTime.parse(@xml_hash["dFechaDFRef"]).iso8601 if @xml_hash["dFechaDFRef"].present?
 
+        if @xml_hash["gDFRefNum"]["gDFRefFE"].present?
+            @existe_gDFRefFE = true
+            @cufe_fe_referenciada = @xml_hash["gDFRefNum"]["gDFRefFE"]["dCUFERef"]
+            @cufe = Pac::FacturaElectronica::Cufe.new(@cufe_fe_referenciada)
+            @cufe.cargar
+        end
+
+        if @xml_hash["gDFRefNum"]["gDFRefFacPap"].present?
+            @existe_gDFRefFacPap  = true
+            @numero_factura_papel =  @xml_hash["gDFRefNum"]["gDFRefFacPap"]["dNroFacPap"]
+        end
+
+        if @xml_hash["gDFRefNum"]["gDFRefFacIE"].present?
+            @existe_gDFRefFacIE = true
+            @numero_factura_impresora_fiscal = @xml_hash["gDFRefNum"]["gDFRefFacIE"]["dNroFacIE"]
+        end
 
     end
     #113
