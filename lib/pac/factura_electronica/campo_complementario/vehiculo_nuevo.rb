@@ -46,11 +46,11 @@ class Pac::FacturaElectronica::CampoComplementario::VehiculoNuevo
         @distancia_ejes = @xml_hash["dEntreEj"]
         @aaaa_mod_fabricacion = @xml_hash["dAnoMod"]
         @aaaa_fabricacion = @xml_hash["dAnoFab"]
-        @tipo_pintura = @xml_hash["iTipoPintura"]
+        @tipo_pintura = @xml_hash["iTipoPintura"].to_i
         @tipo_pintura_no_listada = @xml_hash["dTipoPinturaDesc"]
-        @tipo = @xml_hash["cTipoVehic"]
+        @tipo = @xml_hash["cTipoVehic"].to_i
         @uso = @xml_hash["cUsoVehic"]
-        @condicion = @xml_hash["iCondVehic"]
+        @condicion = @xml_hash["iCondVehic"].to_i
         @cap_max_pasajeros = @xml_hash["dLotac"]
     end
 
