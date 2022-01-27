@@ -192,7 +192,7 @@ class Pac::FacturaElectronica::FacturaElectronica
     ##6.4.5. Grupo de Autorizados a Descargar el Archivo de la FE y Sus Eventos
     #
     def cargar_datos_grupo_autorizado_descarga
-        lista_grupo_autorizado_descarga = Pac::FacturaElectronica::GrupoAutorizadoDescarga.listar(@xml_hash)
+        @lista_grupo_autorizado_descarga = Pac::FacturaElectronica::GrupoAutorizadoDescarga.listar(@xml_hash)
     end
    
 
@@ -206,11 +206,11 @@ class Pac::FacturaElectronica::FacturaElectronica
     ##Metodo que carga los datos del emisor
     ##6.6 Campos que Describen los Subtotales y Totales de la Transacción Documentada
     #
-    def cargar_sub_totales
-        sub_total_hash = @xml_hash["rFE"]["gTot"].present?        
-        @sub_totales = Pac::FacturaElectronica::Subtotal.new(sub_total_hash)
-        @sub_totales.cargar();
-    end
+    # def cargar_sub_totales
+    #     sub_total_hash = @xml_hash["rFE"]["gTot"].present?        
+    #     @sub_totales = Pac::FacturaElectronica::Subtotal.new(sub_total_hash)
+    #     @sub_totales.cargar();
+    # end
 
 
     ##Metodo que carga los datos del emisor
