@@ -93,9 +93,9 @@ class Pac::FacturaElectronica::Item
         @fecha_fabricacion  = (@xml_hash["dFechaFab"]).to_time if @xml_hash["dFechaFab"].present?
         @fecha_caducidad  = (@xml_hash["dFechaCad"]).to_time if @xml_hash["dFechaCad"].present?
         @codigo_item_codificacion_panama_abbreviada  = @xml_hash["dCodCPBSabr"] 
-        @codigo_item_codificacion_panama  = @xml_hash["dCodCPBScmp"] 
-        @unidad_medida_codificacion_panama  = @xml_hash["cUnidadCPBS"] 
-        @informacion  = @xml_hash["dInfEmFE"] 
+        @codigo_item_codificacion_panama  = @xml_hash["dCodCPBScmp"] if @xml_hash["dCodCPBScmp"].present?
+        @unidad_medida_codificacion_panama  = @xml_hash["cUnidadCPBS"] if @xml_hash["cUnidadCPBS"].present?
+        @informacion  = @xml_hash["dInfEmFE"] if @xml_hash["dInfEmFE"].present?
 
         #6.5.1. Grupo de Precios del Ítem
         @precio_unitario  = @xml_hash["gPrecios"]["dPrUnit"].to_f if @xml_hash["gPrecios"]["dPrUnit"].present?
