@@ -121,7 +121,7 @@ class Pac::FacturaElectronica::Item
             @tasa_itbms  = nil
             @monto_itbms = nil
             if @xml_hash["gITBMSItem"]["dTasaITBMS"].present?
-                @tasa_itbms = @xml_hash["gITBMSItem"]["dTasaITBMS"].to_f 
+                @tasa_itbms = @xml_hash["gITBMSItem"]["dTasaITBMS"] 
             end
 
             if @xml_hash["gITBMSItem"]["dValITBMS"]
