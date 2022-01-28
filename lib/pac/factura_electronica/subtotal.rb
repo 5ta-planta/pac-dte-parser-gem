@@ -24,20 +24,44 @@ class Pac::FacturaElectronica::Subtotal
     end
 
     def cargar()
-         
+        @total_isc = nil
+        @total_descuentos = nil
+        @total_acarreo = nil
+        @total_seguro = nil
+        @vuelto = nil
+        
         @total_neto = @xml_hash["dTotNeto"].to_f            rescue 0
         @total_itbms = @xml_hash["dTotITBMS"].to_f          rescue 0
-        @total_isc = @xml_hash["dTotISC"].to_f              rescue 0
+        
+        if @xml_hash["dTotISC"].present?
+            @total_isc = @xml_hash["dTotISC"].to_f              
+        end
+
         @total_gravado = @xml_hash["dTotGravado"].to_f      rescue 0
-        @total_descuentos = @xml_hash["dTotDesc"].to_f      rescue 0
-        @total_acarreo = @xml_hash["dTotAcar"].to_f         rescue 0
-        @total_seguro = @xml_hash["dTotSeg"].to_f           rescue 0
+
+        if @xml_hash["dTotDesc"].present?
+            @total_descuentos = @xml_hash["dTotDesc"].to_f  
+        end
+        if @xml_hash["dTotAcar"].present?
+            @total_acarreo = @xml_hash["dTotAcar"].to_f         
+        end
+        if @xml_hash["dTotSeg"].present?
+            @total_seguro = @xml_hash["dTotSeg"].to_f  
+        end         
+
+
         @total_factura = @xml_hash["dVTot"].to_f            rescue 0
         @suma_valores_recibidos = @xml_hash["dTotRec"].to_f rescue 0
-        @vuelto = @xml_hash["dVuelto"].to_f                 rescue 0
+
+     
+        if @xml_hash["dVuelto"].present?
+            @vuelto = @xml_hash["dVuelto"].to_f                 
+        end
+
         @tiempo_pago = @xml_hash["iPzPag"].to_i             rescue 0
         @numero_total_items = @xml_hash["dNroItems"].to_i   rescue 0
         @total_items = @xml_hash["dVTotItems"].to_f         rescue 0
+        
     end
 
     
