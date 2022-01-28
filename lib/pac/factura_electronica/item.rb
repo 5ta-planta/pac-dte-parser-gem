@@ -137,10 +137,10 @@ class Pac::FacturaElectronica::Item
             @tasa_isc  = nil
             @monto_isc = nil
             if @xml_hash["gISCItem"]["dTasaISC"].present?
-                @tasa_isc  = @xml_hash["gISCItem"]["dTasaISC"].to_f rescue nil
+                @tasa_isc  = @xml_hash["gISCItem"]["dTasaISC"].to_f 
             end
             if @xml_hash["gISCItem"]["dValISC"]
-                @monto_isc = @xml_hash["gISCItem"]["dValISC"].to_f rescue nil
+                @monto_isc = @xml_hash["gISCItem"]["dValISC"].to_f 
             end
         else
             @tasa_isc  = nil
