@@ -118,20 +118,20 @@ class Pac::FacturaElectronica::Item
 
         #6.5.3. Grupo de ITBMS del Ítem
         if (@xml_hash["gITBMSItem"].present?)
-            @tasa_itbms  =  @xml_hash["gITBMSItem"]["dTasaITBMS"].to_f rescue 0
-            @monto_itbms  = @xml_hash["gITBMSItem"]["dValITBMS"].to_f rescue 0
+            @tasa_itbms  =  @xml_hash["gITBMSItem"]["dTasaITBMS"].to_f rescue nil
+            @monto_itbms  = @xml_hash["gITBMSItem"]["dValITBMS"].to_f rescue nil
         else
-            @tasa_itbms = 0
-            @monto_itbms = 0
+            @tasa_itbms = nil
+            @monto_itbms = nil
         end
         
         #6.5.4. Grupo de ISC del Ítem
         if (@xml_hash["gISCItem"].present?)
-            @tasa_isc  = @xml_hash["gISCItem"]["dTasaISC"].to_f rescue 0
-            @monto_isc  = @xml_hash["gISCItem"]["dValISC"].to_f rescue 0
+            @tasa_isc  = @xml_hash["gISCItem"]["dTasaISC"].to_f rescue nil
+            @monto_isc  = @xml_hash["gISCItem"]["dValISC"].to_f rescue nil
         else
-            @tasa_isc = 0
-            @monto_isc = 0
+            @tasa_isc = nil
+            @monto_isc = nil
         end
 
         #6.5.5. Grupo de Otras Tasas o Impuestos (OTI) del Ítem
