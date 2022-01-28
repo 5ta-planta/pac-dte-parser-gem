@@ -118,19 +118,32 @@ class Pac::FacturaElectronica::Item
 
         #6.5.3. Grupo de ITBMS del Ítem
         if (@xml_hash["gITBMSItem"].present?)
-            @tasa_itbms  =  @xml_hash["gITBMSItem"]["dTasaITBMS"].to_f rescue nil
-            @monto_itbms  = @xml_hash["gITBMSItem"]["dValITBMS"].to_f rescue nil
+            @tasa_itbms  = nil
+            @monto_itbms = nil
+            if @xml_hash["gITBMSItem"]["dTasaITBMS"].present?
+                @tasa_itbms = @xml_hash["gITBMSItem"]["dTasaITBMS"].to_f 
+            end
+
+            if @xml_hash["gITBMSItem"]["dValITBMS"]
+                @monto_itbms = @xml_hash["gITBMSItem"]["dValITBMS"].to_f 
+            end
         else
-            @tasa_itbms = nil
+            @tasa_itbms  = nil
             @monto_itbms = nil
         end
         
         #6.5.4. Grupo de ISC del Ítem
         if (@xml_hash["gISCItem"].present?)
-            @tasa_isc  = @xml_hash["gISCItem"]["dTasaISC"].to_f rescue nil
-            @monto_isc  = @xml_hash["gISCItem"]["dValISC"].to_f rescue nil
+            @tasa_isc  = nil
+            @monto_isc = nil
+            if @xml_hash["gISCItem"]["dTasaISC"].present?
+                @tasa_isc  = @xml_hash["gISCItem"]["dTasaISC"].to_f rescue nil
+            end
+            if @xml_hash["gISCItem"]["dValISC"]
+                @monto_isc = @xml_hash["gISCItem"]["dValISC"].to_f rescue nil
+            end
         else
-            @tasa_isc = nil
+            @tasa_isc  = nil
             @monto_isc = nil
         end
 
