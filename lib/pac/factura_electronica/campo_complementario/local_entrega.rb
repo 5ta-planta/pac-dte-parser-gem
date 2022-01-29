@@ -16,7 +16,7 @@ class Pac::FacturaElectronica::CampoComplementario::LocalEntrega
         @xml_hash = xml_hash
         @tipo_contribuyente = nil
         @ruc = nil
-        @dv_ric = nil
+        @dv_ruc = nil
         @razon_social = nil
         @direccion_local =  nil
         @codigo_ubicacion = nil
@@ -35,7 +35,7 @@ class Pac::FacturaElectronica::CampoComplementario::LocalEntrega
             @ruc = @xml_hash["gRucLcEntr"]["dRuc"]
             @dv_ruc = @xml_hash["gRucLcEntr"]["dDV"]
         end
-        
+
         @razon_social = @xml_hash["dNombLcEntr"]
         @direccion_local = @xml_hash["dDirecLcEntr"]
 
