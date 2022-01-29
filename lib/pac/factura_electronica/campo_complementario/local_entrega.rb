@@ -14,20 +14,37 @@ class Pac::FacturaElectronica::CampoComplementario::LocalEntrega
 
     def initialize(xml_hash)
         @xml_hash = xml_hash
+        @tipo_contribuyente = nil
+        @ruc = nil
+        @dv_ric = nil
+        @razon_social = nil
+        @direccion_local =  nil
+        @codigo_ubicacion = nil
+        @corregimiento = nil
+        @distrito = nil
+        @provincia = nil
+        @telefono = nil
+        @telefono_adicional = nil
+
     end
 
     def cargar
-        @tipo_contribuyente = @xml_hash["gRucLcEntr"]["dTipoRuc"]
-        @ruc = @xml_hash["gRucLcEntr"]["dRuc"]
-        @dv_ruc = @xml_hash["gRucLcEntr"]["dDV"]
 
+        if @xml_hash["gRucLcEntr"].present?
+            @tipo_contribuyente = @xml_hash["gRucLcEntr"]["dTipoRuc"]
+            @ruc = @xml_hash["gRucLcEntr"]["dRuc"]
+            @dv_ruc = @xml_hash["gRucLcEntr"]["dDV"]
+        end
+        
         @razon_social = @xml_hash["dNombLcEntr"]
         @direccion_local = @xml_hash["dDirecLcEntr"]
 
-        @codigo_ubicacion = @xml_hash["gUbiLcEntr"]["dCodUbi"]
-        @corregimiento = @xml_hash["gUbiLcEntr"]["dCorreg"]
-        @distrito = @xml_hash["gUbiLcEntr"]["dDistr"]
-        @provincia = @xml_hash["gUbiLcEntr"]["dProv"]
+        if @xml_hash["gUbiLcEntr"].present?
+            @codigo_ubicacion = @xml_hash["gUbiLcEntr"]["dCodUbi"]
+            @corregimiento = @xml_hash["gUbiLcEntr"]["dCorreg"]
+            @distrito = @xml_hash["gUbiLcEntr"]["dDistr"]
+            @provincia = @xml_hash["gUbiLcEntr"]["dProv"]
+        end
 
         @telefono = @xml_hash["dTfnLcEntr"]
         @telefono_adicional = @xml_hash["dTfnAdLcEntr"]
