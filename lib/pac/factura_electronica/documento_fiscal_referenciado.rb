@@ -23,6 +23,10 @@ class Pac::FacturaElectronica::DocumentoFiscalReferenciado
         @existe_gDFRefFE     = false
         @existe_gDFRefFacPap = false
         @existe_gDFRefFacIE  = false
+        @cufe_fe_referenciada= nil
+        @cufe                = nil
+        
+        
     end
 
     def self.listar(hash)
@@ -54,9 +58,11 @@ class Pac::FacturaElectronica::DocumentoFiscalReferenciado
 
         if @xml_hash["gDFRefNum"]["gDFRefFE"].present?
             @existe_gDFRefFE = true
-            @cufe_fe_referenciada = @xml_hash["gDFRefNum"]["gDFRefFE"]["dCUFERef"]
-            @cufe = Pac::FacturaElectronica::Cufe.new(@cufe_fe_referenciada)
-            @cufe.cargar
+            if @xml_hash["gDFRefNum"]["gDFRefFE"]["dCUFERef"].present?
+                @cufe_fe_referenciada = @xml_hash["gDFRefNum"]["gDFRefFE"]["dCUFERef"]
+                @cufe = Pac::FacturaElectronica::Cufe.new(@cufe_fe_referenciada)
+                @cufe.cargar
+            end 
         end
 
         if @xml_hash["gDFRefNum"]["gDFRefFacPap"].present?
