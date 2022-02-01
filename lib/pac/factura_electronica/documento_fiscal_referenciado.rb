@@ -60,8 +60,11 @@ class Pac::FacturaElectronica::DocumentoFiscalReferenciado
             @existe_gDFRefFE = true
             if @xml_hash["gDFRefNum"]["gDFRefFE"]["dCUFERef"].present?
                 @cufe_fe_referenciada = @xml_hash["gDFRefNum"]["gDFRefFE"]["dCUFERef"]
-                @cufe = Pac::FacturaElectronica::Cufe.new(@cufe_fe_referenciada)
-                @cufe.cargar
+                
+                if @cufe_fe_referenciada.match(/^([F][E](([A|V|T|E|P|N|I]|[-]|[a-zA-Z0-9]){64}))$/)
+                    @cufe = Pac::FacturaElectronica::Cufe.new(@cufe_fe_referenciada)
+                    @cufe.cargar
+                end
             end 
         end
 
