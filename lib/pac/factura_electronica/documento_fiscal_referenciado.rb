@@ -52,7 +52,7 @@ class Pac::FacturaElectronica::DocumentoFiscalReferenciado
         @existe_gDFRef = true
         @tipo_contribuyente = @xml_hash["gRucEmDFRef"]["dTipoRuc"].to_i
         @ruc_contribuyente = @xml_hash["gRucEmDFRef"]["dRuc"]
-        @dv_ruc_contribuyente = @xml_hash["gRucEmDFRef"]["dDv"]
+        @dv_ruc_contribuyente = @xml_hash["gRucEmDFRef"]["dDV"]
         @nombre_emisor = @xml_hash["dNombEmRef"]
         @fecha_emision = (@xml_hash["dFechaDFRef"]).to_time if @xml_hash["dFechaDFRef"].present?
 
