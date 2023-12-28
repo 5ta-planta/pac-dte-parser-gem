@@ -56,6 +56,6 @@ module Pac
 	end
 
 	module ProtocoloAutorizacion
-		autoload :ProtocoloAutorizacion, 'pac/protocolo_autorizacion/protocolo_autorizacion_pac'
+		autoload :ProtocoloAutorizacion, 'pac/protocolo_autorizacion/autorizacion_pac'
 	end
 end
