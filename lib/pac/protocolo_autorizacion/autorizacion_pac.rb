@@ -13,7 +13,7 @@ class Pac::ProtocoloAutorizacion::AutorizacionPac
 
   def initialize(protocolo_autorizacion_xml)
     xml_decode = Base64.decode64(protocolo_autorizacion_xml)
-    self.xml = Nokogiri::XML(xml_decode)
+    self.xml = Nokogiri::XML(xml_decode).to_xml
     self.xml_hash =  Hash.from_xml(self.xml)
     self.respuesta_procesamiento = []
   end
