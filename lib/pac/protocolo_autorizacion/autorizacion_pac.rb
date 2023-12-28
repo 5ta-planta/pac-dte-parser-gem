@@ -63,13 +63,13 @@ class Pac::ProtocoloAutorizacion::AutorizacionPac
     if xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gInfProt']['gResProc'].is_a?(Array)
       xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gInfProt']['gResProc'].each do |respuesta|
         respuesta_procesamiento << {
-          codigo: respuesta['dCodRes']
+          codigo: respuesta['dCodRes'],
           mensaje: respuesta['dMsgRes']
         }
       end
     else
       respuesta_procesamiento << {
-        codigo: xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gInfProt']['gResProc']['dCodRes']
+        codigo: xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gInfProt']['gResProc']['dCodRes'],
         mensaje: xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gInfProt']['gResProc']['dMsgRes']
       }
     end
