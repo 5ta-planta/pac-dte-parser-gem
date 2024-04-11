@@ -59,8 +59,8 @@ class Pac::ProtocoloAutorizacion::AutorizacionPac
     self.fecha_procesamiento = xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gInfProt']['dFecProc'] || nil
     self.protocolo_autorizacion = xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gInfProt']['dProtAut'] || nil
     self.digest_value_firma = xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gInfProt']['dDigVal'] || nil
-    if xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gInfProt']['gResProc'].is_a?(Array)
-      xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gInfProt']['gResProc'].each do |respuesta|
+    if xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gResProc'].is_a?(Array)
+      xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gResProc'].each do |respuesta|
         respuesta_procesamiento << {
           codigo: respuesta['dCodRes'],
           mensaje: respuesta['dMsgRes']
@@ -68,8 +68,8 @@ class Pac::ProtocoloAutorizacion::AutorizacionPac
       end
     else
       respuesta_procesamiento << {
-        codigo: xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gInfProt']['gResProc']['dCodRes'],
-        mensaje: xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gInfProt']['gResProc']['dMsgRes']
+        codigo: xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gResProc']['dCodRes'],
+        mensaje: xml_hash['rRetEnviFe']['xProtFe']['rProtFe']['gResProc']['dMsgRes']
       }
     end
   end
