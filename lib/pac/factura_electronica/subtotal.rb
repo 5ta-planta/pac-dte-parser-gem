@@ -14,6 +14,7 @@ class Pac::FacturaElectronica::Subtotal
     attr_accessor :tiempo_pago # iPzPag D12
     attr_accessor :numero_total_items # dNroItems dNroItems
     attr_accessor :total_items # dVTotItems D14
+    attr_accessor :total_otros_gastos # dTotOtrosGastos D15
 
    # attr_accessor :lista_descuentos_bonificaciones_adicionales
 
@@ -61,7 +62,10 @@ class Pac::FacturaElectronica::Subtotal
         @tiempo_pago = @xml_hash["iPzPag"].to_i             rescue 0
         @numero_total_items = @xml_hash["dNroItems"].to_i   rescue 0
         @total_items = @xml_hash["dVTotItems"].to_f         rescue 0
-        
+
+        if @xml_hash["dTotOtrosGastos"].present?
+            @total_otros_gastos = @xml_hash["dTotOtrosGastos"].to_f
+        end
     end
 
     
