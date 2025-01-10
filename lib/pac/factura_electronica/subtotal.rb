@@ -62,10 +62,7 @@ class Pac::FacturaElectronica::Subtotal
         @tiempo_pago = @xml_hash["iPzPag"].to_i             rescue 0
         @numero_total_items = @xml_hash["dNroItems"].to_i   rescue 0
         @total_items = @xml_hash["dVTotItems"].to_f         rescue 0
-
-        if @xml_hash["dTotOtrosGastos"].present?
-            @total_otros_gastos = @xml_hash["dTotOtrosGastos"].to_f
-        end
+        @total_otros_gastos = @xml_hash["dTotOtrosGastos"].to_f   rescue 0
     end
 
     
