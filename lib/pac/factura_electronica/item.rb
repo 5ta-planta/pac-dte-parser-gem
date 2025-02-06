@@ -167,10 +167,10 @@ class Pac::FacturaElectronica::Item
         end
 
         if (@xml_hash["gPedComIr"].present?)
-            @complemento_pedido_comercial_relacionado_item= Pac::FacturaElectronica::CampoComplementario::InformacionPedidoComercialItem.new(@xml_hash["gPedComIr"])
-            @complemento_pedido_comercial_relacionado_item.cargar()
+            @complemento_pedido_comercial_relacionado= Pac::FacturaElectronica::CampoComplementario::InformacionPedidoComercialItem.new(@xml_hash["gPedComIr"])
+            @complemento_pedido_comercial_relacionado.cargar()
         else
-            @complemento_pedido_comercial_relacionado_item=nil
+            @complemento_pedido_comercial_relacionado=nil
         end 
 
 
