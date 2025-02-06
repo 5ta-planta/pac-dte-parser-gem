@@ -54,4 +54,8 @@ module Pac
 		autoload :Manifestacion, 'pac/evento/manifestacion'
 		autoload :Emisor , 'pac/evento/emisor'
 	end
+
+	module ProtocoloAutorizacion
+		autoload :AutorizacionPac, 'pac/protocolo_autorizacion/autorizacion_pac'
+	end
 end
